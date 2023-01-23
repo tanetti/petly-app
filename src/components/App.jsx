@@ -1,3 +1,3 @@
 export const App = () => {
-  return <main>Petlify Ukraine</main>;
+  return <main>Petly Ukraine</main>;
 };
