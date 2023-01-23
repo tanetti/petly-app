@@ -1,8 +1,8 @@
 {
-  "name": "petlify-app",
+  "name": "petly-app",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://petlify-ukraine.netlify.app/",
+  "homepage": "https://petly-ukraine.netlify.app/",
   "dependencies": {
     "modern-normalize": "^1.1.0",
     "prop-types": "^15.8.1",
