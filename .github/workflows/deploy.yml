@@ -1,4 +1,4 @@
-name: Build and deploy to GitHub Pages
+name: Build and deploy to Netlify
 
 on:
   push:
@@ -9,16 +9,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v3.3.0
 
-      - name: Install, lint, build 🔧
+      - name: Install, Lint, Build 🔧
         run: |
           npm install
           npm run lint:js
           npm run build
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.0
+      - name: Deploy to Netlify 🚀
+        uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
-          branch: gh-pages
-          folder: build
+          with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.MY_TOKEN_SECRET }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
