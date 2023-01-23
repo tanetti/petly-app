@@ -11,12 +11,6 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3.3.0
 
-      - name: Install, Lint, Build 🔧
-        run: |
-          npm install
-          npm run lint:js
-          npm run build
-
       - name: Deploy to Netlify 🚀
         uses: jsmrcaga/action-netlify-deploy@v2.0.0
         with:
