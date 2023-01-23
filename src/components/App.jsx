@@ -1,3 +1,3 @@
 export const App = () => {
-  return <main>Pet Finder</main>;
+  return <main>Pet Finder Ukraine</main>;
 };
