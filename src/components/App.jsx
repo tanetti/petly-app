@@ -19,7 +19,7 @@ export const App = () => {
               color: '#010101',
             }}
           >
-            React template 22
+            PetFinder
           </div>
         </Container>
       </Section>
