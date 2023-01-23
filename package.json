@@ -1,8 +1,8 @@
 {
-  "name": "create-react-app-template",
-  "version": "0.1.2",
-  "private": true,
-  "homepage": "https://tanetti.github.io/create-react-app-template/",
+  "name": "pet-finder",
+  "version": "0.1.0",
+  "private": false,
+  "homepage": "https://tanetti.github.io/pet-finder/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.5",
