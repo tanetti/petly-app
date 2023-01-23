@@ -1,8 +1,8 @@
 {
-  "name": "pet-finder",
+  "name": "petlify-app",
   "version": "0.1.0",
   "private": false,
-  "homepage": "https://petfinder-ukraine.netlify.app/",
+  "homepage": "https://petlify-ukraine.netlify.app/",
   "dependencies": {
     "modern-normalize": "^1.1.0",
     "prop-types": "^15.8.1",
