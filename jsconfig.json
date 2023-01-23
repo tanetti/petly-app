@@ -1,6 +1,14 @@
 {
   "compilerOptions": {
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "lint": {
+          "validProperties": ["container-type"]
+        }
+      }
+    ]
   },
   "include": ["src"]
 }
