@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 
 export const SharedLayout = () => {
@@ -5,7 +6,11 @@ export const SharedLayout = () => {
     <>
       <div>Shared layout</div>
       <main>
-        <Outlet />
+        <Suspense
+          fallback={<div>Please wait while the minions do their work...</div>}
+        >
+          <Outlet />
+        </Suspense>
       </main>
     </>
   );

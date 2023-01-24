@@ -9,7 +9,6 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(refreshUser());
-    console.log(process.env.REACT_APP_API_BASE_URL);
   }, [dispatch]);
 
   return <RouterProvider router={router} />;

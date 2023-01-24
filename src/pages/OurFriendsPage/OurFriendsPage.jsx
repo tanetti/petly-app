@@ -1,3 +1,3 @@
-export const OurFriendPage = () => {
-  return <div>Our Friend Page</div>;
+export const OurFriendsPage = () => {
+  return <div>Our Friends Page</div>;
 };
