@@ -5,4 +5,7 @@ export const globalStyles = theme => ({
     color: theme.palette.text.primary,
     backgroundColor: theme.palette.background.dark,
   },
+  a: {
+    outlineOffset: 5,
+  },
 });
