@@ -10,8 +10,10 @@ export const NavigationWrapper = styled('nav')`
   }
 `;
 
-export const InnerContainer = styled('div')`
+export const NavigationInnerContainer = styled('div')`
   display: flex;
+
+  outline: transparent;
 
   ${({ theme }) => theme.breakpoints.down('tablet')} {
     position: absolute;
