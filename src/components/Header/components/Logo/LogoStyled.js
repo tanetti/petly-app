@@ -11,7 +11,7 @@ export const LogoWrapper = styled('p')`
   letter-spacing: 0.07em;
 
   ${({ theme }) => theme.breakpoints.down('desktop')} {
-    position: absolute;
+    position: relative;
     z-index: 20;
   }
 `;

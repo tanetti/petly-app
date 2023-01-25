@@ -27,6 +27,16 @@ export const NavList = styled('ul')`
     padding-top: 160px;
 
     background-color: ${({ theme }) => theme.palette.background.dark};
+
+    opacity: ${({ isMobileMenuOpened }) => (isMobileMenuOpened ? '1' : '0')};
+
+    transform: ${({ isMobileMenuOpened }) =>
+      isMobileMenuOpened ? 'translateX(0)' : 'translateX(105%)'};
+
+    transition: ${({ theme }) =>
+      theme.transitions.create(['opacity', 'transform'], {
+        duration: theme.transitions.duration.standard,
+      })};
   }
 
   ${({ theme }) => theme.breakpoints.up('desktop')} {
