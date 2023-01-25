@@ -31,7 +31,7 @@ export const NavList = styled('ul')`
     opacity: ${({ isMobileMenuOpened }) => (isMobileMenuOpened ? '1' : '0')};
 
     transform: ${({ isMobileMenuOpened }) =>
-      isMobileMenuOpened ? 'translateX(0)' : 'translateX(105%)'};
+      isMobileMenuOpened ? 'translateY(0)' : 'translateY(-105%)'};
 
     transition: ${({ theme }) =>
       theme.transitions.create(['opacity', 'transform'], {

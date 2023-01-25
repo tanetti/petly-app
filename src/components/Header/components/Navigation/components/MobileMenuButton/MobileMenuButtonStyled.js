@@ -26,6 +26,10 @@ export const NavButton = styled('button')`
       duration: theme.transitions.duration.standard,
     })};
 
+  ${({ theme }) => theme.breakpoints.between('mobile', 'desktop')} {
+    margin-left: 20px;
+  }
+
   ${({ theme }) => theme.breakpoints.up('desktop')} {
     display: none;
   }
