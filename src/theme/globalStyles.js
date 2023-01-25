@@ -8,5 +8,6 @@ export const globalStyles = theme => ({
   },
   a: {
     outlineOffset: 5,
+    textDecoration: 'none',
   },
 });

@@ -30,11 +30,14 @@ export const NavList = styled('ul')`
 
     opacity: ${({ isMobileMenuOpened }) => (isMobileMenuOpened ? '1' : '0')};
 
+    visibility: ${({ isMobileMenuOpened }) =>
+      isMobileMenuOpened ? 'initial' : 'hidden'};
+
     transform: ${({ isMobileMenuOpened }) =>
       isMobileMenuOpened ? 'translateY(0)' : 'translateY(-105%)'};
 
     transition: ${({ theme }) =>
-      theme.transitions.create(['opacity', 'transform'], {
+      theme.transitions.create(['opacity', 'visibility', 'transform'], {
         duration: theme.transitions.duration.standard,
       })};
   }
@@ -54,8 +57,6 @@ export const NavGeneralLink = styled(NavLink)`
   letter-spacing: 0.04em;
 
   color: ${({ theme }) => theme.palette.text.secondary};
-
-  text-decoration: none;
 
   transition: ${({ theme }) =>
     theme.transitions.create(['color'], {

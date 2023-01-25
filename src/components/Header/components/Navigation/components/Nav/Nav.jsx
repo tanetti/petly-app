@@ -6,7 +6,7 @@ export const Nav = ({ isMobileMenuOpened, setIsMobileMenuOpened }) => {
     <NavList isMobileMenuOpened={isMobileMenuOpened}>
       <li>
         <NavGeneralLink
-          to={'/news'}
+          to="/news"
           onClick={() => setIsMobileMenuOpened(prevState => prevState && false)}
         >
           News
@@ -14,7 +14,7 @@ export const Nav = ({ isMobileMenuOpened, setIsMobileMenuOpened }) => {
       </li>
       <li>
         <NavGeneralLink
-          to={'/notices'}
+          to="/notices"
           onClick={() => setIsMobileMenuOpened(prevState => prevState && false)}
         >
           Find pet
@@ -22,7 +22,7 @@ export const Nav = ({ isMobileMenuOpened, setIsMobileMenuOpened }) => {
       </li>
       <li>
         <NavGeneralLink
-          to={'/friends'}
+          to="/friends"
           onClick={() => setIsMobileMenuOpened(prevState => prevState && false)}
         >
           Our friends

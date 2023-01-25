@@ -16,7 +16,11 @@ export const Navigation = () => {
           setIsMobileMenuOpened={setIsMobileMenuOpened}
         />
         <AnimatePresence mode="wait">
-          {isUserLoggedIn ? <UserNav /> : <AuthNav />}
+          {isUserLoggedIn ? (
+            <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+          ) : (
+            <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+          )}
         </AnimatePresence>
       </InnerContainer>
       <MobileMenuButton

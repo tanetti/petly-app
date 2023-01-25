@@ -1,11 +1,1 @@
-import { Container } from 'components/Shared/ContainerStyled';
-
-export const HomePage = () => {
-  return (
-    <section>
-      <Container>
-        <div>Home Page</div>
-      </Container>
-    </section>
-  );
-};
+export const HomePage = () => <div>Home Page</div>;

@@ -32,13 +32,16 @@ export const InnerContainer = styled('div')`
 
     opacity: ${({ isMobileMenuOpened }) => (isMobileMenuOpened ? '1' : '0')};
 
+    visibility: ${({ isMobileMenuOpened }) =>
+      isMobileMenuOpened ? 'initial' : 'hidden'};
+
     text-align: center;
 
     transform: ${({ isMobileMenuOpened }) =>
       isMobileMenuOpened ? 'translateY(0)' : 'translateY(-105%)'};
 
     transition: ${({ theme }) =>
-      theme.transitions.create(['opacity', 'transform'], {
+      theme.transitions.create(['opacity', 'visibility', 'transform'], {
         duration: theme.transitions.duration.standard,
       })};
   }

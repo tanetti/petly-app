@@ -4,7 +4,7 @@ export const LogoWrapper = styled('p')`
   margin: 0;
 
   font-family: 'Poppins';
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 700;
   line-height: 1.5;
 
@@ -13,6 +13,10 @@ export const LogoWrapper = styled('p')`
   ${({ theme }) => theme.breakpoints.down('desktop')} {
     position: relative;
     z-index: 20;
+  }
+
+  ${({ theme }) => theme.breakpoints.up('desktop')} {
+    font-size: 32px;
   }
 `;
 
