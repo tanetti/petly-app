@@ -1,3 +1,11 @@
+import { Container } from 'components/Shared/ContainerStyled';
+
 export const NoticesPage = () => {
-  return <div>Notices Page</div>;
+  return (
+    <section>
+      <Container>
+        <div>Notices Page</div>
+      </Container>
+    </section>
+  );
 };

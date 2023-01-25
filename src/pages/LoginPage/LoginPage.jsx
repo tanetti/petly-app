@@ -1,3 +1,11 @@
+import { Container } from 'components/Shared/ContainerStyled';
+
 export const LoginPage = () => {
-  return <div>Login Page</div>;
+  return (
+    <section>
+      <Container>
+        <div>Login Page</div>
+      </Container>
+    </section>
+  );
 };

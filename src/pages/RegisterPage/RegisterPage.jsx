@@ -1,3 +1,11 @@
+import { Container } from 'components/Shared/ContainerStyled';
+
 export const RegisterPage = () => {
-  return <div>Register Page</div>;
+  return (
+    <section>
+      <Container>
+        <div>Register Page</div>
+      </Container>
+    </section>
+  );
 };

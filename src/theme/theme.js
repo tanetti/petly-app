@@ -25,6 +25,14 @@ export const appTheme = createTheme({
       main: 'rgba(17, 17, 17, 0.6)',
     },
   },
+  breakpoints: {
+    values: {
+      mobile: 0,
+      mobileMid: 480,
+      tablet: 768,
+      desktop: 1280,
+    },
+  },
   shadows: {
     primary: '7px 4px 14px rgba(49, 21, 4, 0.07)',
     secondary: '7px 4px 14px rgba(0, 0, 0, 0.11)',

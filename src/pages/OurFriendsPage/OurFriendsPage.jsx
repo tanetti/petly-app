@@ -1,3 +1,11 @@
+import { Container } from 'components/Shared/ContainerStyled';
+
 export const OurFriendsPage = () => {
-  return <div>Our Friends Page</div>;
+  return (
+    <section>
+      <Container>
+        <div>Our Friends Page</div>
+      </Container>
+    </section>
+  );
 };
