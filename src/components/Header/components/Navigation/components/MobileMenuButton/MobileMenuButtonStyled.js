@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 
 export const NavButton = styled('button')`
   position: relative;
-  z-index: 25;
+  z-index: 1235;
 
   display: flex;
   flex-direction: column;
@@ -28,10 +28,6 @@ export const NavButton = styled('button')`
 
   ${({ theme }) => theme.breakpoints.between('mobile', 'desktop')} {
     margin-left: 20px;
-  }
-
-  ${({ theme }) => theme.breakpoints.up('desktop')} {
-    display: none;
   }
 
   &:hover span,

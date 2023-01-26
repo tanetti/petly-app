@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 export const NavList = styled('ul')`
   display: flex;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   gap: 40px;
 
   padding: 0;
@@ -12,34 +12,8 @@ export const NavList = styled('ul')`
 
   list-style: none;
 
-  text-align: center;
-
   ${({ theme }) => theme.breakpoints.between('tablet', 'desktop')} {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 10;
-
     gap: 60px;
-
-    width: 100%;
-    height: 100%;
-    padding-top: 160px;
-
-    background-color: ${({ theme }) => theme.palette.background.dark};
-
-    opacity: ${({ isMobileMenuOpened }) => (isMobileMenuOpened ? '1' : '0')};
-
-    visibility: ${({ isMobileMenuOpened }) =>
-      isMobileMenuOpened ? 'initial' : 'hidden'};
-
-    transform: ${({ isMobileMenuOpened }) =>
-      isMobileMenuOpened ? 'translateY(0)' : 'translateY(-105%)'};
-
-    transition: ${({ theme }) =>
-      theme.transitions.create(['opacity', 'visibility', 'transform'], {
-        duration: theme.transitions.duration.standard,
-      })};
   }
 
   ${({ theme }) => theme.breakpoints.up('desktop')} {
@@ -63,7 +37,7 @@ export const NavGeneralLink = styled(NavLink)`
       duration: theme.transitions.duration.standard,
     })};
 
-  ${({ theme }) => theme.breakpoints.up('tablet ')} {
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
     font-size: 48px;
   }
 

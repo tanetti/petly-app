@@ -33,8 +33,7 @@ export const appTheme = createTheme({
       desktop: 1280,
     },
   },
-  shadows: {
-    primary: '7px 4px 14px rgba(49, 21, 4, 0.07)',
-    secondary: '7px 4px 14px rgba(0, 0, 0, 0.11)',
-  },
 });
+
+appTheme.shadows[50] = '7px 4px 14px rgba(49, 21, 4, 0.07)';
+appTheme.shadows[51] = '7px 4px 14px rgba(0, 0, 0, 0.11)';

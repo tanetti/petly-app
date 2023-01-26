@@ -12,7 +12,7 @@ export const LogoWrapper = styled('p')`
 
   ${({ theme }) => theme.breakpoints.down('desktop')} {
     position: relative;
-    z-index: 20;
+    z-index: 1220;
   }
 
   ${({ theme }) => theme.breakpoints.up('desktop')} {

@@ -1,35 +1,26 @@
-import { useState, useEffect, useRef } from 'react';
-import { useAuth } from 'hooks';
+import { useState } from 'react';
+import { useAuth, useScreen } from 'hooks';
+import { AnimatePresence } from 'framer-motion';
 import { Nav, AuthNav, UserNav, MobileMenuButton } from './components';
 import {
   NavigationWrapper,
-  NavigationInnerContainer,
+  NavigationDesktopContainer,
+  SwipeableMobileMenu,
 } from './NavigationStyled';
-import { AnimatePresence } from 'framer-motion';
 
 export const Navigation = () => {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
-  const navigationInnerContainerRef = useRef(null);
   const { isUserLoggedIn } = useAuth();
-
-  useEffect(() => {
-    if (!isMobileMenuOpened) return;
-
-    navigationInnerContainerRef.current.focus();
-  }, [isMobileMenuOpened]);
+  const currentScreen = useScreen();
 
   return (
     <NavigationWrapper>
-      <NavigationInnerContainer
-        isMobileMenuOpened={isMobileMenuOpened}
-        tabIndex={isMobileMenuOpened ? '0' : '-1'}
-        ref={navigationInnerContainerRef}
-      >
-        <Nav
-          isMobileMenuOpened={isMobileMenuOpened}
-          setIsMobileMenuOpened={setIsMobileMenuOpened}
-        />
-        <div>
+      <NavigationDesktopContainer>
+        {currentScreen === 'desktop' ? (
+          <Nav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+        ) : null}
+
+        {currentScreen === 'tablet' || currentScreen === 'desktop' ? (
           <AnimatePresence mode="wait">
             {isUserLoggedIn ? (
               <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
@@ -37,12 +28,40 @@ export const Navigation = () => {
               <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
             )}
           </AnimatePresence>
-        </div>
-      </NavigationInnerContainer>
-      <MobileMenuButton
-        isMobileMenuOpened={isMobileMenuOpened}
-        setIsMobileMenuOpened={setIsMobileMenuOpened}
-      />
+        ) : null}
+      </NavigationDesktopContainer>
+
+      {currentScreen === 'mobile' || currentScreen === 'tablet' ? (
+        <>
+          <MobileMenuButton
+            isMobileMenuOpened={isMobileMenuOpened}
+            setIsMobileMenuOpened={setIsMobileMenuOpened}
+          />
+
+          <SwipeableMobileMenu
+            id="mobile-menu"
+            anchor="right"
+            slotProps={{
+              backdrop: {
+                sx: { backdropFilter: 'blur(8px)' },
+              },
+            }}
+            open={isMobileMenuOpened}
+            onOpen={() => setIsMobileMenuOpened(true)}
+            onClose={() => setIsMobileMenuOpened(false)}
+          >
+            {currentScreen === 'mobile' && isUserLoggedIn ? (
+              <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+            ) : null}
+
+            {currentScreen === 'mobile' && !isUserLoggedIn ? (
+              <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+            ) : null}
+
+            <Nav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+          </SwipeableMobileMenu>
+        </>
+      ) : null}
     </NavigationWrapper>
   );
 };

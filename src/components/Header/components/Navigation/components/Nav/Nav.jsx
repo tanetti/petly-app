@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import { NavList, NavGeneralLink } from './NavStyled';
 
-export const Nav = ({ isMobileMenuOpened, setIsMobileMenuOpened }) => {
+export const Nav = ({ setIsMobileMenuOpened }) => {
   return (
-    <NavList isMobileMenuOpened={isMobileMenuOpened}>
+    <NavList>
       <li>
         <NavGeneralLink
           to="/news"
@@ -33,6 +33,5 @@ export const Nav = ({ isMobileMenuOpened, setIsMobileMenuOpened }) => {
 };
 
 Nav.propTypes = {
-  isMobileMenuOpened: PropTypes.bool.isRequired,
   setIsMobileMenuOpened: PropTypes.func.isRequired,
 };
