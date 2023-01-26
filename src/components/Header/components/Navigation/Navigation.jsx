@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth, useScreen } from 'hooks';
 import { AnimatePresence } from 'framer-motion';
+import { backdropSlotProps } from 'theme/backdropSlotProps';
 import { Nav, AuthNav, UserNav, MobileMenuButton } from './components';
 import {
   NavigationWrapper,
@@ -41,11 +42,7 @@ export const Navigation = () => {
           <SwipeableMobileMenu
             id="mobile-menu"
             anchor="right"
-            slotProps={{
-              backdrop: {
-                sx: { backdropFilter: 'blur(8px)' },
-              },
-            }}
+            slotProps={backdropSlotProps}
             open={isMobileMenuOpened}
             onOpen={() => setIsMobileMenuOpened(true)}
             onClose={() => setIsMobileMenuOpened(false)}
