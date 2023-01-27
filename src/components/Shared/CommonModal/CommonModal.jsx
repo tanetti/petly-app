@@ -1,7 +1,14 @@
 import PropTypes from 'prop-types';
 import { Fade, useTheme } from '@mui/material';
 import { backdropSlotProps } from 'theme/backdropSlotProps';
-import { StyledModal, ModalWindow } from './CommonModalStyled';
+import {
+  StyledModal,
+  ModalWindow,
+  ContentContainer,
+  ModalTitle,
+  ModalWindowGradient,
+  ModalCloseButton,
+} from './CommonModalStyled';
 
 export const CommonModal = ({ title, isOpened, closeModal, children }) => {
   const theme = useTheme();
@@ -16,9 +23,12 @@ export const CommonModal = ({ title, isOpened, closeModal, children }) => {
     >
       <Fade in={isOpened} timeout={theme.transitions.duration.standard}>
         <ModalWindow>
-          {title ? <p>{title}</p> : null}
-          <button>11</button>
-          {children}
+          <ModalWindowGradient />
+          <ContentContainer>
+            {title ? <ModalTitle>{title}</ModalTitle> : null}
+            <ModalCloseButton>1</ModalCloseButton>
+            {children}
+          </ContentContainer>
         </ModalWindow>
       </Fade>
     </StyledModal>
