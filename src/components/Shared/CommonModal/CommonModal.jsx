@@ -8,15 +8,22 @@ import {
   ModalTitle,
   ModalWindowGradient,
   ModalCloseButton,
+  CloseButtonIcon,
 } from './CommonModalStyled';
 
-export const CommonModal = ({ title, isOpened, closeModal, children }) => {
+export const CommonModal = ({
+  title,
+  isOpened,
+  isActionsDisabled,
+  closeModal,
+  children,
+}) => {
   const theme = useTheme();
 
   return (
     <StyledModal
       open={isOpened}
-      onClose={closeModal}
+      onClose={isActionsDisabled ? null : closeModal}
       aria-labelledby="modal-title"
       closeAfterTransition
       slotProps={backdropSlotProps}
@@ -26,7 +33,13 @@ export const CommonModal = ({ title, isOpened, closeModal, children }) => {
           <ModalWindowGradient />
           <ContentContainer>
             {title ? <ModalTitle>{title}</ModalTitle> : null}
-            <ModalCloseButton>1</ModalCloseButton>
+            <ModalCloseButton
+              aria-label="Close window"
+              disabled={isActionsDisabled}
+              onClick={closeModal}
+            >
+              <CloseButtonIcon />
+            </ModalCloseButton>
             {children}
           </ContentContainer>
         </ModalWindow>
@@ -38,5 +51,6 @@ export const CommonModal = ({ title, isOpened, closeModal, children }) => {
 CommonModal.propTypes = {
   title: PropTypes.string,
   isOpened: PropTypes.bool.isRequired,
+  isActionsDisabled: PropTypes.bool,
   closeModal: PropTypes.func.isRequired,
 };

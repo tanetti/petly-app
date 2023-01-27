@@ -1,5 +1,5 @@
-import { CommonModal } from 'components/Shared/CommonModal/CommonModal';
 import { useState } from 'react';
+import { CommonModal } from 'components/Shared';
 
 export const OurFriendsPage = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -8,14 +8,25 @@ export const OurFriendsPage = () => {
     <>
       <div>Our Friends Page</div>
       <button type="button" onClick={() => setIsModalOpened(true)}>
-        MODAL
+        OPEN MODAL
       </button>
 
       <CommonModal
         title="Common modal"
         isOpened={isModalOpened}
+        isActionsDisabled={false}
         closeModal={() => setIsModalOpened(false)}
       >
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
         <p>MODAL</p>
       </CommonModal>
     </>

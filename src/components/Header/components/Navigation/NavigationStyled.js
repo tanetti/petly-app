@@ -20,11 +20,13 @@ export const SwipeableMobileMenu = styled(SwipeableDrawer)`
 
     width: 100%;
     padding-top: 104px;
+    padding-bottom: 60px;
 
     background-color: ${({ theme }) => theme.palette.background.dark};
 
     ${({ theme }) => theme.breakpoints.up('tablet')} {
       padding-top: 160px;
+      padding-bottom: 60px;
     }
   }
 `;

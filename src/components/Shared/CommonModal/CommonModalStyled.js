@@ -1,5 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { IconButton, Modal } from '@mui/material';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 export const StyledModal = styled(Modal)`
   display: grid;
@@ -12,12 +13,16 @@ export const ModalWindow = styled('div')`
   display: flex;
 
   max-width: calc(100vw - 40px);
+  min-width: 280px;
   max-height: calc(100vh - 40px);
   padding: 10px 10px;
 
-  background: ${({ theme }) => theme.palette.background.main};
+  color: ${({ theme }) => theme.palette.text.black};
+  background-color: ${({ theme }) => theme.palette.background.main};
 
   border-radius: 20px;
+
+  outline: transparent;
 
   overflow: hidden;
 
@@ -29,8 +34,14 @@ export const ModalWindow = styled('div')`
 
 export const ModalCloseButton = styled(IconButton)`
   position: absolute;
+  top: 20px;
+  right: 20px;
 
-  color: ${({ theme }) => theme.palette.semiTransparentBlack.main};
+  width: 44px;
+  height: 44px;
+  padding: 0;
+
+  color: inherit;
   background-color: ${({ theme }) => theme.palette.background.dark};
 
   transition: ${({ theme }) =>
@@ -43,6 +54,10 @@ export const ModalCloseButton = styled(IconButton)`
     color: ${({ theme }) => theme.palette.accent.main};
     background-color: ${({ theme }) => theme.palette.background.dark};
   }
+`;
+
+export const CloseButtonIcon = styled(CloseRoundedIcon)`
+  font-size: 36px;
 `;
 
 export const ModalWindowGradient = styled('div')`
@@ -74,6 +89,7 @@ export const ModalWindowGradient = styled('div')`
 `;
 
 export const ContentContainer = styled('div')`
+  width: 100%;
   max-height: 100cqh;
   padding: 30px 10px;
 
@@ -93,7 +109,7 @@ export const ContentContainer = styled('div')`
   }
 
   &::-webkit-scrollbar-track {
-    margin-top: 30px;
+    margin-top: 66px;
     margin-bottom: 12px;
 
     background-color: ${({ theme }) => theme.palette.semiTransparentBlack.main};
@@ -105,6 +121,7 @@ export const ContentContainer = styled('div')`
 export const ModalTitle = styled('p')`
   margin: 0;
   margin-bottom: 20px;
+  padding: 0 54px;
 
   font-size: 24px;
   line-height: 1.38;
