@@ -17,12 +17,14 @@ export const appTheme = createTheme({
       secondary: '#181C27',
       searchPlaceholder: '#535353',
       white: '#fff',
+      black: '#000',
     },
     blueLink: {
       main: '#3091eb',
     },
     semiTransparentBlack: {
       main: 'rgba(17, 17, 17, 0.6)',
+      dark: 'rgba(27, 27, 27, 0.6)',
     },
   },
   breakpoints: {
