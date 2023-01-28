@@ -1,6 +1,46 @@
 import * as yup from 'yup';
 import { PASSWORD_PATTERN } from 'constants/patterns';
 
+yup.addMethod(
+  yup.string,
+  'stringLengthIfNotEmpty',
+  function (param, errorMessage) {
+    return this.test(
+      'string-Length-If-Not-Empty',
+      errorMessage,
+      function (value) {
+        const { path, createError } = this;
+
+        if (value.length > 0 && value.length < param) {
+          return createError({ path, message: errorMessage });
+        }
+
+        return true;
+      }
+    );
+  }
+);
+
+yup.addMethod(
+  yup.string,
+  'phoneLengthIfNotEmpty',
+  function (param, errorMessage) {
+    return this.test(
+      'phone-Length-If-Not-Empty',
+      errorMessage,
+      function (value) {
+        const { path, createError } = this;
+
+        if (value.length > 5 && value.length < param) {
+          return createError({ path, message: errorMessage });
+        }
+
+        return true;
+      }
+    );
+  }
+);
+
 export const registerFirstStepValidationSchema = yup.object().shape({
   email: yup
     .string()
@@ -21,9 +61,13 @@ export const registerFirstStepValidationSchema = yup.object().shape({
 });
 
 export const registerSecondStepValidationSchema = yup.object().shape({
-  name: yup.string().trim(),
+  name: yup
+    .string()
+    .trim()
+    .stringLengthIfNotEmpty(2, '2 symbols minimum')
+    .max(30, '30 symbols maximum'),
 
   address: yup.string().trim(),
 
-  phone: yup.string().trim(),
+  phone: yup.string().trim().phoneLengthIfNotEmpty(19, 'Invalid Phone length'),
 });

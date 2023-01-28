@@ -8,7 +8,7 @@ import {
   LayoutTitle,
 } from './RegisterLayoutStyled';
 import { standartAnimation } from 'constants/animationVariants';
-import { StepContainer } from './components/StepContainerStyled';
+import { StepContainer } from './components';
 
 export const RegisterLayout = () => {
   const [isOnTheFirstStep, setIsOnTheFirstStep] = useState(true);

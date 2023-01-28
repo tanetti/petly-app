@@ -2,8 +2,17 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { createFilterOptions } from '@mui/material';
 import { registerSecondStepValidationSchema } from 'utilities/validationSchemas';
 import { AuthInput, FilledButton, OutlinedButton } from 'components/Shared';
+import { StyledAutocomplete } from './SecondStepStyled';
+import { PhoneFormatInput } from './components/PhoneFormatInput';
+import { CITIES } from 'constants/cities';
+
+const filterOptions = createFilterOptions({
+  matchFrom: 'start',
+  trim: true,
+});
 
 export const SecondStep = ({
   moveBackward,
@@ -73,15 +82,31 @@ export const SecondStep = ({
       <Controller
         name="address"
         control={control}
-        render={({ field }) => (
-          <AuthInput
-            {...field}
-            title="City, region"
-            label="City, region"
-            type="text"
-            fullWidth
-            error={!!errors.address}
-            helperText={errors.address?.message}
+        render={({ field: { onChange, value } }) => (
+          <StyledAutocomplete
+            disablePortal={false}
+            selectOnFocus={false}
+            autoComplete={true}
+            autoHighlight={true}
+            noOptionsText="No city was found"
+            openText="Open city list"
+            clearText="Clear"
+            value={value || null}
+            filterOptions={filterOptions}
+            options={CITIES}
+            isOptionEqualToValue={(option, value) => option === value}
+            onChange={(_, field) => onChange(field ?? '')}
+            renderInput={params => (
+              <AuthInput
+                {...params}
+                title="City, region"
+                label="City, region"
+                type="text"
+                fullWidth
+                error={!!errors.address}
+                helperText={errors.address?.message}
+              />
+            )}
           />
         )}
       />
@@ -98,6 +123,7 @@ export const SecondStep = ({
             fullWidth
             error={!!errors.phone}
             helperText={errors.phone?.message}
+            InputProps={{ inputComponent: PhoneFormatInput }}
           />
         )}
       />

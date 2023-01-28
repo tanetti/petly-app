@@ -119,7 +119,7 @@ export const AuthInput = styled(TextField)`
     border-width: 1px;
     border-style: solid;
     border-color: ${({ theme }) => theme.palette.error.main};
-    border-radius: 4px;
+    border-radius: 8px;
 
     white-space: nowrap;
 
