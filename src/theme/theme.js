@@ -2,6 +2,9 @@ import { createTheme } from '@mui/material/styles';
 
 export const appTheme = createTheme({
   palette: {
+    primary: {
+      main: '#f59256',
+    },
     background: {
       light: 'rgba(255, 255, 255, 0.6)',
       main: '#fff',
