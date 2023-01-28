@@ -1,5 +1,4 @@
 import { styled } from '@mui/material/styles';
-
 import { TextField } from '@mui/material';
 
 export const AuthInput = styled(TextField)`
@@ -25,6 +24,8 @@ export const AuthInput = styled(TextField)`
     letter-spacing: inherit;
 
     border-radius: 40px;
+
+    background-color: ${({ theme }) => theme.palette.background.dark};
 
     ${({ theme }) => theme.breakpoints.up('tablet')} {
       height: 52px;
@@ -90,6 +91,9 @@ export const AuthInput = styled(TextField)`
     background-color: ${({ theme }) => theme.palette.background.dark};
 
     border-radius: 40px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     ${({ theme }) => theme.breakpoints.up('tablet')} {
       height: 26px;

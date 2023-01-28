@@ -33,4 +33,8 @@ export const FilledButton = styled('button')`
   &:not(:last-of-type) {
     margin-bottom: 16px;
   }
+
+  &:disabled {
+    background-color: ${({ theme }) => theme.palette.accent.light};
+  }
 `;

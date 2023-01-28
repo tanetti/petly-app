@@ -53,5 +53,11 @@ export const NavLinkButtonLike = styled(NavLink)`
     color: ${({ theme }) => theme.palette.text.white};
     border-color: ${({ theme }) => theme.palette.accent.main};
     background-color: ${({ theme }) => theme.palette.accent.main};
+
+    &:hover,
+    &:focus {
+      background-color: ${({ theme }) => theme.palette.accent.dark};
+      border-color: ${({ theme }) => theme.palette.accent.dark};
+    }
   }
 `;

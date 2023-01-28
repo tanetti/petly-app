@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useAuth, useScreen } from 'hooks';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { backdropSlotProps } from 'theme/backdropSlotProps';
+import { standartAnimation } from 'constants/animationVariants';
 import { Nav, AuthNav, UserNav, MobileMenuButton } from './components';
 import {
   NavigationWrapper,
@@ -24,9 +25,25 @@ export const Navigation = () => {
         {currentScreen === 'tablet' || currentScreen === 'desktop' ? (
           <AnimatePresence mode="wait">
             {isUserLoggedIn ? (
-              <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+              <motion.div
+                key="loggedIn"
+                variants={standartAnimation}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+              </motion.div>
             ) : (
-              <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+              <motion.div
+                key="notLoggedIn"
+                variants={standartAnimation}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+              </motion.div>
             )}
           </AnimatePresence>
         ) : null}
