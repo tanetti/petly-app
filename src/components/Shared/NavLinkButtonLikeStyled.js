@@ -14,7 +14,7 @@ export const NavLinkButtonLike = styled(NavLink)`
   line-height: 1.36;
   letter-spacing: 0.04em;
 
-  color: ${({ theme }) => theme.palette.accent.main};
+  color: ${({ theme }) => theme.palette.text.primary};
   background-color: ${({ theme }) => theme.palette.background.main};
 
   border-width: 2px;
@@ -53,5 +53,11 @@ export const NavLinkButtonLike = styled(NavLink)`
     color: ${({ theme }) => theme.palette.text.white};
     border-color: ${({ theme }) => theme.palette.accent.main};
     background-color: ${({ theme }) => theme.palette.accent.main};
+
+    &:hover,
+    &:focus {
+      background-color: ${({ theme }) => theme.palette.accent.dark};
+      border-color: ${({ theme }) => theme.palette.accent.dark};
+    }
   }
 `;
