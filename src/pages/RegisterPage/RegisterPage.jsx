@@ -1,1 +1,9 @@
-export const RegisterPage = () => <div>Register Page</div>;
+import { Container } from 'components/Shared';
+
+export const RegisterPage = () => (
+  <section>
+    <Container>
+      <div>Register Page</div>
+    </Container>
+  </section>
+);
