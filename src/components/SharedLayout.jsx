@@ -4,6 +4,7 @@ import { GlobalStyles } from '@mui/material';
 import { globalStyles } from 'theme/globalStyles';
 import { Container } from './Shared/ContainerStyled';
 import { Header } from './Header/Header';
+import { ToastContainer } from './ToastContainer/ToastContainer';
 
 export const SharedLayout = () => {
   return (
@@ -23,6 +24,7 @@ export const SharedLayout = () => {
           <Outlet />
         </Suspense>
       </main>
+      <ToastContainer />
     </>
   );
 };
