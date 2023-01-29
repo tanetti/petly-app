@@ -3,7 +3,7 @@ import {Item, Img, Title, Info, ItemInfo, NameInfo, ValueInfo} from './NoticeCat
 
 export const NoticeCategoryItem = ({ notice }) => {
     const locate = useLocation();
-    const {_id, url, title, breed, birthdate, location, price}
+    const { _id, url, title, breed, birthdate, location, price } = notice;
 
     function getAge() {
     const today = new Date();
