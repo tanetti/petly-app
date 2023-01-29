@@ -64,14 +64,15 @@ export const Navigation = () => {
             onOpen={() => setIsMobileMenuOpened(true)}
             onClose={() => setIsMobileMenuOpened(false)}
           >
-            {currentScreen === 'mobile' && isUserLoggedIn ? (
-              <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
-            ) : null}
+            <div>
+              {currentScreen === 'mobile' && isUserLoggedIn ? (
+                <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+              ) : null}
 
-            {currentScreen === 'mobile' && !isUserLoggedIn ? (
-              <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
-            ) : null}
-
+              {currentScreen === 'mobile' && !isUserLoggedIn ? (
+                <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+              ) : null}
+            </div>
             <Nav setIsMobileMenuOpened={setIsMobileMenuOpened} />
           </SwipeableMobileMenu>
         </>
