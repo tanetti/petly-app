@@ -4,3 +4,6 @@ export * from './AuthInputStyled';
 export * from './FilledButtonStyled';
 export * from './OutlinedButtonStyled';
 export * from './CommonModal/CommonModal';
+export * from './AuthSectionStyled';
+export * from './AuthContainerStyled';
+export * from './AuthLayoutStyled';

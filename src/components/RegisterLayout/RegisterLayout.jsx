@@ -6,7 +6,7 @@ import {
   LayoutHint,
   LayoutHintLink,
   LayoutTitle,
-} from './RegisterLayoutStyled';
+} from 'components/Shared';
 import { standartAnimation } from 'constants/animationVariants';
 import { StepContainer } from './components';
 
@@ -52,7 +52,7 @@ export const RegisterLayout = () => {
       </AnimatePresence>
 
       <LayoutHint>
-        Don't have an account?&nbsp;
+        Already have an account?&nbsp;
         <LayoutHintLink to="/login">Login</LayoutHintLink>
       </LayoutHint>
     </LayoutContainer>
