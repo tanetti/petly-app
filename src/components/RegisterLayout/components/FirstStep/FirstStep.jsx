@@ -6,8 +6,7 @@ import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import { InputAdornment } from '@mui/material';
 import { registerFirstStepValidationSchema } from 'utilities/validationSchemas';
-import { AdornmentButton } from './components/AdornmentButtonStyled';
-import { AuthInput, FilledButton } from 'components/Shared';
+import { AuthInput, FilledButton, AdornmentButton } from 'components/Shared';
 
 export const FirstStep = ({
   moveForward,
