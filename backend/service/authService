@@ -1,0 +1,12 @@
+const User = require('../models/user')
+
+
+const registration = async(email, password, confirmpass, name, location, number) => {
+    const user = new User({ email, password, confirmpass, name, location, number });
+    await user.save();
+
+};
+
+module.exports = {
+    registration
+}
