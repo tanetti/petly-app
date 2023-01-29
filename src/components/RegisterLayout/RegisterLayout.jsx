@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { FirstStep, SecondStep } from './components';
 import {
+  AuthMotionContainer,
   LayoutContainer,
   LayoutHint,
   LayoutHintLink,
   LayoutTitle,
-} from './RegisterLayoutStyled';
+} from 'components/Shared';
 import { standartAnimation } from 'constants/animationVariants';
-import { StepContainer } from './components';
 
 export const RegisterLayout = () => {
   const [isOnTheFirstStep, setIsOnTheFirstStep] = useState(true);
@@ -20,7 +20,7 @@ export const RegisterLayout = () => {
       <LayoutTitle>Registration</LayoutTitle>
       <AnimatePresence mode="wait">
         {isOnTheFirstStep ? (
-          <StepContainer
+          <AuthMotionContainer
             key="firstStep"
             variants={standartAnimation}
             initial="initial"
@@ -32,9 +32,9 @@ export const RegisterLayout = () => {
               firstStepFormData={firstStepFormData}
               setFirstStepFormData={setFirstStepFormData}
             />
-          </StepContainer>
+          </AuthMotionContainer>
         ) : (
-          <StepContainer
+          <AuthMotionContainer
             key="secondStep"
             variants={standartAnimation}
             initial="initial"
@@ -47,12 +47,12 @@ export const RegisterLayout = () => {
               secondStepFormData={secondStepFormData}
               setSecondStepFormData={setSecondStepFormData}
             />
-          </StepContainer>
+          </AuthMotionContainer>
         )}
       </AnimatePresence>
 
       <LayoutHint>
-        Don't have an account?&nbsp;
+        Already have an account?&nbsp;
         <LayoutHintLink to="/login">Login</LayoutHintLink>
       </LayoutHint>
     </LayoutContainer>

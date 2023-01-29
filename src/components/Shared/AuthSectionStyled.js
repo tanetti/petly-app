@@ -1,10 +1,9 @@
 import { styled } from '@mui/material/styles';
-import { Container } from 'components/Shared';
-import wavesMobile from 'images/background/register/waves-mobile.webp';
-import wavesTablet from 'images/background/register/waves-tablet.webp';
-import wavesDesktop from 'images/background/register/waves-desktop.webp';
+import wavesMobile from 'images/auth-background/waves-mobile.webp';
+import wavesTablet from 'images/auth-background/waves-tablet.webp';
+import wavesDesktop from 'images/auth-background/waves-desktop.webp';
 
-export const RegistrationSection = styled('section')`
+export const AuthSection = styled('section')`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -26,14 +25,5 @@ export const RegistrationSection = styled('section')`
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center bottom -10px;
-  }
-`;
-
-export const RegistrationContainer = styled(Container)`
-  display: grid;
-  place-items: center;
-
-  ${({ theme }) => theme.breakpoints.up('tablet')} {
-    flex-grow: 1;
   }
 `;

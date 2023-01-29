@@ -1,13 +1,10 @@
 import { RegisterLayout } from 'components/RegisterLayout/RegisterLayout';
-import {
-  RegistrationSection,
-  RegistrationContainer,
-} from './RegisterPageStyled';
+import { AuthSection, AuthContainer } from 'components/Shared';
 
 export const RegisterPage = () => (
-  <RegistrationSection>
-    <RegistrationContainer>
+  <AuthSection>
+    <AuthContainer>
       <RegisterLayout />
-    </RegistrationContainer>
-  </RegistrationSection>
+    </AuthContainer>
+  </AuthSection>
 );

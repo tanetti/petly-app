@@ -41,6 +41,19 @@ yup.addMethod(
   }
 );
 
+export const loginValidationSchema = yup.object().shape({
+  email: yup
+    .string()
+    .trim()
+    .email('Wrong Email format')
+    .required('Enter your Email address'),
+
+  password: yup
+    .string()
+    .required('Enter your Password')
+    .matches(PASSWORD_PATTERN, 'Digits, big & small letters, min 8 symbols'),
+});
+
 export const registerFirstStepValidationSchema = yup.object().shape({
   email: yup
     .string()
