@@ -1,35 +1,14 @@
-import { useState } from 'react';
-import { Container, CommonModal } from 'components/Shared';
-
+import { Container } from 'components/Shared';
+import sponsors from './sponsors.json';
+import { OurFriendsList } from '../../components/OurFriendsList/OurFriendsList';
+import { Title } from 'components/Title/Title';
 export const OurFriendsPage = () => {
-  const [isModalOpened, setIsModalOpened] = useState(false);
-
   return (
     <section>
       <Container>
-        <div>Our Friends Page</div>
-        <button type="button" onClick={() => setIsModalOpened(true)}>
-          OPEN MODAL
-        </button>
+        <Title text="Our friends" />
 
-        <CommonModal
-          title="Common modal"
-          isOpened={isModalOpened}
-          isActionsDisabled={false}
-          closeModal={() => setIsModalOpened(false)}
-        >
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-        </CommonModal>
+        <OurFriendsList sponsors={sponsors} />
       </Container>
     </section>
   );
