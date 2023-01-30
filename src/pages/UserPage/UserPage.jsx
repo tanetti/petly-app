@@ -1,9 +1,10 @@
 import { Container } from 'components/Shared';
+import { UserPageComponent } from 'components/UserPageComponent/UserPageComponent';
 
 export const UserPage = () => (
   <section>
     <Container>
-      <div>User Page</div>
+      <UserPageComponent />
     </Container>
   </section>
 );
