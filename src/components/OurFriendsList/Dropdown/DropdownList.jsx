@@ -1,4 +1,4 @@
-export const DropdownList = ({ workDays, days }) => {
+export const DropdownList = ({ workDays }) => {
   if (!workDays) {
     return;
   }
