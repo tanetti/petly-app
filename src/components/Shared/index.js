@@ -9,3 +9,4 @@ export * from './AuthContainerStyled';
 export * from './AuthLayoutStyled';
 export * from './AuthAdornmentButtonStyled';
 export * from './AuthMotionContainerStyled';
+export * from './CommonProgressBarStyled';

@@ -1,19 +1,23 @@
 import { useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { useAuth } from 'hooks';
+import { AnimatePresence, motion } from 'framer-motion';
 import { FirstStep, SecondStep } from './components';
+import { standartAnimation } from 'constants/animationVariants';
 import {
   AuthMotionContainer,
+  CommonProgressBar,
+  CommonProgressBarContainer,
   LayoutContainer,
   LayoutHint,
   LayoutHintLink,
   LayoutTitle,
 } from 'components/Shared';
-import { standartAnimation } from 'constants/animationVariants';
 
 export const RegisterLayout = () => {
   const [isOnTheFirstStep, setIsOnTheFirstStep] = useState(true);
   const [firstStepFormData, setFirstStepFormData] = useState(null);
   const [secondStepFormData, setSecondStepFormData] = useState(null);
+  const { isUserPending } = useAuth();
 
   return (
     <LayoutContainer>
@@ -55,6 +59,20 @@ export const RegisterLayout = () => {
         Already have an account?&nbsp;
         <LayoutHintLink to="/login">Login</LayoutHintLink>
       </LayoutHint>
+      <CommonProgressBarContainer>
+        <AnimatePresence>
+          {isUserPending ? (
+            <motion.div
+              variants={standartAnimation}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <CommonProgressBar />
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </CommonProgressBarContainer>
     </LayoutContainer>
   );
 };

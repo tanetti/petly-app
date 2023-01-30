@@ -2,8 +2,12 @@ import { styled } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
 export const LayoutContainer = styled('div')`
+  position: relative;
+
   width: 100%;
   padding-top: 10px;
+
+  overflow: hidden;
 
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     width: 608px;

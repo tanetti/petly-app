@@ -4,7 +4,7 @@ import { logIn } from 'redux/auth/authOperations';
 import { useAuth } from 'hooks';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { InputAdornment } from '@mui/material';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
@@ -21,6 +21,8 @@ import {
   LayoutTitle,
   AdornmentButton,
   AuthMotionContainer,
+  CommonProgressBar,
+  CommonProgressBarContainer,
 } from 'components/Shared';
 
 export const LoginLayout = () => {
@@ -144,6 +146,20 @@ export const LoginLayout = () => {
         Don't have an account?&nbsp;
         <LayoutHintLink to="/register">Register</LayoutHintLink>
       </LayoutHint>
+      <CommonProgressBarContainer>
+        <AnimatePresence>
+          {isUserPending ? (
+            <motion.div
+              variants={standartAnimation}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <CommonProgressBar />
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </CommonProgressBarContainer>
     </LayoutContainer>
   );
 };

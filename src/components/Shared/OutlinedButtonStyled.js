@@ -34,4 +34,9 @@ export const OutlinedButton = styled('button')`
   &:not(:last-of-type) {
     margin-bottom: 16px;
   }
+
+  &:disabled {
+    color: ${({ theme }) => theme.palette.accent.light};
+    border-color: ${({ theme }) => theme.palette.accent.light};
+  }
 `;
