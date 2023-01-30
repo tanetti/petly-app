@@ -6,6 +6,7 @@ export const servicesApi = createApi({
     baseUrl: process.env.REACT_APP_API_BASE_URL,
   }),
   tagTypes: ['Services'],
+  refetchOnFocus: true,
   endpoints: builder => ({
     getServices: builder.query({
       query: () => `/services`,

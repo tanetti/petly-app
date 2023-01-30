@@ -10,6 +10,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { authReducer } from './auth/authSlice';
 import { newsApi } from './news/newsApi';
 import { servicesApi } from './services/servicesApi';
@@ -41,5 +42,7 @@ export const store = configureStore({
   },
   middleware,
 });
+
+setupListeners(store.dispatch);
 
 export const persistor = persistStore(store);

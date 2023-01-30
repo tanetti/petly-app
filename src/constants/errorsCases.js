@@ -1,7 +1,7 @@
 export const errorCases = {
-  'login-no-user': {
+  'login-0100-error': {
     field: 'email',
-    message: 'No user with this Email',
+    message: 'No user was found',
   },
   'login-email-format-error': {
     field: 'email',
@@ -11,7 +11,7 @@ export const errorCases = {
     field: 'email',
     message: 'Email is required',
   },
-  'login-wrong-password': {
+  'login-0101-error': {
     field: 'password',
     message: 'Wrong Password',
   },
@@ -24,7 +24,7 @@ export const errorCases = {
     message: 'Password is required',
   },
 
-  'register-email-in-use-error': {
+  'register-email-0102-error': {
     field: 'email',
     message: 'User already exists',
   },
