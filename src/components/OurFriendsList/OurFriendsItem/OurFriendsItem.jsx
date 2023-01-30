@@ -1,11 +1,10 @@
+import { Dropdown } from '../Dropdown/Dropdown';
 import {
   Item,
   Box,
   BoxContact,
-  Text,
   BoxImg,
   ItemTitle,
-  Plug,
 } from '../OurFriendsPageStyled';
 
 export const OurFriendsItem = ({
@@ -27,12 +26,8 @@ export const OurFriendsItem = ({
           {imageUrl ? <img src={imageUrl} alt="logo" /> : 'Картинка'}
         </BoxImg>
         <BoxContact>
-          <Text>
-            Time:
-            <br />
-            11:00- 16:00
-          </Text>
-          <Text>
+          <Dropdown />
+          <p>
             Address:
             <br />
             {address ? (
@@ -40,27 +35,27 @@ export const OurFriendsItem = ({
                 {address}
               </a>
             ) : (
-              <Plug>---------------------------</Plug>
+              <span>---------------------------</span>
             )}
-          </Text>
-          <Text>
+          </p>
+          <p>
             Email:
             <br />
             {email ? (
               <a href="mailto:{email}">{email}</a>
             ) : (
-              <Plug>---------------------------</Plug>
+              <span>---------------------------</span>
             )}
-          </Text>
-          <Text>
+          </p>
+          <p>
             Phone:
             <br />
             {phone ? (
               <a href="tel:{phone}">{phone}</a>
             ) : (
-              <Plug>---------------------------</Plug>
+              <span>---------------------------</span>
             )}
-          </Text>
+          </p>
         </BoxContact>
       </Box>
     </Item>

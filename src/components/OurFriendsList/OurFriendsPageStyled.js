@@ -25,7 +25,7 @@ export const List = styled('ul')`
 export const Item = styled('li')`
   text-align: center;
   min-width: 280px;
-  min-height: 192px;
+
   padding: 12px 4px 12px 4px;
   background: ${({ theme }) => theme.palette.background.main};
   border-radius: 20px;
@@ -76,38 +76,38 @@ export const Box = styled('div')`
 
 export const BoxContact = styled('div')`
   text-align: left;
-  & a {
-    &:hover,
-    &:focus {
-      color: ${({ theme }) => theme.palette.accent.main};
-    }
+  & div {
   }
-`;
-export const Text = styled('p')`
-  font-style: normal;
-  font-size: 12px;
-  line-height: 1.33;
-  margin-top: 0;
-  margin-bottom: 4px;
-  color: ${({ theme }) => theme.palette.text.black};
+  & p {
+    font-style: normal;
+    font-size: 12px;
+    line-height: 1.33;
+    margin-top: 0;
+    margin-bottom: 4px;
+    color: ${({ theme }) => theme.palette.text.black};
 
-  padding: 0;
-  &:last-child {
-    margin-bottom: 0;
-  }
-  ${({ theme }) => theme.breakpoints.up('tablet')} {
-    font-size: 14px;
-    line-height: 1.35;
-    margin-bottom: 8px;
-  }
-  ${({ theme }) => theme.breakpoints.up('desktop')} {
-    font-size: 16px;
-    line-height: 1.37;
-    margin-bottom: 12px;
+    padding: 0;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    ${({ theme }) => theme.breakpoints.up('tablet')} {
+      font-size: 14px;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    ${({ theme }) => theme.breakpoints.up('desktop')} {
+      font-size: 16px;
+      line-height: 1.37;
+      margin-bottom: 12px;
+    }
   }
   & a {
     color: inherit;
     text-decoration: underline;
+    &:hover,
+    &:focus {
+      color: ${({ theme }) => theme.palette.accent.main};
+    }
   }
 `;
 export const BoxImg = styled('div')`
@@ -124,9 +124,5 @@ export const BoxImg = styled('div')`
   & img {
     display: block;
     max-width: 100%;
-    height: auto;
   }
-`;
-export const Plug = styled('p')`
-  margin: 0;
 `;
