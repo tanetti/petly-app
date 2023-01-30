@@ -1,13 +1,19 @@
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { logIn, registerUser } from 'redux/auth/authOperations';
+import { resetWasRegistered } from 'redux/auth/authActions';
+import { useAuth } from 'hooks';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createFilterOptions } from '@mui/material';
 import { registerSecondStepValidationSchema } from 'utilities/validationSchemas';
 import { AuthInput, FilledButton, OutlinedButton } from 'components/Shared';
+import { makeToast } from 'utilities/makeToast';
+import { CITIES } from 'constants/cities';
+import { errorCases } from 'constants/errorsCases';
 import { StyledAutocomplete } from './SecondStepStyled';
 import { PhoneFormatInput } from './components/PhoneFormatInput';
-import { CITIES } from 'constants/cities';
 
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
@@ -20,14 +26,19 @@ export const SecondStep = ({
   secondStepFormData,
   setSecondStepFormData,
 }) => {
+  const dispatch = useDispatch();
+  const { isUserPending, wasRegistered, userError } = useAuth();
+
   const {
     control,
     handleSubmit,
     getValues,
     setValue,
+    setError,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(registerSecondStepValidationSchema),
+    mode: userError ? 'onChange' : 'onSubmit',
     defaultValues: {
       name: '',
       address: '',
@@ -43,6 +54,33 @@ export const SecondStep = ({
     );
   }, [firstStepFormData, secondStepFormData, setValue]);
 
+  useEffect(() => {
+    if (!userError || !userError.startsWith('register')) return;
+
+    if (
+      userError.startsWith('register-email') ||
+      userError.startsWith('register-password')
+    ) {
+      setSecondStepFormData(getValues());
+      moveBackward();
+    }
+
+    const errorCase = errorCases[userError];
+    if (!errorCase) return makeToast();
+
+    const { field, message } = errorCase;
+    setError(field, { type: 'min', message });
+  }, [getValues, moveBackward, setError, setSecondStepFormData, userError]);
+
+  useEffect(() => {
+    if (!wasRegistered) return;
+
+    const { email, password } = firstStepFormData;
+
+    dispatch(logIn({ email, password }));
+    dispatch(resetWasRegistered());
+  });
+
   const onMoveBackward = event => {
     event.preventDefault();
     setSecondStepFormData(getValues());
@@ -50,9 +88,17 @@ export const SecondStep = ({
   };
 
   const onSubmit = data => {
-    const registerData = { ...firstStepFormData, ...data };
+    let filteredSecondStepData = {};
 
-    console.log(registerData);
+    Object.entries(data).forEach(([key, value]) => {
+      if (!value) return;
+
+      filteredSecondStepData[key] = value;
+    });
+
+    const registerData = { ...firstStepFormData, ...filteredSecondStepData };
+
+    dispatch(registerUser(registerData));
   };
 
   return (
@@ -73,6 +119,7 @@ export const SecondStep = ({
             type="text"
             fullWidth
             autoFocus
+            disabled={isUserPending}
             error={!!errors.name}
             helperText={errors.name?.message}
           />
@@ -103,6 +150,7 @@ export const SecondStep = ({
                 label="City, region"
                 type="text"
                 fullWidth
+                disabled={isUserPending}
                 error={!!errors.address}
                 helperText={errors.address?.message}
               />
@@ -121,6 +169,7 @@ export const SecondStep = ({
             label="Mobile phone"
             type="text"
             fullWidth
+            disabled={isUserPending}
             error={!!errors.phone}
             helperText={errors.phone?.message}
             InputProps={{ inputComponent: PhoneFormatInput }}
@@ -129,11 +178,19 @@ export const SecondStep = ({
       />
       <FilledButton
         type="submit"
-        disabled={!!errors.name || !!errors.address || !!errors.phone}
+        disabled={
+          isUserPending || !!errors.name || !!errors.address || !!errors.phone
+        }
       >
         Register
       </FilledButton>
-      <OutlinedButton onClick={onMoveBackward}>Back</OutlinedButton>
+      <OutlinedButton
+        type="button"
+        disabled={isUserPending}
+        onClick={onMoveBackward}
+      >
+        Back
+      </OutlinedButton>
     </form>
   );
 };

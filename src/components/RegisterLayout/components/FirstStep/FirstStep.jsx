@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { resetError } from 'redux/auth/authActions';
+import { useAuth } from 'hooks';
+import { errorCases } from 'constants/errorsCases';
 import { yupResolver } from '@hookform/resolvers/yup';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
@@ -16,14 +20,18 @@ export const FirstStep = ({
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [passwordConfirmationVisibility, setPasswordConfirmationVisibility] =
     useState(false);
+  const dispatch = useDispatch();
+  const { userError } = useAuth();
 
   const {
     control,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(registerFirstStepValidationSchema),
+    mode: userError ? 'onChange' : 'onSubmit',
     defaultValues: {
       email: '',
       password: '',
@@ -44,8 +52,25 @@ export const FirstStep = ({
     });
   }, [firstStepFormData, setValue]);
 
+  useEffect(() => {
+    if (
+      !userError ||
+      (!userError.startsWith('register-email') &&
+        !userError.startsWith('register-password'))
+    )
+      return;
+
+    const errorCase = errorCases[userError];
+    if (!errorCase) return;
+    const { field, message } = errorCase;
+
+    setError(field, { message });
+  }, [dispatch, setError, userError]);
+
   const onSubmit = data => {
     const { email, password } = data;
+
+    if (userError) dispatch(resetError());
 
     setFirstStepFormData({ email, password });
     moveForward();

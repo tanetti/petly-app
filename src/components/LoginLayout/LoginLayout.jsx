@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/authOperations';
+import { useAuth } from 'hooks';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AnimatePresence } from 'framer-motion';
 import { InputAdornment } from '@mui/material';
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
+import { makeToast } from 'utilities/makeToast';
 import { loginValidationSchema } from 'utilities/validationSchemas';
 import { standartAnimation } from 'constants/animationVariants';
+import { errorCases } from 'constants/errorsCases';
 import {
   AuthInput,
   FilledButton,
@@ -20,9 +25,12 @@ import {
 
 export const LoginLayout = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const dispatch = useDispatch();
+  const { isUserPending, userError } = useAuth();
 
   const {
     control,
+    setError,
     handleSubmit,
     formState: { errors },
   } = useForm({
@@ -33,8 +41,18 @@ export const LoginLayout = () => {
     },
   });
 
-  const onSubmit = data => {
-    console.log(data);
+  useEffect(() => {
+    if (!userError || !userError.startsWith('login')) return;
+
+    const errorCase = errorCases[userError];
+    if (!errorCase) return makeToast();
+
+    const { field, message } = errorCase;
+    setError(field, { message });
+  }, [setError, userError]);
+
+  const onSubmit = credentials => {
+    dispatch(logIn(credentials));
   };
 
   return (
@@ -64,6 +82,7 @@ export const LoginLayout = () => {
                   type="email"
                   fullWidth
                   autoFocus
+                  disabled={isUserPending}
                   error={!!errors.email}
                   helperText={errors.email?.message}
                 />
@@ -80,6 +99,7 @@ export const LoginLayout = () => {
                   label="Password"
                   type={passwordVisibility ? 'text' : 'password'}
                   fullWidth
+                  disabled={isUserPending}
                   error={!!errors.password}
                   helperText={errors.password?.message}
                   InputProps={{
@@ -113,7 +133,7 @@ export const LoginLayout = () => {
 
             <FilledButton
               type="submit"
-              disabled={!!errors.email || !!errors.password}
+              disabled={isUserPending || !!errors.email || !!errors.password}
             >
               Login
             </FilledButton>

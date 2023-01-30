@@ -11,6 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
+import { newsApi } from './news/newsApi';
 import { noticesApi } from './notices/noticesApi';
 
 const middleware = [
@@ -19,6 +20,7 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
+  newsApi.middleware,
   noticesApi.middleware,
 ];
 
@@ -31,6 +33,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    [newsApi.reducerPath]: newsApi.reducer,
     [noticesApi.reducerPath]: noticesApi.reducer,
   },
   middleware,

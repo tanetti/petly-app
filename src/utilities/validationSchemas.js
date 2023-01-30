@@ -48,10 +48,7 @@ export const loginValidationSchema = yup.object().shape({
     .email('Wrong Email format')
     .required('Enter your Email address'),
 
-  password: yup
-    .string()
-    .required('Enter your Password')
-    .matches(PASSWORD_PATTERN, 'Digits, big & small letters, min 8 symbols'),
+  password: yup.string().required('Enter your Password'),
 });
 
 export const registerFirstStepValidationSchema = yup.object().shape({

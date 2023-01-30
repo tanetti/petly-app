@@ -12,7 +12,7 @@ import {
 
 export const Navigation = () => {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
-  const { isUserLoggedIn } = useAuth();
+  const { isUserLoggedIn, isUserRefreshing } = useAuth();
   const currentScreen = useScreen();
 
   return (
@@ -22,7 +22,8 @@ export const Navigation = () => {
           <Nav setIsMobileMenuOpened={setIsMobileMenuOpened} />
         ) : null}
 
-        {currentScreen === 'tablet' || currentScreen === 'desktop' ? (
+        {(currentScreen === 'tablet' || currentScreen === 'desktop') &&
+        !isUserRefreshing ? (
           <AnimatePresence mode="wait">
             {isUserLoggedIn ? (
               <motion.div
@@ -65,11 +66,15 @@ export const Navigation = () => {
             onClose={() => setIsMobileMenuOpened(false)}
           >
             <div>
-              {currentScreen === 'mobile' && isUserLoggedIn ? (
+              {currentScreen === 'mobile' &&
+              isUserLoggedIn &&
+              !isUserRefreshing ? (
                 <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
               ) : null}
 
-              {currentScreen === 'mobile' && !isUserLoggedIn ? (
+              {currentScreen === 'mobile' &&
+              !isUserLoggedIn &&
+              !isUserRefreshing ? (
                 <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
               ) : null}
             </div>

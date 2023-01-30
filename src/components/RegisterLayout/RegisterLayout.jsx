@@ -12,8 +12,8 @@ import { standartAnimation } from 'constants/animationVariants';
 
 export const RegisterLayout = () => {
   const [isOnTheFirstStep, setIsOnTheFirstStep] = useState(true);
-  const [firstStepFormData, setFirstStepFormData] = useState();
-  const [secondStepFormData, setSecondStepFormData] = useState();
+  const [firstStepFormData, setFirstStepFormData] = useState(null);
+  const [secondStepFormData, setSecondStepFormData] = useState(null);
 
   return (
     <LayoutContainer>
