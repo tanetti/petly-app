@@ -6,8 +6,6 @@ import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import { Container } from 'components/Shared/ContainerStyled';
 import { Title, FormSearch } from "components/NewsPage/NewsPageStyled";
-// import { SearchButton, OpenSearch, CloseSearch } from '../../components/NewsPage/SearchboxStyled';
-// // import news from "./news.json"
 
 export const NewsPage = () => {
   const [search, setSearch] = useState([]);

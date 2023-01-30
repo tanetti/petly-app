@@ -17,6 +17,5 @@ export const Searchbox = ({ value, onChange }) => {
             </SearchButton>
  </>
   )     
-
 }
   
