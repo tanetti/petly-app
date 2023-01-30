@@ -1,4 +1,3 @@
-import { Dropdown } from '../Dropdown/Dropdown';
 import {
   Item,
   Box,
@@ -6,6 +5,9 @@ import {
   BoxImg,
   ItemTitle,
 } from '../OurFriendsPageStyled';
+import { useState } from 'react';
+import { DropdownList } from '../Dropdown/DropdownList';
+import { DropdownMenu } from '../Dropdown/DropdownStyled';
 
 export const OurFriendsItem = ({
   title,
@@ -15,7 +17,14 @@ export const OurFriendsItem = ({
   address,
   phone,
   email,
+  workDays,
 }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleToggle = () => {
+    setOpen(prevOpen => !prevOpen);
+  };
+
   return (
     <Item key={title}>
       <ItemTitle target="blank" href={url}>
@@ -26,7 +35,12 @@ export const OurFriendsItem = ({
           {imageUrl ? <img src={imageUrl} alt="logo" /> : 'Картинка'}
         </BoxImg>
         <BoxContact>
-          <Dropdown />
+          <DropdownMenu>
+            <button onClick={handleToggle}>
+              Time <br /> {!workDays ? '------------------' : '09:00- 17:00'}
+            </button>
+            {open && <DropdownList workDays={workDays} />}
+          </DropdownMenu>
           <p>
             Address:
             <br />

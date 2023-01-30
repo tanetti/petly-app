@@ -5,7 +5,16 @@ export const OurFriendsList = ({ sponsors }) => {
   return (
     <List>
       {sponsors.map(
-        ({ title, url, addressUrl, imageUrl, address, phone, email }) => (
+        ({
+          title,
+          url,
+          addressUrl,
+          imageUrl,
+          address,
+          phone,
+          email,
+          workDays,
+        }) => (
           <OurFriendsItem
             key={title}
             title={title}
@@ -15,6 +24,7 @@ export const OurFriendsList = ({ sponsors }) => {
             address={address}
             phone={phone}
             email={email}
+            workDays={workDays}
           />
         )
       )}
