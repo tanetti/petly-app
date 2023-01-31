@@ -38,6 +38,9 @@ export const appTheme = createTheme({
       desktop: 1280,
     },
   },
+  transition: {
+    main: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  },
 });
 
 appTheme.shadows[50] = '7px 4px 14px rgba(49, 21, 4, 0.07)';

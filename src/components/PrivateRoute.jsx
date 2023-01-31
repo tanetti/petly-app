@@ -8,9 +8,11 @@ export const PrivateRoute = ({
   const location = useLocation();
   const { isUserLoggedIn, isUserRefreshing } = useAuth();
 
-  return !isUserLoggedIn && !isUserRefreshing ? (
+  return isUserLoggedIn && isUserRefreshing ? (
     <Navigate to={redirectTo} replace={true} state={{ from: location }} />
   ) : (
     Component
   );
 };
+
+//   return !isUserLoggedIn &&  !isUserRefreshing ? (
