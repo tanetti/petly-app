@@ -6,6 +6,7 @@ export const LayoutContainer = styled('div')`
 
   width: 100%;
   padding-top: 10px;
+  padding-bottom: 20px;
 
   overflow: hidden;
 

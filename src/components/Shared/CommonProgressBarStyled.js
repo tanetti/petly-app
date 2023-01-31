@@ -7,6 +7,10 @@ export const CommonProgressBarContainer = styled('div')`
   left: 0;
 
   width: 100%;
+
+  border-radius: 4px;
+
+  overflow: hidden;
 `;
 
 export const CommonProgressBar = styled(LinearProgress)`
