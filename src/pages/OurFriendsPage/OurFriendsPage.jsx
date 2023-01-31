@@ -6,7 +6,7 @@ export const OurFriendsPage = () => {
   return (
     <section>
       <Container>
-        <Title text="Our friends" />
+        <Title text={'Our friends'} />
 
         <OurFriendsList sponsors={sponsors} />
       </Container>

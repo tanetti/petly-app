@@ -24,6 +24,16 @@ export const OurFriendsItem = ({
   const handleToggle = () => {
     setOpen(prevOpen => !prevOpen);
   };
+  const times = workDays => {
+    if (!workDays) {
+      return;
+    }
+    const timeWork = workDays.find(day => day.isOpen === true);
+    const from = timeWork.from;
+    const to = timeWork.to;
+    const time = `${from} - ${to}`;
+    return time;
+  };
 
   return (
     <Item key={title}>
@@ -37,7 +47,7 @@ export const OurFriendsItem = ({
         <BoxContact>
           <DropdownMenu>
             <button onClick={handleToggle}>
-              Time <br /> {!workDays ? '------------------' : '09:00- 17:00'}
+              Time <br /> {!workDays ? '------------------' : times(workDays)}
             </button>
             {open && <DropdownList workDays={workDays} />}
           </DropdownMenu>
