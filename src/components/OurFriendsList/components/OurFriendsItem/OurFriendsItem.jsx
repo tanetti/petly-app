@@ -4,7 +4,7 @@ import {
   BoxContact,
   BoxImg,
   ItemTitle,
-} from '../OurFriendsPageStyled';
+} from './OurFriendsItemStyled';
 import { useState } from 'react';
 import { DropdownList } from '../Dropdown/DropdownList';
 import { DropdownMenu } from '../Dropdown/DropdownStyled';

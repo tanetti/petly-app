@@ -1,5 +1,5 @@
-import { List } from './OurFriendsPageStyled';
-import { OurFriendsItem } from './OurFriendsItem/OurFriendsItem';
+import { List } from './OurFriendsListStyled';
+import { OurFriendsItem } from './components';
 
 export const OurFriendsList = ({ sponsors }) => {
   return (

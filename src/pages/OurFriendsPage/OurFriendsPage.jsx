@@ -7,7 +7,6 @@ export const OurFriendsPage = () => {
     <section>
       <Container>
         <Title text={'Our friends'} />
-
         <OurFriendsList sponsors={sponsors} />
       </Container>
     </section>
