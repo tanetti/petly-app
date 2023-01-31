@@ -5,18 +5,18 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import { Container } from 'components/Shared/ContainerStyled';
-import { Title, FormSearch } from "components/NewsPage/NewsPageStyled";
+import { Title, FormSearch } from "pages/NewsPage/NewsPageStyled";
+import { OpenSearch, CloseSearch } from '../../components/NewsPage/Searchbox/SearchboxStyled';
 
 export const NewsPage = () => {
   const [search, setSearch] = useState([]);
   const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams('');
   const [query, setQuery] = useState(() => {
-    const resultQuery = searchParams.get('search') ?? "";
+  const resultQuery = searchParams.get('search') ?? "";
     return resultQuery ? resultQuery : ""
   })
 
- 
   const Search = async () => {
     const result = await axios.get("http://localhost:5000/api/news")
     if (result.length === 0) {
@@ -32,7 +32,7 @@ export const NewsPage = () => {
       setSearch(data)
 
       if (data.length === 0) {
-        setError(`Not any news in database`)
+        setError(`No any news in database`)
       }
       else {
         setError(null)
@@ -50,17 +50,16 @@ export const NewsPage = () => {
   const searchQuery = searchQueryFull.toLowerCase();
 
   
-const handleSubmit = (e) => {
-  e.preventDefault();
-  setQuery(searchQuery)
-  // setChangeIcon(!changeIcon)
-}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchParams({})
+    setQuery(searchQuery)
+  }
 
   const sortedSearch = search.sort((a, b) => a.date < b.date ? 1 : -1);
   
   let filteredSearch = [];
-
-   sortedSearch.forEach(article => {
+  sortedSearch.forEach(article => {
         const titleToLowerCase = article.title.toLowerCase();
         const descriptionToLowerCase = article.description.toLowerCase();
         if (titleToLowerCase.includes(query) || descriptionToLowerCase.includes(query)) {
@@ -74,12 +73,13 @@ const handleSubmit = (e) => {
     }
      // eslint-disable-next-line 
   }, [query])
-
+console.log(searchParams)
   
     return (
       <Container>
         <Title>News</Title>
-        <FormSearch onSubmit={handleSubmit}>
+        <FormSearch onSubmit={handleSubmit} onClick={handleSubmit}>
+          {searchQueryFull ? <CloseSearch/> : <OpenSearch/>}
           <Searchbox
             value={searchQueryFull}
             onChange={filterSearch}

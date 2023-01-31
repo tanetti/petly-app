@@ -1,11 +1,7 @@
 import { styled } from '@mui/material/styles';
 
 export const ListNews = styled('ul')`
-  /* display: grid;
-  max-width: (100vw-40px); */
   grid-template-columns: repeat(1, 1fr);
-  /* grid-gap: 12px; */
-  margin-top: 28px;
   margin-bottom: 40px;
   padding: 0;
   justify-content: center;
@@ -17,22 +13,22 @@ export const ListNews = styled('ul')`
   max-width: (100vw-40px);
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 32px;
-    margin-top: 40px;
+    margin-top: 10px;
     margin-bottom: 0;
   }
   ${({ theme }) => theme.breakpoints.up('desktop')} {
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 60px;
   }
 `;
 
 export const ItemNews = styled('li')`
 height: 312px;
+position: relative;
 max-width:100%;
 margin-bottom: 40px;
 ${({ theme }) => theme.breakpoints.up('tablet')} {
    height :276px ;
-   max-width: 336px;
+   /* max-width: 336px; */
   }
   ${({ theme }) => theme.breakpoints.up('desktop')} {
     height: 254px;
@@ -54,7 +50,6 @@ export const TitleArticle = styled('div')`
 display: -webkit-box;
 -webkit-line-clamp: 2;
 -webkit-box-orient:vertical;
-width: 100%;
 height: 66px;
 font-family: 'Manrope';
 font-style: normal;
@@ -63,8 +58,6 @@ font-size: 24px;
 line-height: 33px;
 letter-spacing: -0.01em;
 overflow: hidden;
-/* white-space: nowrap; */
-text-overflow: ellipsis;
 margin-bottom: 16px;
 
 ${({ theme }) => theme.breakpoints.up('tablet')} {
@@ -74,9 +67,32 @@ ${({ theme }) => theme.breakpoints.up('tablet')} {
   
   }
 `
+export const DescriptionUp = styled('div')`
+display: block;
+position: relative;
+font-size: 16px;
+width: 100%;
+line-height: 22px;
+background-color: #ffff;
+opacity: 1;
+z-index: 55;
+padding: 20px;
+border-radius: 20px;
+border: 2px solid ${({ theme }) => theme.palette.accent.main};
+bottom: 63%;
+
+
+${({ theme }) => theme.breakpoints.up('tablet')} {
+ width: 100%;
+ bottom:60%}
+
+  ${({ theme }) => theme.breakpoints.up('desktop')} {
+width: 140%;
+  }
+`
 export const Description = styled('div')`
 display: -webkit-box;
--webkit-line-clamp: 5;
+-webkit-line-clamp: 8;
 -webkit-box-orient:vertical;
 position: relative;
 font-size: 16px;
@@ -85,40 +101,19 @@ max-height: 176px;
 overflow: hidden;
 margin-bottom: 20px;
 text-align: justify;  
-  padding-right: 1em;
-  line-height: 22px;
+line-height: 22px;
 
 ${({ theme }) => theme.breakpoints.up('tablet')} {
   height: 132px;
-  
+  -webkit-line-clamp: 5;
   }
+
   ${({ theme }) => theme.breakpoints.up('desktop')} {
 height: 110px;
 line-height: 22px;
 margin-bottom: 40px;
+-webkit-line-clamp: 5;
     }
-  /* &::before{
-  content: '...';
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  }
-  &::after{
-  content: "";
-  position: absolute;
-  right: 0;
-  width: 1em;
-  height: 1em;
-  margin-top: 0.2em;
-  background: white;
-  } */
-`
-export const DescriptionUp = styled('div')`
-display: none;
-position: absolute;
-font-size: 16px;
-height: 100%;
-
 `
 
 export const AddBlock = styled('div')`
