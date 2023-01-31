@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAuth } from 'hooks';
+import { useAuth, useScreen } from 'hooks';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FirstStep, SecondStep } from './components';
 import { standartAnimation } from 'constants/animationVariants';
@@ -17,6 +17,7 @@ export const RegisterLayout = () => {
   const [isOnTheFirstStep, setIsOnTheFirstStep] = useState(true);
   const [firstStepFormData, setFirstStepFormData] = useState(null);
   const [secondStepFormData, setSecondStepFormData] = useState(null);
+  const currentScreen = useScreen();
   const { isUserPending } = useAuth();
 
   return (
@@ -61,7 +62,8 @@ export const RegisterLayout = () => {
       </LayoutHint>
       <CommonProgressBarContainer>
         <AnimatePresence>
-          {isUserPending ? (
+          {(currentScreen === 'tablet' || currentScreen === 'desktop') &&
+          isUserPending ? (
             <motion.div
               variants={standartAnimation}
               initial="initial"

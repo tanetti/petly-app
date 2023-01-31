@@ -1,8 +1,8 @@
 import { styled } from '@mui/material/styles';
+import { LoadingButton } from '@mui/lab';
 
-export const OutlinedButton = styled('button')`
+export const OutlinedButton = styled(LoadingButton)`
   min-width: 120px;
-  width: 100%;
   padding: 8px 28px;
 
   font-weight: 500;
@@ -18,7 +18,7 @@ export const OutlinedButton = styled('button')`
   color: ${({ theme }) => theme.palette.text.primary};
   background-color: ${({ theme }) => theme.palette.background.main};
 
-  cursor: pointer;
+  text-transform: none;
 
   transition: ${({ theme }) =>
     theme.transitions.create(['border-color', 'color'], {
@@ -40,3 +40,5 @@ export const OutlinedButton = styled('button')`
     border-color: ${({ theme }) => theme.palette.accent.light};
   }
 `;
+
+export const OutlinedButtonOLD = styled('button')``;

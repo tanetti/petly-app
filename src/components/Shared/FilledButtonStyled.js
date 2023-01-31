@@ -1,8 +1,8 @@
 import { styled } from '@mui/material/styles';
+import { LoadingButton } from '@mui/lab';
 
-export const FilledButton = styled('button')`
+export const FilledButton = styled(LoadingButton)`
   min-width: 120px;
-  width: 100%;
   padding: 8px 28px;
 
   font-weight: 500;
@@ -18,7 +18,7 @@ export const FilledButton = styled('button')`
   color: ${({ theme }) => theme.palette.text.white};
   background-color: ${({ theme }) => theme.palette.accent.main};
 
-  cursor: pointer;
+  text-transform: none;
 
   transition: ${({ theme }) =>
     theme.transitions.create(['background-color'], {

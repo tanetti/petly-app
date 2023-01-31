@@ -177,15 +177,18 @@ export const SecondStep = ({
         )}
       />
       <FilledButton
+        title="Register"
+        fullWidth
         type="submit"
-        disabled={
-          isUserPending || !!errors.name || !!errors.address || !!errors.phone
-        }
+        loading={isUserPending}
+        disabled={!!errors.name || !!errors.address || !!errors.phone}
       >
         Register
       </FilledButton>
       <OutlinedButton
+        title="Back to the first step"
         type="button"
+        fullWidth
         disabled={isUserPending}
         onClick={onMoveBackward}
       >

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/authOperations';
-import { useAuth } from 'hooks';
+import { useAuth, useScreen } from 'hooks';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -28,6 +28,7 @@ import {
 export const LoginLayout = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const dispatch = useDispatch();
+  const currentScreen = useScreen();
   const { isUserPending, userError } = useAuth();
 
   const {
@@ -134,8 +135,11 @@ export const LoginLayout = () => {
             />
 
             <FilledButton
+              title="Login"
+              fullWidth
               type="submit"
-              disabled={isUserPending || !!errors.email || !!errors.password}
+              disabled={!!errors.email || !!errors.password}
+              loading={isUserPending}
             >
               Login
             </FilledButton>
@@ -148,7 +152,8 @@ export const LoginLayout = () => {
       </LayoutHint>
       <CommonProgressBarContainer>
         <AnimatePresence>
-          {isUserPending ? (
+          {(currentScreen === 'tablet' || currentScreen === 'desktop') &&
+          isUserPending ? (
             <motion.div
               variants={standartAnimation}
               initial="initial"

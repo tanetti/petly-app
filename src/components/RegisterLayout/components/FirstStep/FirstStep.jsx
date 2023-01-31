@@ -183,6 +183,8 @@ export const FirstStep = ({
       />
 
       <FilledButton
+        title="Next step"
+        fullWidth
         type="submit"
         disabled={
           !!errors.email || !!errors.password || !!errors.passwordConfirmation
