@@ -51,6 +51,9 @@ ${({ theme }) => theme.breakpoints.up('tablet')} {
   }
 `
 export const TitleArticle = styled('div')`
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient:vertical;
 width: 100%;
 height: 66px;
 font-family: 'Manrope';
@@ -72,15 +75,19 @@ ${({ theme }) => theme.breakpoints.up('tablet')} {
   }
 `
 export const Description = styled('div')`
+display: -webkit-box;
+-webkit-line-clamp: 5;
+-webkit-box-orient:vertical;
 position: relative;
 font-size: 16px;
 font-weight: 400px;
 max-height: 176px;
-overflow-y: hidden;
+overflow: hidden;
 margin-bottom: 20px;
 text-align: justify;  
   padding-right: 1em;
   line-height: 22px;
+
 ${({ theme }) => theme.breakpoints.up('tablet')} {
   height: 132px;
   
@@ -90,7 +97,7 @@ height: 110px;
 line-height: 22px;
 margin-bottom: 40px;
     }
-  &::before{
+  /* &::before{
   content: '...';
   position: absolute;
   right: 0;
@@ -104,7 +111,7 @@ margin-bottom: 40px;
   height: 1em;
   margin-top: 0.2em;
   background: white;
-  }
+  } */
 `
 export const DescriptionUp = styled('div')`
 display: none;
