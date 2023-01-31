@@ -23,7 +23,7 @@ export const Navigation = () => {
 
         {currentScreen === 'tablet' || currentScreen === 'desktop' ? (
           <AnimatePresence mode="wait">
-            {isUserLoggedIn ? (
+            {!isUserLoggedIn ? (
               <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
             ) : (
               <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />

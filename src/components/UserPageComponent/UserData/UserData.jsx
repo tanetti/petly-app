@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { useMemo } from 'react';
 import {
   Wrapper,
   DataUser,
@@ -18,11 +17,6 @@ import {
   LogOutBtn,
   LogOutIcon,
   Hidden,
-  WrapperUpload,
-  PickBtn,
-  UploadBtn,
-  ImgInfo,
-  ImgInfoItem,
 } from './UserDataStyled';
 import photoCover from 'images/photo-сover.png';
 
@@ -32,9 +26,7 @@ export const UserData = () => {
   const [bithday, setBithday] = useState(true);
   const [phone, setPhone] = useState(true);
   const [city, setCity] = useState(true);
-  const [btnUpload, setBtnUpload] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [uploaded, setUploaded] = useState();
   const filePicker = useRef(null);
 
   const { handleSubmit } = useForm({
@@ -47,38 +39,21 @@ export const UserData = () => {
     },
   });
 
-  // const hostUrl = '';
-
-  const onSubmitName = e => {
-    console.log(e);
+  const onSubmitForm = e => {
+    // Object.entries(e).forEach(([key, value]) => {
+    // console.log([key, value]);
+    // });
   };
 
   const handleChange = e => {
+    console.log(e.target.files[0]);
     setSelectedFile(e.target.files[0]);
   };
 
-  const handleUpload = async () => {
-    // if (!selectedFile) {
-    //   alert('please select a file');
-    //   return;
-    // }
-    console.log(selectedFile);
-    setSelectedFile(null);
-
+  const handleEditPhoto = e => {
+    filePicker.current.click();
     const formData = new FormData();
     formData.append('file', selectedFile);
-    setBtnUpload(!true);
-    // const res = await fetch(hostUrl, {
-    //   method: 'POST',
-    //   body: formData,
-    // });
-    // const data = await res.json();
-
-    // setUploaded(data);
-  };
-
-  const handlePick = e => {
-    filePicker.current.click();
   };
 
   return (
@@ -86,48 +61,21 @@ export const UserData = () => {
       <WrapperTitle>My information:</WrapperTitle>
       <DataUser>
         <WrapperPhoto>
-          {btnUpload && (
-            <WrapperUpload>
-              {!selectedFile && (
-                <div>
-                  {' '}
-                  <PickBtn onClick={handlePick}>Pick file</PickBtn>
-                  <Hidden
-                    type="file"
-                    ref={filePicker}
-                    onChange={handleChange}
-                    accept="image/*,.png,.jpg,.gif,.web,"
-                  ></Hidden>
-                </div>
-              )}
-              {selectedFile && (
-                <ImgInfo>
-                  <ImgInfoItem>Name: {selectedFile.name}</ImgInfoItem>
-                  <ImgInfoItem>Type: {selectedFile.type}</ImgInfoItem>
-                  <ImgInfoItem>Size: {selectedFile.size + 'b'}</ImgInfoItem>
-                </ImgInfo>
-              )}{' '}
-              {selectedFile && (
-                <UploadBtn onClick={handleUpload}>Upload now!</UploadBtn>
-              )}
-              {/* {uploaded && (
-                <div>
-                  <h2>{uploaded.filename}</h2>
-                  <img alt="" src={uploaded.filePath} width="200" />
-                </div>
-              )} */}
-            </WrapperUpload>
-          )}
-
           <Img src={photoCover} alt="photo" />
-          <EditPhotoBtn type="button" onClick={() => setBtnUpload(!btnUpload)}>
+          <EditPhotoBtn type="button" onClick={handleEditPhoto}>
             <CameraIcon />
             Edit photo
           </EditPhotoBtn>
+          <Hidden
+            type="file"
+            ref={filePicker}
+            onChange={handleChange}
+            accept="image/*,.png,.jpg,.gif,.web,"
+          ></Hidden>
         </WrapperPhoto>
 
         <WrapperForm>
-          <Form onSubmit={handleSubmit(onSubmitName)}>
+          <Form onSubmit={handleSubmit(onSubmitForm)}>
             Name:
             <Input disabled={name} type="text" />
             <CreateIconBtn type="submit" onClick={() => setName(!name)}>
@@ -139,7 +87,7 @@ export const UserData = () => {
               {email ? <CreateIcon /> : <CreateIconDone />}
             </CreateIconBtn>
             Bithday:
-            <Input disabled={bithday} type="number" />
+            <Input disabled={bithday} type="data" />
             <CreateIconBtn type="submit" onClick={() => setBithday(!bithday)}>
               {bithday ? <CreateIcon /> : <CreateIconDone />}
             </CreateIconBtn>

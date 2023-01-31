@@ -10,7 +10,7 @@ export const Wrapper = styled('div')`
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     margin-bottom: 20px;
     position: relative;
-    height: 361px;
+    height: 390px;
   }
 
   ${({ theme }) => theme.breakpoints.up('desktop')} {
@@ -56,15 +56,16 @@ export const DataUser = styled('div')`
     display: grid;
     grid-template-columns: repeat(1fr, 233px);
     justify-content: end;
-    padding: 24px;
+    padding: 40px 40px 24px;
     position: absolute;
-    bottom: 0;
+    // bottom: -35px;
     right: 0;
     width: 100vw;
   }
 
   ${({ theme }) => theme.breakpoints.up('desktop')} {
     display: grid;
+    min-height: 541px;
 
     position: absolute;
     top: 60px;
@@ -131,6 +132,7 @@ export const EditPhotoBtn = styled('button')`
   transition: all 300ms ${({ theme }) => theme.transition.main};
 
   &:hover,
+  &:focus,
   &:active {
     color: ${({ theme }) => theme.palette.accent.main};
     filter: hue-rotate(220deg);
@@ -309,82 +311,6 @@ export const LogOutIcon = styled(LogoutRoundedIcon)`
   ${({ theme }) => theme.breakpoints.up('desktop')} {
   }
 `;
-
-export const WrapperUpload = styled('div')`
-  background-color: white;
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-
-  ${({ theme }) => theme.breakpoints.up('desktop')} {
-    width: 233px;
-    bottom: 10px;
-    left: 50%;
-
-    transform: translate(-50%, 0);
-  }
-`;
-
-export const PickBtn = styled('button')`
-  background-color: white;
-  background-image: linear-gradient(
-    to right,
-    ${({ theme }) => theme.palette.accent.light},
-    ${({ theme }) => theme.palette.accent.light}
-  );
-  min-width: 233px;
-  min-height: 130px;
-  border: 1px dashed black;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 300ms ${({ theme }) => theme.transition.main};
-
-  &:hover,
-  &:active {
-    color: ${({ theme }) => theme.palette.accent.main};
-    filter: hue-rotate(220deg);
-  }
-`;
-
-export const UploadBtn = styled('button')`
-  background-color: white;
-  background-image: linear-gradient(
-    to right,
-    ${({ theme }) => theme.palette.accent.light},
-    ${({ theme }) => theme.palette.accent.light}
-  );
-  min-width: 230px;
-  min-height: 100px;
-  border: 1px dashed black;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 300ms ${({ theme }) => theme.transition.main};
-
-  &:hover,
-  &:active {
-    color: ${({ theme }) => theme.palette.accent.main};
-    filter: hue-rotate(220deg);
-  }
-`;
-
-export const ImgInfo = styled('ul')`
-  font-size: 12px;
-  color: ${({ theme }) => theme.palette.text.searchPlaceholder};
-  margin-right: auto;
-`;
-
-export const ImgInfoItem = styled('li')``;
 
 export const Hidden = styled('input')`
   opacity: 0;

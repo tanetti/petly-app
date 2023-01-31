@@ -151,3 +151,27 @@ export const DataPet = styled('p')`
     line-height: 1.38;
   }
 `;
+
+export const NotPetsWrapper = styled('div')`
+  display: grid;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const NotPets = styled('p')`
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.35;
+  color: ${({ theme }) => theme.palette.accent.dark};
+  margin-bottom: 15px;
+
+  ${({ theme }) => theme.breakpoints.up('desktop')} {
+    margin-bottom: 30px;
+  }
+`;
+
+export const NotPetsImg = styled('img')`
+`;
