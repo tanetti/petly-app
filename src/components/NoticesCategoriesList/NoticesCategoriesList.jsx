@@ -1,7 +1,7 @@
-import NoticeCategoryItem from 'components/NoticeCategoryItem';
+import { NoticeCategoryItem } from 'components/NoticeCategoryItem';
 import { Wrapper, List } from './NoticesCategoryList.styled';
 import PropTypes from 'prop-types';
-export const NoticesCategoryList = ({ notices }) => {
+export const NoticesCategoriesList = ({ notices }) => {
   return (
     <Wrapper>
       <List>
@@ -13,7 +13,7 @@ export const NoticesCategoryList = ({ notices }) => {
   );
 };
 
-NoticesCategoryList.propTypes = {
+NoticesCategoriesList.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({ id: PropTypes.number.isRequired })
   ),

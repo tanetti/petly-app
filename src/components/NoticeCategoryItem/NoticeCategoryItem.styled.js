@@ -2,49 +2,68 @@ import { styled } from '@mui/material/styles';
 
 export const Item = styled('li')`
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  background: ${({theme})=>theme.palette.background.main};
+  
 
   border-radius: 0px 0px 20px 20px;
-  transition: ${p => p.theme.transition.transform},
-    ${p => p.theme.transition.boxShadow};
-  &:hover,
-  &:focus {
-    transform: scale(1.03);
-    box-shadow: ${p => p.theme.shadows.cardHover};
+
+  ${({ theme }) => theme.breakpoints.up('mobileMid')} {
+    width: 336px;
+    min-height: 246px;  
+    
+    border-radius: 0px 0px 40px 40px;
   }
-  @media screen and (min-width: 768px) {
-    flex-basis: calc((100% - ${p => p.theme.space[5]}px) / 2);
+  
+  
+    
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+    width: 336px;
+    min-height: 246px;  
+    
+    border-radius: 0px 0px 40px 40px;
   }
-  @media screen and (min-width: 1280px) {
-    flex-basis: calc((100% - ${p => p.theme.space[4]}px * 2) / 3);
+  ${({ theme }) => theme.breakpoints.up('desktop')} {
+    min-width: 395px;
+    min-height: 287px;
+    
   }
 `;
 
-export const Img = styled.img`
-  margin-bottom: ${p => p.theme.space[4]}px;
-  width: 100%;
+export const Img = styled('img')`
+    width: 100%;
   object-fit: cover;
   display: block;
-  @media screen and (min-width: 320px) {
-    height: 398px;
-  }
-  @media screen and (min-width: 768px) {
-    height: 455px;
-  }
-  @media screen and (min-width: 1280px) {
-    height: 574px;
+  
   }
 `;
 
-export const Title = styled.p`
-  display: flex;
-  flex-grow: 1;
-  font-weight: ${p => p.theme.fontWeights.bold};
-  font-size: ${p => p.theme.fontSizes.s};
-  line-height: 1.33;
-  color: ${p => p.theme.colors.text};
-  padding-left: ${p => p.theme.space[2]}px;
-  padding-right: ${p => p.theme.space[2]}px;
-  padding-bottom: ${p => p.theme.space[2]}px;
+export const BoxInfo = styled('div')`
+padding: 20px 20px 32px 20px;`;
+
+export const Title = styled('h3')`
+margin:0;
+margin-bottom:20px;
+  // display: flex;
+  // flex-wrap: wrap;
+  font-weight: 700;
+font-size: 28px;
+line-height: 38px;
+letter-spacing: -0.01em;
+  
+  
 `;
+
+export const PetInfo = styled('ul')`
+list-style:none;
+margin:0;
+padding:0;
+`;
+export const ItemInfo = styled('li')`
+padding:0;
+display: flex;
+position:relative;
+`;
+export const NameInfo = styled('span')``;
+export const ValueInfo = styled('div')`
+position:absolute;
+left: +90px;`;

@@ -9,8 +9,16 @@ export const NavList = styled('ul')`
 
   padding: 0;
   margin: 0;
+  margin-bottom:20px;
 
   list-style: none;
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+    margin-bottom: 57px;
+  }
+
+    ${({ theme }) => theme.breakpoints.up('tablet')} {
+    margin-bottom: 60px;
+  }
 
   
 `;
