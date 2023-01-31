@@ -8,11 +8,11 @@ export const registerUser = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post('/users/register', credentials);
-      setAuthHeader(data.token);
-      return data;
+      await axios.post('/users/register', credentials);
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const errorCode = error.response?.data?.code ?? error.message;
+
+      return thunkAPI.rejectWithValue(errorCode);
     }
   }
 );
@@ -25,7 +25,9 @@ export const logIn = createAsyncThunk(
       setAuthHeader(data.token);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const errorCode = error.response?.data?.code ?? error.message;
+
+      return thunkAPI.rejectWithValue(errorCode);
     }
   }
 );
@@ -35,7 +37,9 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post('users/logout');
     clearAuthHeader();
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    const errorCode = error.response?.data?.code ?? error.message;
+
+    return thunkAPI.rejectWithValue(errorCode);
   }
 });
 
@@ -50,10 +54,12 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthHeader(persistedToken);
-      const { data } = await axios.get('users/current');
+      const { data } = await axios.get('users/refresh');
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      const errorCode = error.response?.data?.code ?? error.message;
+
+      return thunkAPI.rejectWithValue(errorCode);
     }
   }
 );

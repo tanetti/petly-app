@@ -2,7 +2,9 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { GlobalStyles } from '@mui/material';
 import { globalStyles } from 'theme/globalStyles';
+import { Container } from './Shared/ContainerStyled';
 import { Header } from './Header/Header';
+import { ToastContainer } from './ToastContainer/ToastContainer';
 
 export const SharedLayout = () => {
   return (
@@ -11,11 +13,18 @@ export const SharedLayout = () => {
       <Header />
       <main>
         <Suspense
-          fallback={<div>Please wait while the minions do their work...</div>}
+          fallback={
+            <section>
+              <Container>
+                Please wait while the minions do their work...
+              </Container>
+            </section>
+          }
         >
           <Outlet />
         </Suspense>
       </main>
+      <ToastContainer />
     </>
   );
 };

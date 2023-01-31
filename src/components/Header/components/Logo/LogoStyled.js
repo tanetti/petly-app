@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 
-export const LogoWrapper = styled('p')`
+export const LogoWrapper = styled('h1')`
   margin: 0;
 
   font-family: 'Poppins';

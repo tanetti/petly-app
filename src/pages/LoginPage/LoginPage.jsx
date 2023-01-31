@@ -1,9 +1,10 @@
-import { Container } from 'components/Shared';
+import { LoginLayout } from 'components/LoginLayout/LoginLayout';
+import { AuthSection, AuthContainer } from 'components/Shared';
 
 export const LoginPage = () => (
-  <section>
-    <Container>
-      <div>Login Page</div>
-    </Container>
-  </section>
+  <AuthSection>
+    <AuthContainer>
+      <LoginLayout />
+    </AuthContainer>
+  </AuthSection>
 );

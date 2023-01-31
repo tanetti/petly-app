@@ -1,8 +1,12 @@
 import { useState } from 'react';
+import { useGetServicesQuery } from 'redux/services/servicesApi';
 import { Container, CommonModal } from 'components/Shared';
 
 export const OurFriendsPage = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const { data, error, isLoading } = useGetServicesQuery();
+
+  console.log(data ?? isLoading ?? error);
 
   return (
     <section>

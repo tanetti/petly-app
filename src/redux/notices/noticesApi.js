@@ -13,6 +13,7 @@ export const noticesApi = createApi({
     },
   }),
   tagTypes: ['Notices'],
+  refetchOnFocus: true,
   endpoints: builder => ({
     getAllNotices: builder.query({
       query: () => `/notices`,
