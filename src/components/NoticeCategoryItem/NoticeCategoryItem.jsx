@@ -30,8 +30,8 @@ export const NoticeCategoryItem = ({ notice }) => {
                     <ItemInfo><NameInfo>Age:</NameInfo><ValueInfo>{getAge()} {getAge()=='one'?'year':'years'}</ValueInfo></ItemInfo>
                 <ItemInfo><NameInfo>Price:</NameInfo><ValueInfo>{price}</ValueInfo></ItemInfo>
             </PetInfo>
-            <button type="button" onClick={() => setIsModalOpened(true)}>
-          OPEN MODAL
+            <button type="button" onClick={() => setIsModalOpened(true)} >
+          Learn more
         </button>
             </BoxInfo>
 
@@ -41,13 +41,13 @@ export const NoticeCategoryItem = ({ notice }) => {
           isActionsDisabled={false}
           closeModal={() => setIsModalOpened(false)}
         >
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
-          <p>MODAL</p>
+                <p>{ _id}</p>
+          <img src={avatar}/>
+          <p>{title}</p>
+          <p>{birthdate}</p>
+          <p>{breed}</p>
+          <p>{location}</p>
+          <p>{price}</p>
           <p>MODAL</p>
           <p>MODAL</p>
           <p>MODAL</p>
