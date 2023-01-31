@@ -1,0 +1,1 @@
+export const TOAST_AUTOCLOSE_TIMEOUT = 6000;

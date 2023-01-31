@@ -1,9 +1,10 @@
-import { Container } from 'components/Shared';
+import { RegisterLayout } from 'components/RegisterLayout/RegisterLayout';
+import { AuthSection, AuthContainer } from 'components/Shared';
 
 export const RegisterPage = () => (
-  <section>
-    <Container>
-      <div>Register Page</div>
-    </Container>
-  </section>
+  <AuthSection>
+    <AuthContainer>
+      <RegisterLayout />
+    </AuthContainer>
+  </AuthSection>
 );
