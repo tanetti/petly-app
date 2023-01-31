@@ -6,7 +6,7 @@ export const NoticesCategoriesList = ({ notices }) => {
     <Wrapper>
       <List>
         {notices.map(notice => (
-          <NoticeCategoryItem notice={notice} key={notice.id} />
+          <NoticeCategoryItem notice={notice} key={notice._id} />
         ))}
       </List>
     </Wrapper>

@@ -10,4 +10,4 @@ export * from './AuthLayoutStyled';
 export * from './AuthAdornmentButtonStyled';
 export * from './AuthMotionContainerStyled';
 export * from './CommonProgressBarStyled';
-export * from './PageTitle.styled';
+export * from './PageTitleStyled';
