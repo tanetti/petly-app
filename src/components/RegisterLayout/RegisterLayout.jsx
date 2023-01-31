@@ -61,7 +61,7 @@ export const RegisterLayout = () => {
       </LayoutHint>
       <CommonProgressBarContainer>
         <AnimatePresence>
-          {!isUserPending ? (
+          {isUserPending ? (
             <motion.div
               variants={standartAnimation}
               initial="initial"
