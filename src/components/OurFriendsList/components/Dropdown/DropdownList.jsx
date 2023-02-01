@@ -4,11 +4,19 @@ export const DropdownList = ({ workDays }) => {
     return;
   }
 
-  const elements = workDays.map(({ day, from, to }) => {
+  const elements = workDays.map(({ isOpen, day, from, to }) => {
     return (
       <li key={uid()}>
-        <span>{day}</span>
-        {from}-{to}
+        {isOpen ? (
+          <p>
+            <small>{day}</small>
+            {from} - {to}
+          </p>
+        ) : (
+          <p>
+            <small>{day}</small> Closed
+          </p>
+        )}
       </li>
     );
   });

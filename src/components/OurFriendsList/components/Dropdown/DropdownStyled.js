@@ -2,6 +2,13 @@ import { styled } from '@mui/material/styles';
 export const DropdownMenu = styled('div')`
   position: relative;
   display: inline-block;
+  margin-bottom: 4px;
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+    margin-bottom: 4px;
+  }
+  ${({ theme }) => theme.breakpoints.up('desktop')} {
+    margin-bottom: 8px;
+  }
   & button {
     border: none;
     background-color: inherit;
@@ -30,6 +37,7 @@ export const DropdownMenu = styled('div')`
   & ul {
     display: block;
     position: absolute;
+    list-style: none;
     min-width: 120px;
     background: #ffffff;
     border: 1px solid #f59256;
@@ -37,18 +45,19 @@ export const DropdownMenu = styled('div')`
     border-radius: 8px;
     padding: 12px;
     z-index: 1;
-
     & li {
-      display: block;
-      display: flex;
-      justify-content: space-between;
-
-      font-size: 12px;
-      line-height: 1, 33;
       margin-bottom: 4px;
 
       &:last-child {
         margin-bottom: 0;
+      }
+      & p {
+        font-size: 12px;
+        line-height: 1, 33;
+        display: block;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
     }
   }
