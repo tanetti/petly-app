@@ -13,8 +13,7 @@ export const ListNews = styled('ul')`
   max-width: (100vw-40px);
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 32px;
-    margin-top: 10px;
-    margin-bottom: 0;
+    margin-top: 0;
   }
   ${({ theme }) => theme.breakpoints.up('desktop')} {
     grid-template-columns: repeat(3, 1fr);
@@ -37,6 +36,7 @@ ${({ theme }) => theme.breakpoints.up('tablet')} {
 export const ColorBlock = styled('div')`
 height: 8px;
 width: 240px;
+margin-bottom: 4px;
 background: linear-gradient(90deg, #FF634E 0%, #FFDF48 105.44%);
 border-radius: 40px;
 ${({ theme }) => theme.breakpoints.up('tablet')} {

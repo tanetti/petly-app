@@ -22,7 +22,7 @@ export const FormSearch = styled('form')`
 width: (100vw - 40px);
 margin-left: auto;
 margin-right: auto;
-margin-bottom: 10px;
+/* margin-bottom: 10px; */
 z-index: 55;
 ${({ theme }) => theme.breakpoints.up('tablet')} {
 width:608px;
