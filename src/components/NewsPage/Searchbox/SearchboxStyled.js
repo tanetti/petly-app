@@ -18,6 +18,13 @@ color: ${({ theme }) => theme.palette.accent.main};
 left:93%;
   }
 `
+export const SearchButton = styled("button")`
+position: relative;
+background-color: transparent;
+border: none;
+z-index: 99;
+`
+
 export const CloseSearch = styled(CloseIcon)`
 position: relative;
 top: 32px;
@@ -41,7 +48,7 @@ box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 border-radius: 20px;
 border:0;
 border-color: #FFFFFF;
-text-indent: 20px;
+text-indent: 42px;
 margin-bottom: 60px;
 &:focus, &:hover {
   border:2px;

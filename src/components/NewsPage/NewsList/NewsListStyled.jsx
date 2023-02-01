@@ -67,7 +67,7 @@ ${({ theme }) => theme.breakpoints.up('tablet')} {
   
   }
 `
-export const DescriptionUp = styled('div')`
+export const DescriptionUp = styled('button')`
 display: block;
 position: relative;
 font-size: 16px;
@@ -87,21 +87,24 @@ ${({ theme }) => theme.breakpoints.up('tablet')} {
  bottom:60%}
 
   ${({ theme }) => theme.breakpoints.up('desktop')} {
-width: 140%;
+width: 100%;
   }
 `
-export const Description = styled('div')`
-display: -webkit-box;
+export const Description = styled('button')`
+/* display: -webkit-box;
 -webkit-line-clamp: 8;
--webkit-box-orient:vertical;
+-webkit-box-orient:vertical; */
+background-color: transparent;
+border: none;
 position: relative;
-font-size: 16px;
-font-weight: 400px;
-max-height: 176px;
-overflow: hidden;
+  /* font-size: 16px;
+  font-weight: 400px;
+  max-height: 176px;
+  overflow: hidden; */
 margin-bottom: 20px;
 text-align: justify;  
 line-height: 22px;
+transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 
 ${({ theme }) => theme.breakpoints.up('tablet')} {
   height: 132px;
@@ -116,6 +119,32 @@ margin-bottom: 40px;
     }
 `
 
+export const DescriptionText = styled('div')`
+display: -webkit-box;
+-webkit-line-clamp: 8;
+-webkit-box-orient:vertical;
+position: relative;
+font-size: 16px;
+font-weight: 400px;
+max-height: 176px;
+overflow: hidden;
+margin-bottom: 20px;
+text-align: justify;  
+line-height: 22px;
+transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+${({ theme }) => theme.breakpoints.up('tablet')} {
+  height: 132px;
+  -webkit-line-clamp: 5;
+  }
+
+  ${({ theme }) => theme.breakpoints.up('desktop')} {
+height: 110px;
+line-height: 22px;
+margin-bottom: 40px;
+-webkit-line-clamp: 5;
+    }
+`
 export const AddBlock = styled('div')`
 padding: 0 4px;
 display: flex;

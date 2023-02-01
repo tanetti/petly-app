@@ -48,7 +48,7 @@ margin-right: auto;
 margin-bottom:20px;
 ${({ theme }) => theme.breakpoints.up('tablet')} {
 
-width: 50%;
+width: 60%;
   }
 `
 export const NoNewsImg = styled("div")`

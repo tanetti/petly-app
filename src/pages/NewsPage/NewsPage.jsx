@@ -6,7 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import { Container } from 'components/Shared/ContainerStyled';
 import { Title, FormSearch } from "pages/NewsPage/NewsPageStyled";
-import { OpenSearch, CloseSearch } from '../../components/NewsPage/Searchbox/SearchboxStyled';
+import { OpenSearch, CloseSearch , SearchButton} from '../../components/NewsPage/Searchbox/SearchboxStyled';
 
 export const NewsPage = () => {
   const [search, setSearch] = useState([]);
@@ -79,7 +79,7 @@ console.log(searchParams)
       <Container>
         <Title>News</Title>
         <FormSearch onSubmit={handleSubmit} onClick={handleSubmit}>
-          {searchQueryFull ? <CloseSearch/> : <OpenSearch/>}
+          {searchQueryFull ? <CloseSearch/> :<SearchButton onClick={handleSubmit}> <OpenSearch/></SearchButton> }
           <Searchbox
             value={searchQueryFull}
             onChange={filterSearch}
