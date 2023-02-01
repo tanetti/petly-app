@@ -1,11 +1,8 @@
 // import { useState } from 'react';
 import {
-  PetsWrapper,
   DataPets,
-  TitlePet,
   AddPetBtn,
   AddPet,
-  WrapperPetTitle,
   ImgPet,
   DataPetItem,
   DataPet,
@@ -17,7 +14,7 @@ import {
   WrapperInfo,
   ButtonDel,
   NotPets,
-} from './PetsDataStyled';
+} from './OwnPetsStyled';
 import noPhoto from 'images/no-photo.jpg';
 import sad from 'images/sad.png';
 import { uid } from 'uid';
@@ -41,7 +38,7 @@ const petsItem = [
   // },
 ];
 
-export const PetsData = () => {
+export const OwnPets = () => {
   // const [pets, setPets] = useState([]);
 
   const addPet = () => {
@@ -53,13 +50,10 @@ export const PetsData = () => {
   };
 
   return (
-    <PetsWrapper>
-      <WrapperPetTitle>
-        <TitlePet>My pets:</TitlePet>
-        <AddPetBtn type="button" onClick={addPet}>
-          Add pet <AddPet />
-        </AddPetBtn>
-      </WrapperPetTitle>
+    <>
+      <AddPetBtn type="button" onClick={addPet}>
+        Add pet <AddPet />
+      </AddPetBtn>
 
       <DataPets>
         {petsItem.length === 0 ? (
@@ -88,6 +82,6 @@ export const PetsData = () => {
           </ul>
         )}
       </DataPets>
-    </PetsWrapper>
+    </>
   );
 };

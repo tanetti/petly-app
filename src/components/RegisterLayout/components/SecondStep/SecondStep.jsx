@@ -167,7 +167,7 @@ export const SecondStep = ({
             {...field}
             title="Mobile phone"
             label="Mobile phone"
-            type="text"
+            type="tel"
             fullWidth
             disabled={isUserPending}
             error={!!errors.phone}

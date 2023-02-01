@@ -45,3 +45,4 @@ export const appTheme = createTheme({
 
 appTheme.shadows[50] = '7px 4px 14px rgba(49, 21, 4, 0.07)';
 appTheme.shadows[51] = '7px 4px 14px rgba(0, 0, 0, 0.11)';
+appTheme.shadows[52] = '0px 4px 14px rgba(0, 0, 0, 0.11);';

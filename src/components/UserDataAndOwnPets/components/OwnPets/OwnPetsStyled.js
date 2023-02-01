@@ -2,32 +2,6 @@ import { styled } from '@mui/material/styles';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import RestoreFromTrashRoundedIcon from '@mui/icons-material/RestoreFromTrashRounded';
 
-export const PetsWrapper = styled('div')``;
-
-export const WrapperPetTitle = styled('div')`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 26px;
-
-  ${({ theme }) => theme.breakpoints.up('tablet')} {
-    margin-bottom: 24px;
-  }
-`;
-
-export const TitlePet = styled('h2')`
-  font-size: 20px;
-  line-height: 1.35;
-  letter-spacing: 0.04em;
-  font-weight: 500;
-  color: ${({ theme }) => theme.palette.text.primary};
-
-  ${({ theme }) => theme.breakpoints.up('tablet')} {
-    font-size: 28px;
-    line-height: 1.36;
-  }
-`;
-
 export const AddPetBtn = styled('button')`
   display: flex;
   justify-content: center;
@@ -173,5 +147,4 @@ export const NotPets = styled('p')`
   }
 `;
 
-export const NotPetsImg = styled('img')`
-`;
+export const NotPetsImg = styled('img')``;

@@ -40,5 +40,3 @@ export const OutlinedButton = styled(LoadingButton)`
     border-color: ${({ theme }) => theme.palette.accent.light};
   }
 `;
-
-export const OutlinedButtonOLD = styled('button')``;
