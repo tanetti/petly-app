@@ -17,8 +17,8 @@ export const UserControlContainer = styled('div')`
     display: flex;
     flex-direction: row-reverse;
 
-    margin-left: -1000px;
-    padding: 24px 40px 24px 32px;
+    margin-left: -2000px;
+    padding: 24px 40px 24px 2000px;
 
     border-radius: 0 40px 40px 0;
   }
@@ -26,8 +26,7 @@ export const UserControlContainer = styled('div')`
   ${({ theme }) => theme.breakpoints.up('desktop')} {
     display: block;
 
-    margin-left: -16px;
-    padding: 20px 16px 20px 16px;
+    padding: 20px 16px 20px 2000px;
   }
 `;
 
@@ -59,6 +58,7 @@ export const ActionButton = styled(LoadingButton)`
   min-width: 90px;
   padding: 3px 8px;
 
+  font-family: inherit;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.83;
@@ -111,15 +111,11 @@ export const ActionButton = styled(LoadingButton)`
 export const DeleteAvatarIcon = styled(NoPhotographyRoundedIcon)`
   width: 25px;
   height: 25px;
-
-  padding-bottom: 2px;
 `;
 
 export const SaveAvatarIcon = styled(CameraAltRoundedIcon)`
   width: 25px;
   height: 25px;
-
-  padding-bottom: 2px;
 `;
 
 export const DataControlContainer = styled('div')`
@@ -157,6 +153,7 @@ export const LogoutButton = styled(LoadingButton)`
   margin-right: -6px;
   padding: 0 10px;
 
+  font-family: inherit;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.38;
@@ -211,8 +208,6 @@ export const LogoutButton = styled(LoadingButton)`
 `;
 
 export const LogoutIcon = styled(LogoutRoundedIcon)`
-  width: 23px;
-  height: 23px;
-
-  padding-bottom: 2px;
+  width: 22px;
+  height: 22px;
 `;

@@ -2,12 +2,16 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import InputMask from 'react-input-mask';
+import * as yup from 'yup';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import 'dayjs/locale/uk';
 import { Autocomplete, createFilterOptions } from '@mui/material';
+import { makeToast } from 'utilities/makeToast';
+import { userDataValidationSchema } from 'utilities/validationSchemas';
 import { standartAnimation } from 'constants/animationVariants';
+import { CITIES } from 'constants/cities';
 import {
   DateInputWrapper,
   EditIcon,
@@ -16,7 +20,6 @@ import {
   ParameterLabel,
   SaveIcon,
 } from './EditParameterUnitStyled';
-import { CITIES } from 'constants/cities';
 
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
@@ -48,13 +51,27 @@ export const EditParameterUnit = ({
   const onValueChange = ({ currentTarget }) =>
     setParameterValue(currentTarget.value);
 
-  const onParameterButtonClick = () => {
+  const onParameterButtonClick = async () => {
     if (activeUnit !== unitName) {
       setActiveUnit(unitName);
       return;
     }
 
-    if (currentUnitData !== parameterValue) console.dir(parameterValue ?? '');
+    const trimmedParameterValue = parameterValue.trim();
+
+    if (currentUnitData !== trimmedParameterValue) {
+      try {
+        await yup
+          .reach(userDataValidationSchema, unitName)
+          .validate(trimmedParameterValue);
+      } catch ({ errors }) {
+        makeToast(errors[0]);
+
+        return;
+      }
+
+      console.log(trimmedParameterValue ?? '');
+    }
     setActiveUnit(null);
   };
 

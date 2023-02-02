@@ -1,27 +1,10 @@
-// import { useState } from 'react';
-import {
-  DataPets,
-  AddPetBtn,
-  AddPet,
-  ImgPet,
-  DataPetItem,
-  DataPet,
-  DataPetName,
-  NotPetsImg,
-  DelPet,
-  NotPetsWrapper,
-  WrapperPetName,
-  WrapperInfo,
-  ButtonDel,
-  NotPets,
-} from './OwnPetsStyled';
-import noPhoto from 'images/no-photo.jpg';
-import sad from 'images/sad.png';
-import { uid } from 'uid';
+import { AnimatePresence } from 'framer-motion';
+import { NoOwnPetsLayout, OwnPetsItem } from './components';
+import { AddPetButton, AddPetIcon, OwnPetsList } from './OwnPetsStyled';
 
 const petsItem = [
   // {
-  //   // _id: '234567890fgh',
+  //   _id: '234567890fgh',
   //   name: 'Jake',
   //   bithday: '22.04.2018',
   //   breed: 'Persian cat',
@@ -29,7 +12,7 @@ const petsItem = [
   //     'Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur',
   // },
   // {
-  //   // _id: '2345656hfghss',
+  //   _id: '2345656hfghss',
   //   name: 'Pikachy',
   //   bithday: '22.04.2022',
   //   breed: 'cat',
@@ -39,49 +22,27 @@ const petsItem = [
 ];
 
 export const OwnPets = () => {
-  // const [pets, setPets] = useState([]);
-
   const addPet = () => {
     console.log('add');
   };
 
-  const deletePet = () => {
-    console.log('del');
-  };
-
   return (
     <>
-      <AddPetBtn type="button" onClick={addPet}>
-        Add pet <AddPet />
-      </AddPetBtn>
+      <AddPetButton title="Add pet" type="button" onClick={addPet}>
+        Add pet <AddPetIcon />
+      </AddPetButton>
 
-      <DataPets>
-        {petsItem.length === 0 ? (
-          <NotPetsWrapper>
-            <NotPets>You don't have any pets yet</NotPets>
-            <NotPetsImg src={sad} alt="sad" />
-          </NotPetsWrapper>
-        ) : (
-          <ul>
-            {petsItem.map(({ name, bithday, breed, comments }) => (
-              <DataPetItem key={uid()}>
-                <ImgPet src={noPhoto} alt="no-photo" />
-                <WrapperInfo>
-                  <WrapperPetName>
-                    <DataPetName>Name: {name}</DataPetName>
-                    <ButtonDel type="button" onClick={deletePet}>
-                      <DelPet />
-                    </ButtonDel>
-                  </WrapperPetName>
-                  <DataPet>Date of birth: {bithday}</DataPet>
-                  <DataPet>Breed: {breed}</DataPet>
-                  <DataPet>Comments: {comments}</DataPet>{' '}
-                </WrapperInfo>
-              </DataPetItem>
+      {petsItem && !petsItem.length ? <NoOwnPetsLayout /> : null}
+
+      {petsItem && petsItem.length ? (
+        <AnimatePresence>
+          <OwnPetsList>
+            {petsItem.map(petData => (
+              <OwnPetsItem key={petData._id} petData={petData} />
             ))}
-          </ul>
-        )}
-      </DataPets>
+          </OwnPetsList>
+        </AnimatePresence>
+      ) : null}
     </>
   );
 };

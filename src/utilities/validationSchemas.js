@@ -81,3 +81,26 @@ export const registerSecondStepValidationSchema = yup.object().shape({
 
   phone: yup.string().trim().phoneLengthIfNotEmpty(19, 'Invalid Phone length'),
 });
+
+export const userDataValidationSchema = yup.object().shape({
+  name: yup
+    .string()
+    .trim()
+    .stringLengthIfNotEmpty(2, 'validation-user-data-name-min-length-2')
+    .max(30, 'validation-user-data-name-max-length-30'),
+
+  email: yup
+    .string()
+    .trim()
+    .email('validation-user-data-email-format')
+    .required('validation-user-data-email-required'),
+
+  birthday: yup.string().trim(),
+
+  phone: yup
+    .string()
+    .trim()
+    .phoneLengthIfNotEmpty(19, 'validation-user-data-phone-length'),
+
+  address: yup.string().trim(),
+});

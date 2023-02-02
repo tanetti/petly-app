@@ -21,24 +21,30 @@ export const AvatarDropZone = ({ currentAvatarUrl, setNewAvatarFile }) => {
   const [isAvatarContainerHovered, setIsAvatarContainerHovered] =
     useState(false);
 
-  const { getRootProps, isFileDialogActive, isDragAccept, isDragReject } =
-    useDropzone({
-      maxFiles: 1,
-      multiple: false,
-      maxSize: 5000000,
-      accept: {
-        'image/jpeg': ['.jpeg', '.jpg'],
-        'image/png': ['.png'],
-        'image/webp': ['.webp'],
-      },
-      onDropAccepted: files => {
-        convertImageToBase64Url(files[0], setBase64AvatarUrl);
-        setNewAvatarFile(files[0]);
-      },
-      onDropRejected: fileRejections =>
-        makeToast(fileRejections[0].errors[0]?.code),
-      onError: error => makeToast(error),
-    });
+  const {
+    getRootProps,
+    getInputProps,
+    isFileDialogActive,
+    isDragAccept,
+    isDragReject,
+  } = useDropzone({
+    maxFiles: 1,
+    multiple: false,
+    maxSize: 5000000,
+    accept: {
+      'image/jpeg': ['.jpeg', '.jpg'],
+      'image/png': ['.png'],
+      'image/webp': ['.webp'],
+    },
+    onDropAccepted: files => {
+      setIsAvatarContainerHovered(false);
+      convertImageToBase64Url(files[0], setBase64AvatarUrl);
+      setNewAvatarFile(files[0]);
+    },
+    onDropRejected: fileRejections =>
+      makeToast(fileRejections[0].errors[0]?.code),
+    onError: error => makeToast(error),
+  });
 
   const presentImage = currentAvatarUrl || base64AvatarUrl;
 
@@ -67,6 +73,7 @@ export const AvatarDropZone = ({ currentAvatarUrl, setNewAvatarFile }) => {
           onMouseEnter={() => setIsAvatarContainerHovered(true)}
           onMouseOut={() => setIsAvatarContainerHovered(false)}
         >
+          <input {...getInputProps()} />
           <AnimatePresence mode="wait">
             {(!presentImage || isAvatarContainerHovered) &&
             !(isFileDialogActive || isDragAccept || isDragReject) ? (

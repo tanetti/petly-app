@@ -1,20 +1,25 @@
 import { OwnPets, UserData } from './components';
-import { SectionTitle, UserContainer } from './components/shared';
-import { UserPageContainer } from './UserDataAndOwnPetsStyled';
+import { UserContainer } from './components/shared';
+import {
+  UserDataSection,
+  UserOwnPetsSection,
+  UserPageContainer,
+  SectionTitle,
+} from './UserDataAndOwnPetsStyled';
 
 export const UserDataAndOwnPets = () => (
   <UserPageContainer>
-    <section>
+    <UserDataSection>
       <UserContainer>
         <SectionTitle>My information:</SectionTitle>
         <UserData />
       </UserContainer>
-    </section>
-    <section>
+    </UserDataSection>
+    <UserOwnPetsSection>
       <UserContainer>
         <SectionTitle>My pets:</SectionTitle>
         <OwnPets />
       </UserContainer>
-    </section>
+    </UserOwnPetsSection>
   </UserPageContainer>
 );
