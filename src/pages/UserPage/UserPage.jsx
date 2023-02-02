@@ -1,9 +1,3 @@
-import { Container } from 'components/Shared';
+import { UserDataAndOwnPets } from 'components/UserDataAndOwnPets/UserDataAndOwnPets';
 
-export const UserPage = () => (
-  <section>
-    <Container>
-      <div>User Page</div>
-    </Container>
-  </section>
-);
+export const UserPage = () => <UserDataAndOwnPets />;

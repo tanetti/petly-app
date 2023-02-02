@@ -34,6 +34,7 @@ export const CommonModal = ({
           <ContentContainer>
             {title ? <ModalTitle>{title}</ModalTitle> : null}
             <ModalCloseButton
+              title="Close window"
               aria-label="Close window"
               disabled={isActionsDisabled}
               onClick={closeModal}
