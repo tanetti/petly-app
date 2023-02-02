@@ -4,9 +4,7 @@ import { NoSearchResult } from "components/NewsPage/NoSearchResult";
 import React, { useState, useEffect } from 'react';          
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
-import { Container } from 'components/Shared/ContainerStyled';
-import { Title, FormSearch } from "pages/NewsPage/NewsPageStyled";
-import { OpenSearch, CloseSearch , SearchButton} from '../../components/NewsPage/Searchbox/SearchboxStyled';
+import { Title, OpenSearch, FormSearch, CloseSearch , SearchButton } from "pages/NewsPage/NewsPageStyled";
 
 export const NewsPage = () => {
   const [search, setSearch] = useState([]);
@@ -76,7 +74,7 @@ export const NewsPage = () => {
 console.log(searchParams)
   
     return (
-      <Container>
+      <>
         <Title>News</Title>
         <FormSearch onSubmit={handleSubmit} onClick={handleSubmit}>
           {searchQueryFull ? <CloseSearch/> :<SearchButton onClick={handleSubmit}> <OpenSearch/></SearchButton> }
@@ -87,6 +85,6 @@ console.log(searchParams)
        </FormSearch>
           
        {(error === null) ? ((query === "") ? <NewsList data={sortedSearch} /> : ((filteredSearch.length !== 0)?<NewsList data={filteredSearch} />:<NoSearchResult/>)) : <div></div>}
-    </Container>  
+    </>  
     )
 };

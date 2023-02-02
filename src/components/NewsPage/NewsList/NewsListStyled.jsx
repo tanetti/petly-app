@@ -2,7 +2,6 @@ import { styled } from '@mui/material/styles';
 
 export const ListNews = styled('ul')`
   grid-template-columns: repeat(1, 1fr);
-  margin-bottom: 40px;
   padding: 0;
   justify-content: center;
   list-style: none;
@@ -17,6 +16,7 @@ export const ListNews = styled('ul')`
   }
   ${({ theme }) => theme.breakpoints.up('desktop')} {
     grid-template-columns: repeat(3, 1fr);
+
   }
 `;
 
@@ -24,10 +24,12 @@ export const ItemNews = styled('li')`
 height: 312px;
 position: relative;
 max-width:100%;
-margin-bottom: 40px;
+margin-bottom: 53px;
 ${({ theme }) => theme.breakpoints.up('tablet')} {
+  margin-bottom: 28px;
    height :276px ;
-   /* max-width: 336px; */
+   scroll-margin-bottom: 20px;
+   max-width: 336px;
   }
   ${({ theme }) => theme.breakpoints.up('desktop')} {
     height: 254px;
@@ -59,13 +61,6 @@ line-height: 33px;
 letter-spacing: -0.01em;
 overflow: hidden;
 margin-bottom: 16px;
-
-${({ theme }) => theme.breakpoints.up('tablet')} {
-  
-  }
-  ${({ theme }) => theme.breakpoints.up('desktop')} {
-  
-  }
 `
 export const DescriptionUp = styled('button')`
 display: block;
@@ -73,49 +68,33 @@ position: relative;
 font-size: 16px;
 width: 100%;
 line-height: 22px;
-background-color: #ffff;
+background-color: ${({ theme }) => theme.palette.background.main};
 opacity: 1;
 z-index: 55;
 padding: 20px;
 border-radius: 20px;
 border: 2px solid ${({ theme }) => theme.palette.accent.main};
-bottom: 63%;
-
-
+bottom: 220px;
 ${({ theme }) => theme.breakpoints.up('tablet')} {
  width: 100%;
  bottom:60%}
-
   ${({ theme }) => theme.breakpoints.up('desktop')} {
-width: 100%;
   }
-`
+  `
 export const Description = styled('button')`
-/* display: -webkit-box;
--webkit-line-clamp: 8;
--webkit-box-orient:vertical; */
 background-color: transparent;
 border: none;
 position: relative;
-  /* font-size: 16px;
-  font-weight: 400px;
-  max-height: 176px;
-  overflow: hidden; */
 margin-bottom: 20px;
 text-align: justify;  
 line-height: 22px;
 transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-
 ${({ theme }) => theme.breakpoints.up('tablet')} {
   height: 132px;
-  -webkit-line-clamp: 5;
   }
-
   ${({ theme }) => theme.breakpoints.up('desktop')} {
 height: 110px;
-line-height: 22px;
 margin-bottom: 40px;
--webkit-line-clamp: 5;
     }
 `
 
@@ -132,12 +111,10 @@ margin-bottom: 20px;
 text-align: justify;  
 line-height: 22px;
 transition: cubic-bezier(0.075, 0.82, 0.165, 1);
-
 ${({ theme }) => theme.breakpoints.up('tablet')} {
   height: 132px;
-  -webkit-line-clamp: 5;
+  -webkit-line-clamp: 6;
   }
-
   ${({ theme }) => theme.breakpoints.up('desktop')} {
 height: 110px;
 line-height: 22px;
@@ -157,10 +134,15 @@ export const Date = styled('p')`
 font-weight: 400;
 font-size: 16px;
 line-height: 22px;
-color: rgba(17, 17, 17, 0.6);
+margin: 0;
+color:${({ theme }) => theme.palette.semiTransparentBlack.main};
 `
 export const Link = styled('a')`
 text-align: right;
-text-decoration-line: underline;
+text-decoration: underline;
+text-decoration-color: ${({ theme }) => theme.palette.accent.main};
+text-decoration-style: solid;
+text-decoration-thickness: 1px;
+
 color: ${({ theme }) => theme.palette.accent.main}
 `
