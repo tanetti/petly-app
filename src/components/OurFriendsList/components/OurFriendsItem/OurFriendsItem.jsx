@@ -1,87 +1,100 @@
+import PropTypes from 'prop-types';
+import noPhotoImage from 'images/no-photo.webp';
 import {
-  Item,
-  Box,
-  BoxContact,
-  BoxImg,
+  FriendsItem,
   ItemTitle,
+  InfoBox,
+  ImageBox,
+  FriendImage,
+  ContactList,
+  ContactItem,
+  ContactCaption,
+  ContactLink,
+  ContactNoInfo,
 } from './OurFriendsItemStyled';
-import { useState } from 'react';
-import { DropdownList } from '../Dropdown/DropdownList';
-import { DropdownMenu } from '../Dropdown/DropdownStyled';
+import { WorkTimeLayout } from './components';
 
-export const OurFriendsItem = ({
-  title,
-  url,
-  addressUrl,
-  imageUrl,
-  address,
-  phone,
-  email,
-  workDays,
-}) => {
-  const [open, setOpen] = useState(false);
-
-  const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen);
-  };
-  const times = workDays => {
-    if (!workDays) {
-      return;
-    }
-    const timeWork = workDays.find(day => day.isOpen === true);
-    const from = timeWork.from;
-    const to = timeWork.to;
-    const time = `${from} - ${to}`;
-    return time;
-  };
+export const OurFriendsItem = ({ friendData }) => {
+  const { title, url, addressUrl, imageUrl, address, phone, email, workDays } =
+    friendData;
 
   return (
-    <Item key={title}>
-      <ItemTitle target="blank" href={url}>
+    <FriendsItem>
+      <ItemTitle href={url} target="_blank" rel="noreferrer noopener">
         {title}
       </ItemTitle>
-      <Box>
-        <BoxImg>
-          {imageUrl ? <img src={imageUrl} alt="logo" /> : 'Картинка'}
-        </BoxImg>
-        <BoxContact>
-          <DropdownMenu>
-            <button onClick={handleToggle}>
-              Time <br /> {!workDays ? '------------------' : times(workDays)}
-            </button>
-            {open && <DropdownList workDays={workDays} />}
-          </DropdownMenu>
-          <p>
-            Address:
-            <br />
-            {address ? (
-              <a href={addressUrl} target="blank">
+
+      <InfoBox>
+        <ImageBox>
+          <FriendImage
+            title={`${title} web-page`}
+            src={imageUrl || noPhotoImage}
+            alt="Friend logotype"
+            width="110"
+          />
+        </ImageBox>
+
+        <ContactList>
+          <ContactItem>
+            <ContactCaption>Time:</ContactCaption>
+            {!workDays || !workDays.length ? (
+              <ContactNoInfo>N/A</ContactNoInfo>
+            ) : (
+              <WorkTimeLayout workDays={workDays} />
+            )}
+          </ContactItem>
+
+          <ContactItem>
+            <ContactCaption>Address:</ContactCaption>
+            {addressUrl && address ? (
+              <ContactLink
+                href={addressUrl}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 {address}
-              </a>
-            ) : (
-              <span>---------------------------</span>
-            )}
-          </p>
-          <p>
-            Email:
-            <br />
+              </ContactLink>
+            ) : null}
+
+            {!addressUrl && address ? address : null}
+
+            {!addressUrl && !address ? (
+              <ContactNoInfo>N/A</ContactNoInfo>
+            ) : null}
+          </ContactItem>
+
+          <ContactItem>
+            <ContactCaption>Email:</ContactCaption>
             {email ? (
-              <a href="mailto:{email}">{email}</a>
+              <ContactLink href={`mailto:${email}`}>{email}</ContactLink>
             ) : (
-              <span>---------------------------</span>
+              <ContactNoInfo>N/A</ContactNoInfo>
             )}
-          </p>
-          <p>
-            Phone:
-            <br />
+          </ContactItem>
+
+          <ContactItem>
+            <ContactCaption>Phone:</ContactCaption>
             {phone ? (
-              <a href="tel:{phone}">{phone}</a>
+              <ContactLink href={`tel:${phone}`}>{phone}</ContactLink>
             ) : (
-              <span>---------------------------</span>
+              <ContactNoInfo>N/A</ContactNoInfo>
             )}
-          </p>
-        </BoxContact>
-      </Box>
-    </Item>
+          </ContactItem>
+        </ContactList>
+      </InfoBox>
+    </FriendsItem>
   );
+};
+
+OurFriendsItem.propTypes = {
+  friendData: PropTypes.exact({
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string,
+    addressUrl: PropTypes.string,
+    imageUrl: PropTypes.string,
+    address: PropTypes.string,
+    phone: PropTypes.string,
+    email: PropTypes.string,
+    workDays: PropTypes.array,
+  }).isRequired,
 };

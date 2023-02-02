@@ -1,33 +1,18 @@
-import { List } from './OurFriendsListStyled';
+import { useGetServicesQuery } from 'redux/services/servicesApi';
+import { FriendsList } from './OurFriendsListStyled';
 import { OurFriendsItem } from './components';
+import sponsors from 'TEMP/sponsors.json';
 
-export const OurFriendsList = ({ sponsors }) => {
+export const OurFriendsList = () => {
+  const { data, error, isLoading } = useGetServicesQuery();
+
+  console.log(data ?? isLoading ?? error);
+
   return (
-    <List>
-      {sponsors.map(
-        ({
-          title,
-          url,
-          addressUrl,
-          imageUrl,
-          address,
-          phone,
-          email,
-          workDays,
-        }) => (
-          <OurFriendsItem
-            key={title}
-            title={title}
-            url={url}
-            addressUrl={addressUrl}
-            imageUrl={imageUrl}
-            address={address}
-            phone={phone}
-            email={email}
-            workDays={workDays}
-          />
-        )
-      )}
-    </List>
+    <FriendsList>
+      {sponsors.map(friendData => (
+        <OurFriendsItem key={friendData.title} friendData={friendData} />
+      ))}
+    </FriendsList>
   );
 };
