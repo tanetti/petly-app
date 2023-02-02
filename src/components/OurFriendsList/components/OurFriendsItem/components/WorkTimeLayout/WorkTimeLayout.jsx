@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Popover } from '@mui/material';
 import {
   PopoverAnchor,
@@ -73,14 +73,14 @@ export const WorkTimeLayout = ({ workDays }) => {
             );
 
             return (
-              <>
+              <Fragment key={workDay?.day}>
                 <PopoverItem isThisDay={isThisDay}>{workDay?.day}</PopoverItem>
                 <PopoverItem isThisDay={isThisDay}>
                   {workDay?.isOpen
                     ? `${workDay?.from} - ${workDay?.to}`
                     : 'CLOSED'}
                 </PopoverItem>
-              </>
+              </Fragment>
             );
           })}
         </PopoverContainer>

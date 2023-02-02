@@ -12,4 +12,8 @@ export const FriendsList = styled('ul')`
     grid-row-gap: 20px;
     grid-column-gap: 32px;
   }
+
+  & a {
+    outline: transparent;
+  }
 `;
