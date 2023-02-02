@@ -1,21 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CommonModal } from 'components/Shared';
 import {
-  Item,
-  Img,
+    Item,
+    Wrapper,
+    Img,
+    Cover,
+    Label,
+    FavBtn,
+  LogoDel,
+  LogoAdd,
   BoxInfo,
   Title,
   PetInfo,
   ItemInfo,
   NameInfo,
   ValueInfo,
+  BtnModalMore,
 } from './NoticeCategoryItem.styled';
 import numWords from 'num-words';
 export const NoticeCategoryItem = ({ notice }) => {
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const [isFavorite, setIsFavorite] =useState(false);
 
-  const { _id, avatar, title, breed, birthdate, location, price } = notice;
-
+  const { _id, category, petsAvatarURL, title, breed, birthdate, favorite,location, price } = notice;
+  useEffect(() => {
+    if (favorite===true) {
+      setIsFavorite(true);
+    }
+  }, [favorite]);
   function getAge() {
     const today = new Date();
     const birthDate = new Date(birthdate);
@@ -25,11 +37,22 @@ export const NoticeCategoryItem = ({ notice }) => {
       age--;
     }
     const ageWords = numWords(age);
+   
     return ageWords;
   }
+
+  
+  
   return (
-    <Item>
-      <Img src={avatar} alt={title} />
+      <Item>    
+          
+              <Img src={petsAvatarURL} alt={title} />
+          <Wrapper>
+              <Cover><Label>{category}</Label></Cover>
+        <FavBtn type='button' onClick={() => { setIsFavorite(!isFavorite) }}>
+          {isFavorite? <LogoDel /> : <LogoAdd />}
+        </FavBtn>
+          </Wrapper>
       <BoxInfo>
         <Title>{title}</Title>
         <PetInfo>
@@ -52,9 +75,9 @@ export const NoticeCategoryItem = ({ notice }) => {
             <ValueInfo>{price}</ValueInfo>
           </ItemInfo>
         </PetInfo>
-        <button type="button" onClick={() => setIsModalOpened(true)}>
+        <BtnModalMore type="button" onClick={() => setIsModalOpened(true)}>
           Learn more
-        </button>
+        </BtnModalMore>
       </BoxInfo>
 
       <CommonModal
@@ -64,7 +87,7 @@ export const NoticeCategoryItem = ({ notice }) => {
         closeModal={() => setIsModalOpened(false)}
       >
         <p>{_id}</p>
-        <img src={avatar} alt='Pet' />
+        <img src={petsAvatarURL} alt='Pet' />
         <p>{title}</p>
         <p>{birthdate}</p>
         <p>{breed}</p>

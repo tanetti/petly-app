@@ -1,7 +1,8 @@
 import { styled } from '@mui/material/styles';
 
 export const Wrapper = styled('div')`
-  max-width: 100%;
+  width: 100%;
+  position: relative;
    
 `;
 
@@ -12,6 +13,12 @@ list-style:none;
   grid-gap:32px;
   margin-left: auto;
   margin-right: auto;
+  justify-content: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+
+
 
   
   ${({ theme }) => theme.breakpoints.up('tablet')} {

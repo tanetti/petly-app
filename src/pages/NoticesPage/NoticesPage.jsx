@@ -1,7 +1,10 @@
 // import { useSelector } from "react-redux";
 // import { useGetAllNoticesQuery } from 'redux/notices/noticesApi';
 import notices from './notices';
-
+// import { useDispatch, useSelector } from 'react-redux';
+// import { selectNotices, selectIsLoading, selectError } from 'redux/notices/noticesSelectors';
+// import { useEffect } from 'react';
+// import { fetchNotices } from 'redux/notices/noticesOperations';
 import { Container, PageTitle } from 'components/Shared';
 import { NoticesSearch } from 'components/NoticesSearch';
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav';
@@ -12,7 +15,15 @@ import { NoticesCategoriesList } from 'components/NoticesCategoriesList';
 // import { fetchSearchNotices } from 'services/api';
 
 export const NoticesPage = () => {
-  // const notices = JSON.stringify(notices);
+  // const dispatch = useDispatch();
+  // const notices = useSelector(selectNotices);
+  // const isLoading = useSelector(selectIsLoading);
+  // const error = useSelector(selectError);
+
+  // useEffect(() => {
+  //   dispatch(fetchNotices());
+  // },[dispatch])
+  
   // const { data: notices, isSucess } = useGetAllNoticesQuery();
   // const [notices, setNotices] = useState([]);
   // const [query, setQuery] = useState('');
@@ -70,7 +81,9 @@ export const NoticesPage = () => {
         // getSearchQuery={handleSearchQuery}
         />
         <NoticesCategoriesNav />
-        {notices.length > 0 && <NoticesCategoriesList notices={notices} />}
+        {/* {isLoading&&<p>Loading...</p>} */}
+        {notices && <NoticesCategoriesList notices={notices} />}
+        {/* {error && <p>{ error}</p>} */}
         {/* {status === 'pending' && <h3>loading...</h3>}
       {status==='rejected' && <h3>Something went wrong...</h3>} */}
         {/* <AddNoticeButton /> */}

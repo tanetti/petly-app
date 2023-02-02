@@ -1,7 +1,7 @@
 [
   {
     "_id":"sdnjvan",
-"title": "Сute dog looking for a home",
+"title": "Best cat ever",
 "name": "lacy2",
 "birthdate": "12-22-2015",
 "breed": "husky",
@@ -11,10 +11,13 @@
 "favorite": "false",
 "category": "lost-found",
 "sex": "male",
-"avatar":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg"
+"petsAvatarURL":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPggDfulqoXH0ywTb_1T2orZAMA-aqmvLLASuDNszhU0z6m1e7TxPsmObBrxL-Y9a0foE&usqp=CAU",
+"owner": {
+    "_id": "63d6a53112e1915ac93d1915"
+}
 },
   {"_id":"sdvjnada",
-"title": "Сute dog looking for a home",
+"title": "Cute dog is looking for a home and will be glad to new owners",
 "name": "lacy2",
 "birthdate": "12-22-2007",
 "breed": "husky",
@@ -24,20 +27,26 @@
 "favorite": "false",
 "category": "for-free",
 "sex": "male",
-"avatar":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg"
+"petsAvatarURL":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg",
+"owner": {
+    "_id": "63d6a53112e1915ac93d1913"
+}
 },
   {"_id":"ahsbdvasd",
-"title": "Сute dog looking for a home",
+"title": "Сute cat looking for a home",
 "name": "lacy2",
 "birthdate": "12-22-2020",
 "breed": "husky",
 "location": "Brovary, Kyiv",
 "comments": "good dog ", 
 "price": 1, 
-"favorite": "false",
+"favorite": "true",
 "category": "lost-found", 
 "sex": "male",
-"avatar":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg"
+"petsAvatarURL":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPggDfulqoXH0ywTb_1T2orZAMA-aqmvLLASuDNszhU0z6m1e7TxPsmObBrxL-Y9a0foE&usqp=CAU",
+"owner": {
+    "_id": "63d6a53112e1915ac93d1915"
+}
 },
   {"_id":"hsdjvan",
 "title": "Сute dog looking for a home", 
@@ -50,7 +59,10 @@
 "favorite": "false",
 "category": "for-free", 
 "sex": "male",
-"avatar":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg"
+"petsAvatarURL":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg",
+"owner": {
+    "_id": "63d6a53112e1915ac93d1913"
+}
 },
   {"_id":"hasdvjan",
 "title": "Сute dog looking for a home", 
@@ -63,10 +75,13 @@
 "favorite": "false",
 "category": "lost-found",
 "sex": "male",
-"avatar":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg"
+"petsAvatarURL":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg",
+"owner": {
+    "_id": "63d6a53112e1915ac93d1915"
+}
 },
   {"_id":"udnvjan",
-"title": "Сute dog looking for a home", 
+"title": "Сute cat looking for a home", 
 "name": "lacy2",
 "birthdate": "12-22-2021",
 "breed": "husky",
@@ -76,7 +91,10 @@
 "favorite": "false",
 "category": "sell", 
 "sex": "male",
-"avatar":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg"
+"petsAvatarURL":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPggDfulqoXH0ywTb_1T2orZAMA-aqmvLLASuDNszhU0z6m1e7TxPsmObBrxL-Y9a0foE&usqp=CAU",
+"owner": {
+    "_id": "63d6a53112e1915ac93d1913"
+}
 },
   {"_id":"ushjdv",
 "title": "Сute dog looking for a home", 
@@ -89,10 +107,13 @@
 "favorite": "true",
 "category": "sell", 
 "sex": "male",
-"avatar":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg"
+"petsAvatarURL":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg",
+"owner": {
+    "_id": "63d6a53112e1915ac93d1915"
+}
 },
   {"_id":"sdfjgsjdf",
-"title": "Сute dog looking for a home", 
+"title": "Best dog ever", 
 "name": "lacy2",
 "birthdate": "12-22-2000",
 "breed": "husky",
@@ -102,10 +123,13 @@
 "favorite": "true",
 "category": "sell", 
 "sex": "male",
-"avatar":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg"
+"petsAvatarURL":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg",
+"owner": {
+    "_id": "63d6a53112e1915ac93d1913"
+}
 },
   {"_id":"asdasd",
-"title": "Сute dog looking for a home", 
+"title": "Best dog ever", 
 "name": "lacy2",
 "birthdate": "12-22-2000",
 "breed": "husky",
@@ -115,7 +139,10 @@
 "favorite": "false",
 "category": "sell", 
 "sex": "male",
-"avatar":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg"
+"petsAvatarURL":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg",
+"owner": {
+    "_id": "63d6a53112e1915ac93d1915"
+}
 },
   {"_id":"sahdjh",
 "title": "Сute dog looking for a home", 
@@ -128,6 +155,25 @@
 "favorite": "true",
 "category": "sell", 
 "sex": "male",
-"avatar":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg"
+"petsAvatarURL":"https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg",
+"owner": {
+    "_id": "63d6a53112e1915ac93d1913"
+}
+},
+{
+"_id": "63d6e0899312702e9ae9fa73",
+"title": "Best dog ever",
+"name": "Bob",
+"birthdate": "2000-12-21T22:00:00.000Z",
+"breed": "husky",
+"location": "Brovary, Kyiv",
+"comments": "You new best frind",
+"price": 100,
+"category": "sell",
+"sex": "male",
+"petsAvatarURL": "https://life.pravda.com.ua/images/doc/f/f/ffdb6f8-dogs-run-photo-boredpanda-dalmatin--1-.jpg",
+"owner": {
+    "_id": "63d6a53112e1915ac93d1913"
+}
 }
 ]
