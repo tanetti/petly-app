@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { PropTypes } from 'prop-types';
-import { Button, TextareaAutosize, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -11,12 +10,17 @@ import {
   ButtonContainer,
   ImageContainer,
   ModalInput,
+  Label,
+  ModalFilledButton,
+  ModalOutlinedButton,
+  ModalStepTwoDescription,
+  Textarea,
+  TextareaContainer,
+  ImageErrorLabel,
 } from 'components/ModalAddsPet';
 import { AvatarDropZone } from 'components/UserDataAndOwnPets/components/UserData/components';
 import {
   DATE_REGEX,
-  FILE_SIZE,
-  SUPPORTED_FORMAT_GROUP,
   INITIAL_FORM_STATE,
   ONLY_LETTERS_REGEX,
   LETTERS_AND_SYMBOLS_REGEX,
@@ -27,7 +31,7 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
     name: yup
       .string()
       .required('Required *')
-      .matches(ONLY_LETTERS_REGEX, 'Only English letters')
+      .matches(ONLY_LETTERS_REGEX, 'Only letters')
       .min(2, 'It seems too short...')
       .max(16, 'Must not exceed 16 characters'),
     date: yup
@@ -37,30 +41,16 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
     breed: yup
       .string()
       .required('Required *')
-      .matches(ONLY_LETTERS_REGEX, 'Only English letters')
+      .matches(ONLY_LETTERS_REGEX, 'Only letters')
       .min(2, 'It seems too short...')
       .max(16, 'Must not exceed 16 characters'),
   });
 
   const validationSchemaStepTwo = yup.object().shape({
-    // image: yup
-    //   .mixed()
-    //   .required('Required *')
-    //   .test(
-    //     'fileType',
-    //     'Invalid image file format selection',
-    //     value =>
-    //       value && value[0]?.type.split('/')[0] === SUPPORTED_FORMAT_GROUP
-    //   )
-    //   .test(
-    //     'fileSize',
-    //     `File must not excced ${FILE_SIZE} Mb`,
-    //     value => value && value[0]?.size <= FILE_SIZE * 1000000
-    //   ),
     comments: yup
       .string()
       .required('Required *')
-      .matches(LETTERS_AND_SYMBOLS_REGEX, 'Only English letters and symbols')
+      .matches(LETTERS_AND_SYMBOLS_REGEX, 'Only letters and symbols')
       .min(8, 'It seems too short...')
       .max(120, 'Must not exceed 120 characters'),
   });
@@ -94,14 +84,13 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
     resolver: yupResolver(validationSchemaStepTwo),
   });
 
-  const avatarUrl = null;
-
   const [name, setName] = useState(INITIAL_FORM_STATE.name);
   const [date, setDate] = useState(INITIAL_FORM_STATE.date);
   const [breed, setBreed] = useState(INITIAL_FORM_STATE.breed);
   const [image, setImage] = useState(INITIAL_FORM_STATE.image);
   const [comments, setComments] = useState(INITIAL_FORM_STATE.comments);
   const [step, setStep] = useState(1);
+  const [isImageError, setIsImageError] = useState(false);
 
   const resetFormState = () => {
     setName(INITIAL_FORM_STATE.name);
@@ -119,6 +108,12 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
       resetStepTwo();
     }
   }, [isOpened, resetStepOne, resetStepTwo]);
+
+  useEffect(() => {
+    if (image) {
+      setIsImageError(false);
+    }
+  }, [image]);
 
   const getPetFormData = () => {
     const data = new FormData();
@@ -138,6 +133,9 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
   };
 
   const onSubmitStepTwo = data => {
+    if (!image) {
+      return setIsImageError(true);
+    }
     setComments(data.comments);
     getPetFormData();
     // axios({
@@ -163,20 +161,20 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
             action="#"
             onSubmit={handleSubmitStepOne(onSubmitStepOne)}
           >
-            <label htmlFor="name">Name pet</label>
+            <Label htmlFor="name">Name pet</Label>
             <ModalInput
               id="name"
               type="text"
               name="name"
               placeholder="Type name pet"
-              title="Name must be from 2 to 30 characters"
+              title="Name must be from 2 to 16 characters"
               size="small"
               helperText={errorsStepOne.name?.message}
               error={errorsStepOne.name ? true : false}
               {...registerStepOne('name')}
             />
 
-            <label htmlFor="date">Date of birth</label>
+            <Label htmlFor="date">Date of birth</Label>
             <ModalInput
               id="date"
               type="text"
@@ -189,13 +187,13 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
               error={errorsStepOne.date ? true : false}
             />
 
-            <label htmlFor="breed">Breed</label>
+            <Label htmlFor="breed">Breed</Label>
             <ModalInput
               id="breed"
               type="text"
               name="breed"
               placeholder="Type breed"
-              title="Breed must be from 2 to 30 characters"
+              title="Breed must be from 2 to 16 characters"
               size="small"
               helperText={errorsStepOne.breed?.message}
               error={errorsStepOne.breed ? true : false}
@@ -208,79 +206,56 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
             action="#"
             onSubmit={handleSubmitStepTwo(onSubmitStepTwo)}
           >
-            <p>Add photo and some comments</p>
-            {/* <label
-              htmlFor="image"
-              style={{ display: 'block', cursor: 'pointer' }}
-            > */}
-            {/* {image ? ( */}
+            <ModalStepTwoDescription>
+              Add photo and some comments
+            </ModalStepTwoDescription>
             <ImageContainer>
               <AvatarDropZone
                 currentAvatarUrl={image ? URL.createObjectURL(image) : null}
                 setNewAvatarFile={setImage}
               />
+              {isImageError && (
+                <ImageErrorLabel>Image is required *</ImageErrorLabel>
+              )}
             </ImageContainer>
 
-            {/* ) : ( */}
-            {/* // <img
-                //   width={100}
-                //   height={100}
-                //   src={URL.createObjectURL(image)}
-                //   alt="pet"
-                // />
-                // <img src="" alt="pet placeholder" />
-              // )} */}
-            {/* </label> */}
-            <p>{errorsStepTwo.image?.message}</p>
-
-            <label htmlFor="comments">Comments</label>
-            <TextareaAutosize
-              id="comments"
-              type="text"
-              name="comments"
-              placeholder="Type comments"
-              title="Place here your comments"
-              size="small"
-              // error={errorsStepTwo.comments ? true : false}
-              {...registerStepTwo('comments', {
-                onBlur: e => {
-                  setComments(e.target.value);
-                },
-              })}
-            />
-            <p>{errorsStepTwo.comments?.message}</p>
+            <Label htmlFor="comments">Comments</Label>
+            <TextareaContainer>
+              <Textarea
+                id="comments"
+                className={errorsStepTwo.comments ? 'isError' : null}
+                type="text"
+                name="comments"
+                placeholder="Type comments"
+                title="Place here your comments"
+                size="small"
+                {...registerStepTwo('comments', {
+                  onBlur: e => {
+                    setComments(e.target.value);
+                  },
+                })}
+              />
+              <p>{errorsStepTwo.comments?.message}</p>
+            </TextareaContainer>
           </Form>
         )}
-        {/* <input
-          form="form-two"
-          id="image"
-          type="file"
-          name="image"
-          style={{
-            position: 'absolute',
-            top: -9999,
-            left: -9999,
-            width: 0,
-            height: 0,
-          }}
-          {...registerStepTwo('image', {
-            onChange: e => {
-              setImage(e.target.files[0]);
-            },
-          })}
-        /> */}
+
         {step === 1 ? (
           <ButtonContainer>
-            <Button type="button" variant="outlined" onClick={closeModal}>
+            <ModalOutlinedButton
+              type="button"
+              variant="outlined"
+              onClick={closeModal}
+            >
               Cancel
-            </Button>
-            <Button type="submit" form="form-one" variant="outlined">
+            </ModalOutlinedButton>
+            <ModalFilledButton type="submit" form="form-one" variant="outlined">
               Next
-            </Button>
+            </ModalFilledButton>
           </ButtonContainer>
         ) : (
           <ButtonContainer>
-            <Button
+            <ModalOutlinedButton
               type="button"
               variant="outlined"
               onClick={() => {
@@ -288,10 +263,10 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
               }}
             >
               Back
-            </Button>
-            <Button type="submit" form="form-two" variant="outlined">
+            </ModalOutlinedButton>
+            <ModalFilledButton type="submit" form="form-two" variant="outlined">
               Done
-            </Button>
+            </ModalFilledButton>
           </ButtonContainer>
         )}
       </ModalContainer>
