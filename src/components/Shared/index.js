@@ -13,3 +13,5 @@ export * from './CommonProgressBarStyled';
 export * from './PageTitleStyled';
 export * from './SearchBox/SearchBox';
 export * from './LoaderLayout/LoaderLayout';
+export * from './NoResultLayout/NoResultLayout';
+export * from './ErrorLayout/ErrorLayout';

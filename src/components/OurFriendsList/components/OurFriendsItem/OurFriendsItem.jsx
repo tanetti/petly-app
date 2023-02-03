@@ -13,13 +13,21 @@ import {
   ContactNoInfo,
 } from './OurFriendsItemStyled';
 import { WorkTimeLayout } from './components';
+import { standartAnimation } from 'constants/animationVariants';
 
 export const OurFriendsItem = ({ friendData }) => {
   const { title, url, addressUrl, imageUrl, address, phone, email, workDays } =
     friendData;
 
   return (
-    <FriendsItem>
+    <FriendsItem
+      key={title}
+      variants={standartAnimation}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      layout
+    >
       <ItemTitle href={url} target="_blank" rel="noreferrer noopener">
         {title}
       </ItemTitle>

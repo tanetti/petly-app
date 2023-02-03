@@ -3,7 +3,9 @@ import { SEARCH_TRIGGER_DELAY } from 'constants/dalays';
 
 export const delayedSetSearchParameter = debounce(
   (value, setValue, setSpinning) => {
-    setValue(value ? { search: value } : {});
+    const trimmedValue = value.trim();
+
+    setValue(trimmedValue ? { search: trimmedValue } : {});
 
     setSpinning && setSpinning(false);
   },

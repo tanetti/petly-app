@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 
-export const FriendsItem = styled('li')`
+export const FriendsItem = styled(motion.li)`
   padding: 12px 4px;
 
   background: ${({ theme }) => theme.palette.background.main};

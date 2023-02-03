@@ -1,18 +1,38 @@
 import { useGetServicesQuery } from 'redux/services/servicesApi';
 import { FriendsList } from './OurFriendsListStyled';
 import { OurFriendsItem } from './components';
-import sponsors from 'TEMP/sponsors.json';
+import { AnimatePresence } from 'framer-motion';
+import { ErrorLayout, LoaderLayout, NoResultLayout } from 'components/Shared';
+import { standartAnimation } from 'constants/animationVariants';
 
 export const OurFriendsList = () => {
-  const { data, error, isLoading } = useGetServicesQuery();
-
-  console.log(data ?? isLoading ?? error);
+  const { data, error, isLoading, isPending } = useGetServicesQuery();
 
   return (
-    <FriendsList>
-      {sponsors.map(friendData => (
-        <OurFriendsItem key={friendData.title} friendData={friendData} />
-      ))}
-    </FriendsList>
+    <AnimatePresence mode="wait">
+      {isLoading ? <LoaderLayout requestEntityName="services" /> : null}
+
+      {!isLoading && !isPending && error ? <ErrorLayout /> : null}
+
+      {!isLoading && !isPending && !error && !data?.length ? (
+        <NoResultLayout />
+      ) : null}
+
+      {!isLoading && !error && data?.length ? (
+        <FriendsList
+          key="friendsList"
+          variants={standartAnimation}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+        >
+          <AnimatePresence>
+            {data.map(friendData => (
+              <OurFriendsItem key={friendData.title} friendData={friendData} />
+            ))}
+          </AnimatePresence>
+        </FriendsList>
+      ) : null}
+    </AnimatePresence>
   );
 };

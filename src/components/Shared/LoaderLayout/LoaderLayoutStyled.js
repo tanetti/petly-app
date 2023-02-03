@@ -14,6 +14,8 @@ export const LoadingMessage = styled('div')`
 
   color: ${({ theme }) => theme.palette.accent.main};
 
+  text-align: center;
+
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     font-size: 24px;
   }

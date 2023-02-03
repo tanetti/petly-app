@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 
-export const FriendsList = styled('ul')`
+export const FriendsList = styled(motion.ul)`
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
