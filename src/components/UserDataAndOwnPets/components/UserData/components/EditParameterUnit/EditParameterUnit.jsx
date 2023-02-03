@@ -1,5 +1,9 @@
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
+import {
+  useGetCurrentInfoQuery,
+  useUpdateCurrentInfoMutation,
+} from 'redux/currentUserInfo/currentUserInfoApi';
 import { AnimatePresence, motion } from 'framer-motion';
 import InputMask from 'react-input-mask';
 import * as yup from 'yup';
@@ -40,7 +44,11 @@ export const EditParameterUnit = ({
     fieldVariant: unitFieldVariant,
   } = unitSettings;
 
-  const currentUnitData = currentData[unitName];
+  const { isLoading } = useGetCurrentInfoQuery();
+  const [updateInfo, { isLoading: isUpdating }] =
+    useUpdateCurrentInfoMutation();
+
+  const currentUnitData = currentData ? currentData[unitName] : null;
 
   useEffect(() => {
     if (!currentUnitData) return;
@@ -70,7 +78,7 @@ export const EditParameterUnit = ({
         return;
       }
 
-      console.log(trimmedParameterValue ?? '');
+      updateInfo({ [unitName]: trimmedParameterValue });
     }
     setActiveUnit(null);
   };
@@ -173,12 +181,12 @@ export const EditParameterUnit = ({
           activeUnit === unitName ? `Save ${unitName}` : `Edit ${unitName}`
         }
         type="button"
-        loading={null}
+        loading={isLoading || isUpdating}
         disabled={activeUnit && activeUnit !== unitName}
         onClick={onParameterButtonClick}
       >
         <AnimatePresence mode="wait">
-          {activeUnit !== unitName && 'NOT_LOADING' ? (
+          {activeUnit !== unitName && !isLoading && !isUpdating ? (
             <motion.div
               key="editIcon"
               variants={standartAnimation}
@@ -190,7 +198,7 @@ export const EditParameterUnit = ({
             </motion.div>
           ) : null}
 
-          {activeUnit === unitName && 'NOT_LOADING' ? (
+          {activeUnit === unitName && !isLoading && !isUpdating ? (
             <motion.div
               key="saveIcon"
               variants={standartAnimation}
@@ -216,5 +224,5 @@ EditParameterUnit.propTypes = {
   }).isRequired,
   activeUnit: PropTypes.string,
   setActiveUnit: PropTypes.func.isRequired,
-  currentData: PropTypes.object.isRequired,
+  currentData: PropTypes.object,
 };

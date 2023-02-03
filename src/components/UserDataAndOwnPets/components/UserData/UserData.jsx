@@ -1,6 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/authOperations';
+import {
+  useDeleteAvatarMutation,
+  useGetCurrentInfoQuery,
+  useUploadAvatarMutation,
+} from 'redux/currentUserInfo/currentUserInfoApi';
 import { useAuth } from 'hooks';
 import { AnimatePresence, motion } from 'framer-motion';
 import { standartAnimation } from 'constants/animationVariants';
@@ -19,29 +24,64 @@ import {
 } from './UserDataStyled';
 
 export const UserData = () => {
-  const userData = {
-    name: 'Volodymyr',
-    email: 'tanetti22@gmail.com',
-    birthday: '1988-12-09',
-    phone: '+38 (066) 334-45-99',
-    address: 'Dnipro',
-  };
-  const avatarUrl = null;
+  const { data } = useGetCurrentInfoQuery();
+  const [
+    uploadAvatar,
+    {
+      reset: resetUploadHook,
+      isSuccess: isUploadSuccess,
+      isLoading: isUploading,
+    },
+  ] = useUploadAvatarMutation();
+  const [
+    deleteAvatar,
+    {
+      reset: resetDeletingHook,
+      isSuccess: isDeleteSuccess,
+      isLoading: isDeleting,
+    },
+  ] = useDeleteAvatarMutation();
 
   const [newAvatarFile, setNewAvatarFile] = useState(null);
   const [activeUnit, setActiveUnit] = useState(null);
   const dispatch = useDispatch();
   const { isUserPending } = useAuth();
 
+  useEffect(() => {
+    if (!isUploadSuccess) return;
+
+    setNewAvatarFile(null);
+    resetUploadHook();
+  }, [isUploadSuccess, resetUploadHook]);
+
+  useEffect(() => {
+    if (!isDeleteSuccess) return;
+
+    resetDeletingHook();
+  }, [isDeleteSuccess, resetDeletingHook]);
+
+  const onSaveImageButtonClick = async () => {
+    const formData = new FormData();
+
+    formData.append('avatar', newAvatarFile, newAvatarFile.name);
+
+    uploadAvatar(formData);
+  };
+
+  const onDeleteImageButtonClick = async () => {
+    deleteAvatar();
+  };
+
   return (
     <UserControlContainer>
       <ImageControlContainer>
         <AvatarDropZone
-          currentAvatarUrl={avatarUrl}
+          currentAvatarUrl={data?.avatarURL}
           setNewAvatarFile={setNewAvatarFile}
+          isReseted={isUploadSuccess || isDeleteSuccess}
         />
         <AnimatePresence mode="wait">
-          {avatarUrl && !newAvatarFile ? (
+          {data?.avatarURL && !newAvatarFile ? (
             <motion.div
               key="deletePhoto"
               variants={standartAnimation}
@@ -54,8 +94,8 @@ export const UserData = () => {
                 type="button"
                 startIcon={<DeleteAvatarIcon />}
                 loadingPosition="start"
-                loading={false}
-                disabled={false}
+                loading={isDeleting}
+                onClick={onDeleteImageButtonClick}
               >
                 Delete photo
               </ActionButton>
@@ -74,8 +114,8 @@ export const UserData = () => {
                 type="button"
                 startIcon={<SaveAvatarIcon />}
                 loadingPosition="start"
-                loading={false}
-                disabled={false}
+                loading={isUploading}
+                onClick={onSaveImageButtonClick}
               >
                 Save photo
               </ActionButton>
@@ -92,7 +132,7 @@ export const UserData = () => {
               unitSettings={unitSettings}
               activeUnit={activeUnit}
               setActiveUnit={setActiveUnit}
-              currentData={userData}
+              currentData={data}
             />
           ))}
         </DataForm>

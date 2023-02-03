@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { AnimatePresence } from 'framer-motion';
 import { makeToast } from 'utilities/makeToast';
@@ -16,10 +16,20 @@ import {
   NotAllowedImageIcon,
 } from './AvatarDropZoneStyled';
 
-export const AvatarDropZone = ({ currentAvatarUrl, setNewAvatarFile }) => {
+export const AvatarDropZone = ({
+  currentAvatarUrl,
+  setNewAvatarFile,
+  isReseted,
+}) => {
   const [base64AvatarUrl, setBase64AvatarUrl] = useState(null);
   const [isAvatarContainerHovered, setIsAvatarContainerHovered] =
     useState(false);
+
+  useEffect(() => {
+    if (!isReseted) return;
+
+    setBase64AvatarUrl(null);
+  }, [isReseted]);
 
   const {
     getRootProps,
@@ -34,7 +44,6 @@ export const AvatarDropZone = ({ currentAvatarUrl, setNewAvatarFile }) => {
     accept: {
       'image/jpeg': ['.jpeg', '.jpg'],
       'image/png': ['.png'],
-      'image/webp': ['.webp'],
     },
     onDropAccepted: files => {
       setIsAvatarContainerHovered(false);
@@ -46,7 +55,7 @@ export const AvatarDropZone = ({ currentAvatarUrl, setNewAvatarFile }) => {
     onError: error => makeToast(error),
   });
 
-  const presentImage = currentAvatarUrl || base64AvatarUrl;
+  const presentImage = base64AvatarUrl || currentAvatarUrl;
 
   return (
     <DropZoneContainer>
@@ -119,4 +128,5 @@ export const AvatarDropZone = ({ currentAvatarUrl, setNewAvatarFile }) => {
 AvatarDropZone.propTypes = {
   currentAvatarUrl: PropTypes.string,
   setNewAvatarFile: PropTypes.func.isRequired,
+  isReseted: PropTypes.bool.isRequired,
 };
