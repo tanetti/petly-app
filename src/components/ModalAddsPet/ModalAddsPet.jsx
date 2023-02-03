@@ -5,7 +5,14 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { CommonModal } from 'components/Shared';
-import { ModalContainer, Form, ButtonContainer } from 'components/ModalAddsPet';
+import {
+  ModalContainer,
+  Form,
+  ButtonContainer,
+  ImageContainer,
+  ModalInput,
+} from 'components/ModalAddsPet';
+import { AvatarDropZone } from 'components/UserDataAndOwnPets/components/UserData/components';
 import {
   DATE_REGEX,
   FILE_SIZE,
@@ -36,20 +43,20 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
   });
 
   const validationSchemaStepTwo = yup.object().shape({
-    image: yup
-      .mixed()
-      .required('Required *')
-      .test(
-        'fileType',
-        'Invalid image file format selection',
-        value =>
-          value && value[0]?.type.split('/')[0] === SUPPORTED_FORMAT_GROUP
-      )
-      .test(
-        'fileSize',
-        `File must not excced ${FILE_SIZE} Mb`,
-        value => value && value[0]?.size <= FILE_SIZE * 1000000
-      ),
+    // image: yup
+    //   .mixed()
+    //   .required('Required *')
+    //   .test(
+    //     'fileType',
+    //     'Invalid image file format selection',
+    //     value =>
+    //       value && value[0]?.type.split('/')[0] === SUPPORTED_FORMAT_GROUP
+    //   )
+    //   .test(
+    //     'fileSize',
+    //     `File must not excced ${FILE_SIZE} Mb`,
+    //     value => value && value[0]?.size <= FILE_SIZE * 1000000
+    //   ),
     comments: yup
       .string()
       .required('Required *')
@@ -86,6 +93,8 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
     mode: 'onChange',
     resolver: yupResolver(validationSchemaStepTwo),
   });
+
+  const avatarUrl = null;
 
   const [name, setName] = useState(INITIAL_FORM_STATE.name);
   const [date, setDate] = useState(INITIAL_FORM_STATE.date);
@@ -155,7 +164,7 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
             onSubmit={handleSubmitStepOne(onSubmitStepOne)}
           >
             <label htmlFor="name">Name pet</label>
-            <TextField
+            <ModalInput
               id="name"
               type="text"
               name="name"
@@ -168,7 +177,7 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
             />
 
             <label htmlFor="date">Date of birth</label>
-            <TextField
+            <ModalInput
               id="date"
               type="text"
               name="date"
@@ -181,7 +190,7 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
             />
 
             <label htmlFor="breed">Breed</label>
-            <TextField
+            <ModalInput
               id="breed"
               type="text"
               name="breed"
@@ -200,21 +209,28 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
             onSubmit={handleSubmitStepTwo(onSubmitStepTwo)}
           >
             <p>Add photo and some comments</p>
-            <label
+            {/* <label
               htmlFor="image"
               style={{ display: 'block', cursor: 'pointer' }}
-            >
-              {image ? (
-                <img
-                  width={100}
-                  height={100}
-                  src={URL.createObjectURL(image)}
-                  alt="pet"
-                />
-              ) : (
-                <img src="" alt="pet placeholder" />
-              )}
-            </label>
+            > */}
+            {/* {image ? ( */}
+            <ImageContainer>
+              <AvatarDropZone
+                currentAvatarUrl={image ? URL.createObjectURL(image) : null}
+                setNewAvatarFile={setImage}
+              />
+            </ImageContainer>
+
+            {/* ) : ( */}
+            {/* // <img
+                //   width={100}
+                //   height={100}
+                //   src={URL.createObjectURL(image)}
+                //   alt="pet"
+                // />
+                // <img src="" alt="pet placeholder" />
+              // )} */}
+            {/* </label> */}
             <p>{errorsStepTwo.image?.message}</p>
 
             <label htmlFor="comments">Comments</label>
@@ -235,7 +251,7 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
             <p>{errorsStepTwo.comments?.message}</p>
           </Form>
         )}
-        <input
+        {/* <input
           form="form-two"
           id="image"
           type="file"
@@ -252,7 +268,7 @@ export const ModalAddsPet = ({ isOpened, closeModal }) => {
               setImage(e.target.files[0]);
             },
           })}
-        />
+        /> */}
         {step === 1 ? (
           <ButtonContainer>
             <Button type="button" variant="outlined" onClick={closeModal}>
