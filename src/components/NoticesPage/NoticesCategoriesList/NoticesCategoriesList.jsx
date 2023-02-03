@@ -1,7 +1,7 @@
 import React from 'react';
 // import { useSelector } from 'react-redux';
 // import { selectVisibleNotices } from 'redux/notices/noticesSelectors';
-import { NoticeCategoryItem } from 'components/NoticeCategoryItem';
+import { NoticeCategoryItem } from 'components/NoticesPage/NoticeCategoryItem';
 import { Wrapper, List } from './NoticesCategoryList.styled';
 import PropTypes from 'prop-types';
 export const NoticesCategoriesList = ({ notices }) => {

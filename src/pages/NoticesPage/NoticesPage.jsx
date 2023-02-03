@@ -6,10 +6,10 @@ import notices from './notices';
 // import { useEffect } from 'react';
 // import { fetchNotices } from 'redux/notices/noticesOperations';
 import { Container, PageTitle } from 'components/Shared';
-import { NoticesSearch } from 'components/NoticesSearch';
-import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav';
+import { NoticesSearch } from 'components/NoticesPage/NoticesSearch';
+import { NoticesCategoriesNav } from 'components/NoticesPage/NoticesCategoriesNav';
 
-import { NoticesCategoriesList } from 'components/NoticesCategoriesList';
+import { NoticesCategoriesList } from 'components/NoticesPage/NoticesCategoriesList';
 // import { useState, useEffect } from 'react';
 // import { useSearchParams } from 'react-router-dom';
 // import { fetchSearchNotices } from 'services/api';

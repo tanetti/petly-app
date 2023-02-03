@@ -3,8 +3,11 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export const Item = styled('li')`
+display:flex;
+flex-direction: column;
+
   width: 280px;
-  height: 606px;
+
   position: relative;
   background: ${({theme})=>theme.palette.background.main};
   
@@ -27,6 +30,7 @@ export const Item = styled('li')`
     
   }
 `;
+export const BoxImg = styled('div')``;
 
 export const Wrapper = styled('div')`
 display: flex;
@@ -90,7 +94,7 @@ margin-left:74px;
 `;
 export const LogoAdd = styled(FavoriteBorderIcon)`
 color:${({ theme }) => theme.palette.primary.main};
-FavBtn:hover{color:${({ theme }) => theme.palette.text.black};}
+
 
 
 width: 24px;
@@ -98,33 +102,40 @@ width: 24px;
 
 export const LogoDel= styled(FavoriteIcon)`
 color:${({ theme }) => theme.palette.primary.main};
-transition: ${({ theme }) =>
-    theme.transitions.create(['border-color','background-color','color'], {
-      duration: theme.transitions.duration.standard,
-    })};
+
 
 width: 24px;
 `;
 
 
 export const BoxInfo = styled('div')`
-padding: 20px 20px 32px 20px;`;
+padding: 20px;
+
+`;
+
+export const BoxTitle = styled('div')`
+display:flex;
+align-items: center;
+height: 76px;
+`;
 
 export const Title = styled('p')`
+
+
 margin:0;
 margin-bottom:20px;
   display: -webkit-box;
 -webkit-line-clamp: 2;
 -webkit-box-orient: vertical;
+overflow: hidden;
+text-overflow: ellipsis;
   
-  font-weight: 700;
+  
+font-weight: 700;
 font-size: 28px;
 line-height: 38px;
 letter-spacing: -0.01em;
 
-height: 76px;
-overflow: hidden;
-text-overflow: ellipsis;
   
 `;
 
@@ -132,7 +143,6 @@ export const PetInfo = styled('ul')`
 list-style:none;
 margin:0;
 padding:0;
-flex-grow: 1;
 font-size: 16px;
 line-height: 22px;
 `;
@@ -141,19 +151,52 @@ padding:0;
 display: flex;
 position:relative;
 
+&:not(:last-of-type) {
+    margin-bottom: 8px;
+  }
+
 `;
 export const NameInfo = styled('span')``;
 export const ValueInfo = styled('div')`
-position:absolute;
-left: 90px;`;
 
-export const BtnModalMore = styled('button')`
+position:absolute;
+left: 90px;
+flex-wrap: wrap; 
+
+width: 150px;
+
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+${({ theme }) => theme.breakpoints.up('tablet')} {
+    width: 206px;
+  }
+  ${({ theme }) => theme.breakpoints.up('desktop')} {
+    width: 158px;
+  }
+`;
+
+export const BoxBtn = styled('div')`
+display: flex;
+flex-direction: column;
+justify-content: center;
+flex-grow:1;
+margin-left:20px;
+margin-right:20px;
+margin-bottom: 12px;
+`;
+
+export const CardBtn = styled('button')`
 width:100%;
 height: 38px;
 background:${({ theme }) => theme.palette.background.main};
 color:${({ theme }) => theme.palette.primary.main};
 border: 2px solid ${({ theme }) => theme.palette.primary.main};
 border-radius: 19px;
+
+&:not(:last-of-type) {
+    margin-bottom: 12px;
+}
 
 transition: ${({ theme }) =>
     theme.transitions.create(['border-color','background-color','color'], {

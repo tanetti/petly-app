@@ -1,5 +1,5 @@
 import { NavList } from './NoticesCategoriesNav.styled';
-import { NavLinkButtonLike } from '../Shared/NavLinkButtonLikeStyled';
+import { NavLinkButtonLike } from '../../Shared/NavLinkButtonLikeStyled';
 export const NoticesCategoriesNav = () => {
     return (
         <NavList>        

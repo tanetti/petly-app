@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import { CommonModal } from 'components/Shared';
+import { useDispatch } from 'react-redux';
+// import { useAuth } from 'hooks';
 import {
-    Item,
+  Item,
+  BoxImg,
     Wrapper,
     Img,
     Cover,
     Label,
-    FavBtn,
+  FavBtn,
+    BoxTitle,
   LogoDel,
   LogoAdd,
   BoxInfo,
@@ -15,14 +19,19 @@ import {
   ItemInfo,
   NameInfo,
   ValueInfo,
-  BtnModalMore,
+  BoxBtn,
+  CardBtn,
 } from './NoticeCategoryItem.styled';
 import numWords from 'num-words';
+import { deleteNotice } from 'redux/notices/noticesOperations';
 export const NoticeCategoryItem = ({ notice }) => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isFavorite, setIsFavorite] =useState(false);
-
-  const { _id, category, petsAvatarURL, title, breed, birthdate, favorite,location, price } = notice;
+  // const { isUserLoggedIn } = useAuth();
+  const dispatch = useDispatch();
+  const isUserLoggedIn = true;
+  const userId = "63d6a53112e1915ac93d1913";
+  const { _id, category, petsAvatarURL, title, breed, birthdate, favorite,location, price, owner } = notice;
   useEffect(() => {
     if (favorite===true) {
       setIsFavorite(true);
@@ -44,17 +53,21 @@ export const NoticeCategoryItem = ({ notice }) => {
   
   
   return (
-      <Item>    
-          
-              <Img src={petsAvatarURL} alt={title} />
+      <Item>              
+      <BoxImg>
+        <Img src={petsAvatarURL} alt={title} />
           <Wrapper>
               <Cover><Label>{category}</Label></Cover>
         <FavBtn type='button' onClick={() => { setIsFavorite(!isFavorite) }}>
           {isFavorite? <LogoDel /> : <LogoAdd />}
         </FavBtn>
-          </Wrapper>
+        </Wrapper>
+      </BoxImg>
       <BoxInfo>
-        <Title>{title}</Title>
+        <BoxTitle>
+          <Title>{title}</Title>
+        </BoxTitle>
+        
         <PetInfo>
           <ItemInfo>
             <NameInfo>Breed:</NameInfo>
@@ -75,10 +88,16 @@ export const NoticeCategoryItem = ({ notice }) => {
             <ValueInfo>{price}</ValueInfo>
           </ItemInfo>
         </PetInfo>
-        <BtnModalMore type="button" onClick={() => setIsModalOpened(true)}>
-          Learn more
-        </BtnModalMore>
       </BoxInfo>
+      <BoxBtn>
+        {isUserLoggedIn && userId === owner._id && <CardBtn type="button" onClick={() => dispatch(deleteNotice(_id))}>
+          Delete
+        </CardBtn>}
+        <CardBtn type="button" onClick={() => setIsModalOpened(true)}>
+          Learn more
+        </CardBtn>
+      </BoxBtn>
+      
 
       <CommonModal
         title="Common modal"
