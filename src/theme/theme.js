@@ -29,6 +29,10 @@ export const appTheme = createTheme({
       main: 'rgba(17, 17, 17, 0.6)',
       dark: 'rgba(27, 27, 27, 0.6)',
     },
+    newsGradient: {
+      light: '#ffdf48',
+      main: '#ff634e',
+    },
   },
   breakpoints: {
     values: {
