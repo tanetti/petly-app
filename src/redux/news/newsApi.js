@@ -9,7 +9,8 @@ export const newsApi = createApi({
   refetchOnFocus: true,
   endpoints: builder => ({
     getNews: builder.query({
-      query: () => `/news`,
+      query: searchValue =>
+        searchValue ? `/news?search=${searchValue}` : `/news`,
       providesTags: ['News'],
     }),
   }),

@@ -1,15 +1,13 @@
-import { useGetNewsQuery } from 'redux/news/newsApi';
-import { Container } from 'components/Shared';
+import { NewsList } from 'components/NewsList/NewsList';
+import { Container, PageTitle, SearchBox } from 'components/Shared';
 
 export const NewsPage = () => {
-  const { data, error, isLoading } = useGetNewsQuery();
-
-  console.log(data ?? isLoading ?? error);
-
   return (
     <section>
       <Container>
-        <div>News Page</div>
+        <PageTitle>News</PageTitle>
+        <SearchBox />
+        <NewsList />
       </Container>
     </section>
   );
