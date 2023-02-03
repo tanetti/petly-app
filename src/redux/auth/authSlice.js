@@ -3,29 +3,38 @@ import { registerUser, logIn, logOut, refreshUser } from './authOperations';
 
 const initialState = {
   user: {
-    name: null,
     email: null,
+    name: null,
     address: null,
     phone: null,
     birthday: null,
-    favoritePets: null,
+    avatarURL: null,
+    favoriteNotices: null,
   },
   token: null,
   isLoggedIn: false,
   isRefreshing: true,
   isPending: false,
+  wasRegistered: false,
   error: null,
+  refreshError: null,
 };
 
-const authSlice = createSlice({
+export const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    resetError: state => {
+      state.error = null;
+    },
+    resetWasRegistered: state => {
+      state.wasRegistered = false;
+    },
+  },
   extraReducers: ({ addCase }) => {
-    addCase(registerUser.fulfilled, (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
+    addCase(registerUser.fulfilled, state => {
       state.isPending = false;
+      state.wasRegistered = true;
       state.error = null;
     });
     addCase(logIn.fulfilled, (state, action) => {
@@ -37,12 +46,13 @@ const authSlice = createSlice({
     });
     addCase(logOut.fulfilled, state => {
       state.user = {
-        name: null,
         email: null,
+        name: null,
         address: null,
         phone: null,
         birthday: null,
-        favoritePets: null,
+        avatarURL: null,
+        favoriteNotices: null,
       };
       state.token = null;
       state.isLoggedIn = false;
@@ -53,19 +63,23 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isLoggedIn = true;
       state.isRefreshing = false;
-      state.error = null;
+      state.refreshError = null;
     });
     addCase(registerUser.pending, state => {
       state.isPending = true;
+      state.error = null;
     });
     addCase(logIn.pending, state => {
       state.isPending = true;
+      state.error = null;
     });
     addCase(logOut.pending, state => {
       state.isPending = true;
+      state.error = null;
     });
     addCase(refreshUser.pending, state => {
       state.isRefreshing = true;
+      state.refreshError = null;
     });
     addCase(registerUser.rejected, (state, action) => {
       state.isPending = false;
@@ -81,7 +95,7 @@ const authSlice = createSlice({
     });
     addCase(refreshUser.rejected, (state, action) => {
       state.isRefreshing = false;
-      state.error = action.payload;
+      state.refreshError = action.payload;
     });
   },
 });

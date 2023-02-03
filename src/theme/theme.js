@@ -2,6 +2,9 @@ import { createTheme } from '@mui/material/styles';
 
 export const appTheme = createTheme({
   palette: {
+    primary: {
+      main: '#f59256',
+    },
     background: {
       light: 'rgba(255, 255, 255, 0.6)',
       main: '#fff',
@@ -35,7 +38,12 @@ export const appTheme = createTheme({
       desktop: 1280,
     },
   },
+  transition: {
+    main: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  },
 });
 
 appTheme.shadows[50] = '7px 4px 14px rgba(49, 21, 4, 0.07)';
 appTheme.shadows[51] = '7px 4px 14px rgba(0, 0, 0, 0.11)';
+appTheme.shadows[52] = '0px 4px 14px rgba(0, 0, 0, 0.11)';
+appTheme.shadows[53] = '4px 4px 8px rgba(0, 0, 0, 0.25)';

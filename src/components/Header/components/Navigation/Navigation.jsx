@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useAuth, useScreen } from 'hooks';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { backdropSlotProps } from 'theme/backdropSlotProps';
+import { standartAnimation } from 'constants/animationVariants';
 import { Nav, AuthNav, UserNav, MobileMenuButton } from './components';
 import {
   NavigationWrapper,
@@ -11,7 +12,7 @@ import {
 
 export const Navigation = () => {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
-  const { isUserLoggedIn } = useAuth();
+  const { isUserLoggedIn, isUserRefreshing } = useAuth();
   const currentScreen = useScreen();
 
   return (
@@ -21,12 +22,29 @@ export const Navigation = () => {
           <Nav setIsMobileMenuOpened={setIsMobileMenuOpened} />
         ) : null}
 
-        {currentScreen === 'tablet' || currentScreen === 'desktop' ? (
+        {(currentScreen === 'tablet' || currentScreen === 'desktop') &&
+        !isUserRefreshing ? (
           <AnimatePresence mode="wait">
             {isUserLoggedIn ? (
-              <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+              <motion.div
+                key="loggedIn"
+                variants={standartAnimation}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+              </motion.div>
             ) : (
-              <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+              <motion.div
+                key="notLoggedIn"
+                variants={standartAnimation}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+              </motion.div>
             )}
           </AnimatePresence>
         ) : null}
@@ -47,14 +65,19 @@ export const Navigation = () => {
             onOpen={() => setIsMobileMenuOpened(true)}
             onClose={() => setIsMobileMenuOpened(false)}
           >
-            {currentScreen === 'mobile' && isUserLoggedIn ? (
-              <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
-            ) : null}
+            <div>
+              {currentScreen === 'mobile' &&
+              isUserLoggedIn &&
+              !isUserRefreshing ? (
+                <UserNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+              ) : null}
 
-            {currentScreen === 'mobile' && !isUserLoggedIn ? (
-              <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
-            ) : null}
-
+              {currentScreen === 'mobile' &&
+              !isUserLoggedIn &&
+              !isUserRefreshing ? (
+                <AuthNav setIsMobileMenuOpened={setIsMobileMenuOpened} />
+              ) : null}
+            </div>
             <Nav setIsMobileMenuOpened={setIsMobileMenuOpened} />
           </SwipeableMobileMenu>
         </>
