@@ -10,10 +10,15 @@ import {
   NameInfo,
   ValueInfo,
 } from './NoticeCategoryItem.styled';
+import {
+  StyledImg,
+  ModalTitleNotice,
+  ModalParagtaph,
+} from '../ModalNotice/CommonModal/NoticeModalStyled';
 import numWords from 'num-words';
 export const NoticeCategoryItem = ({ notice }) => {
   const [isModalOpened, setIsModalOpened] = useState(false);
-
+  const [isModalNotiesOpened, setIsModalNoticeOpened] = useState(false);
   const { _id, avatar, title, breed, birthdate, location, price } = notice;
 
   function getAge() {
@@ -64,16 +69,16 @@ export const NoticeCategoryItem = ({ notice }) => {
         closeModal={() => setIsModalOpened(false)}
       >
         <p>{_id}</p>
-        <img src={avatar} alt='Pet' />
-        <p>{title}</p>
-        <p>{birthdate}</p>
-        <p>{breed}</p>
-        <p>{location}</p>
-        <p>{price}</p>
-        <p>MODAL</p>
-        <p>MODAL</p>
-        <p>MODAL</p>
-        <p>MODAL</p>
+        <StyledImg src={avatar} alt="Pet" />
+        <ModalTitleNotice>{title}</ModalTitleNotice>
+        <ModalParagtaph>{birthdate}</ModalParagtaph>
+        <ModalParagtaph>{breed}</ModalParagtaph>
+        <ModalParagtaph>{location}</ModalParagtaph>
+        <ModalParagtaph>{price}</ModalParagtaph>
+        <ModalParagtaph>MODAL</ModalParagtaph>
+        <ModalParagtaph>MODAL</ModalParagtaph>
+        <ModalParagtaph>MODAL</ModalParagtaph>
+        <ModalParagtaph>MODAL</ModalParagtaph>
       </CommonModal>
     </Item>
   );

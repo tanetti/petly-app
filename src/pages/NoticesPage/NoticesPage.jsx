@@ -4,6 +4,7 @@ import notices from './notices';
 
 import { Container, PageTitle } from 'components/Shared';
 import { NoticesSearch } from 'components/NoticesSearch';
+
 import { NoticesCategoriesNav } from 'components/NoticesCategoriesNav';
 
 import { NoticesCategoriesList } from 'components/NoticesCategoriesList';
