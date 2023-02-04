@@ -31,6 +31,8 @@ export const PetImage = styled('img')`
 
   border-radius: 20px;
 
+  object-fit: cover;
+
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     width: 161px;
     height: 161px;
@@ -43,6 +45,11 @@ export const PetImage = styled('img')`
 
 export const PetInfo = styled('div')`
   position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+  word-wrap: break-word;
 
   ${({ theme }) => theme.breakpoints.down('tablet')} {
     padding-bottom: 20px;
@@ -105,10 +112,6 @@ export const DeletePetButton = styled(LoadingButton)`
   }
 `;
 
-export const DeleteIcon = styled(DeleteForeverRoundedIcon)`
-  font-size: inherit;
-`;
-
 export const PetDataItem = styled('p')`
   font-weight: 500;
   font-size: 14px;
@@ -129,4 +132,8 @@ export const PetDataItem = styled('p')`
       padding-top: 4px;
     }
   }
+`;
+
+export const DeleteIcon = styled(DeleteForeverRoundedIcon)`
+  font-size: inherit;
 `;

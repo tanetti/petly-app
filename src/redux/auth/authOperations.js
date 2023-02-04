@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { setAuthHeader, clearAuthHeader } from './authHeaderUtilities';
 import { currentUserInfoApi } from 'redux/currentUserInfo/currentUserInfoApi';
+import { ownPetsApi } from 'redux/ownPets/ownPetsApi';
+import { setAuthHeader, clearAuthHeader } from './authHeaderUtilities';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 
@@ -40,6 +41,7 @@ export const logOut = createAsyncThunk(
       await axios.post('users/logout');
       clearAuthHeader();
       dispatch(currentUserInfoApi.util.resetApiState());
+      dispatch(ownPetsApi.util.resetApiState());
     } catch (error) {
       const errorCode = error.response?.data?.code ?? error.message;
 

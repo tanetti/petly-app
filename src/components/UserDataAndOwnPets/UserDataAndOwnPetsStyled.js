@@ -30,6 +30,10 @@ export const UserDataSection = styled('section')`
 
 export const UserOwnPetsSection = styled('section')`
   flex-grow: 1;
+
+  ${({ theme }) => theme.breakpoints.up('desktop')} {
+    max-width: 804px;
+  }
 `;
 
 export const SectionTitle = styled('h2')`

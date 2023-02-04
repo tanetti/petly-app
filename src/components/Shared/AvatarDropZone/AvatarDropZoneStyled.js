@@ -69,6 +69,8 @@ export const ControlsContainer = styled('div')`
 
   overflow: hidden;
 
+  pointer-events: ${({ isDisabled }) => (isDisabled ? 'none' : 'initial')};
+
   transition: ${({ theme }) =>
     theme.transitions.create(['color'], {
       duration: theme.transitions.duration.standard,

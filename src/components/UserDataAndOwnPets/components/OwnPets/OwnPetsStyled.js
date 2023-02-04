@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 
 export const ButtonContainer = styled('div')`
   position: absolute;
@@ -15,7 +16,7 @@ export const ButtonContainer = styled('div')`
   }
 `;
 
-export const OwnPetsList = styled('ul')`
+export const OwnPetsList = styled(motion.ul)`
   padding-top: 14px;
   padding-bottom: 14px;
 

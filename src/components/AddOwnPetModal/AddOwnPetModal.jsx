@@ -1,8 +1,13 @@
 import { useEffect, useState, useCallback } from 'react';
 import { PropTypes } from 'prop-types';
+import { useAddOwnPetMutation } from 'redux/ownPets/ownPetsApi';
 import { AnimatePresence, motion } from 'framer-motion';
 import { makeToast } from 'utilities/makeToast';
-import { CommonModal } from 'components/Shared';
+import {
+  CommonModal,
+  CommonProgressBar,
+  CommonProgressBarContainer,
+} from 'components/Shared';
 import { standartAnimation } from 'constants/animationVariants';
 import { FirstStep, SecondStep } from './components';
 import {
@@ -13,6 +18,16 @@ import {
 } from './AddOwnPetModalStyled';
 
 export const AddOwnPetModal = ({ isOpened, closeModal }) => {
+  const [
+    addPet,
+    {
+      reset: resetAddPetHook,
+      isError: isPetAddError,
+      isSuccess: isPetAddedSuccess,
+      isLoading: isPetAdding,
+    },
+  ] = useAddOwnPetMutation();
+
   const INITIAL_FORM_STATE = {
     name: '',
     date: '',
@@ -50,6 +65,24 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
   ]);
 
   useEffect(() => {
+    if (!isPetAddError && !isPetAddedSuccess) return;
+
+    if (isPetAddedSuccess) {
+      resetAddPetHook();
+      closeModal();
+
+      return;
+    }
+
+    if (isPetAddError) {
+      resetAddPetHook();
+      makeToast();
+
+      return;
+    }
+  });
+
+  useEffect(() => {
     if (!isOpened) {
       resetFormState();
     }
@@ -64,14 +97,14 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
   const getPetFormData = () => {
     const data = new FormData();
     data.append('name', name);
-    data.append('date', date);
+    data.append('birthdate', date);
     data.append('breed', breed);
 
     if (comments) {
       data.append('comments', comments);
     }
 
-    data.append('image', image);
+    data.append('pet_avatar', image);
     return data;
   };
 
@@ -92,10 +125,7 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
         setComments(data.comments);
         const finalData = getPetFormData();
 
-        finalData.forEach(data => console.log(data));
-
-        // reset();
-        // closeModal();
+        addPet(finalData);
         break;
       default:
         makeToast();
@@ -106,7 +136,7 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
     <CommonModal
       title="Add pet"
       isOpened={isOpened}
-      isActionsDisabled={false}
+      isActionsDisabled={isPetAdding}
       closeModal={closeModal}
     >
       <ModalContainer className={step === 1 ? 'firstStep' : 'secondStep'}>
@@ -163,6 +193,7 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
                 saveImageToState={setImage}
                 saveCommentsToState={setComments}
                 onSubmit={onSubmit}
+                isPetAdding={isPetAdding}
               />
               <ButtonContainer
                 key="stepTwoButtons"
@@ -175,12 +206,14 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
                   type="submit"
                   form="form-two"
                   variant="outlined"
+                  loading={isPetAdding}
                 >
                   Done
                 </ModalFilledButton>
                 <ModalOutlinedButton
                   type="button"
                   variant="outlined"
+                  disabled={isPetAdding}
                   onClick={() => {
                     setStep(1);
                   }}
@@ -192,6 +225,20 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
           )}
         </AnimatePresence>
       </ModalContainer>
+      <CommonProgressBarContainer>
+        <AnimatePresence>
+          {isPetAdding ? (
+            <motion.div
+              variants={standartAnimation}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <CommonProgressBar />
+            </motion.div>
+          ) : null}
+        </AnimatePresence>
+      </CommonProgressBarContainer>
     </CommonModal>
   );
 };

@@ -21,6 +21,7 @@ export const AvatarDropZone = ({
   setNewAvatarFile,
   isReseted,
   isModalZone,
+  isDisabled,
 }) => {
   const [base64AvatarUrl, setBase64AvatarUrl] = useState(null);
   const [isAvatarContainerHovered, setIsAvatarContainerHovered] =
@@ -81,6 +82,7 @@ export const AvatarDropZone = ({
           aria-label="Choose your photo"
           tabIndex={0}
           role="button"
+          isDisabled={isDisabled}
           onMouseEnter={() => setIsAvatarContainerHovered(true)}
           onMouseOut={() => setIsAvatarContainerHovered(false)}
         >
@@ -135,4 +137,5 @@ AvatarDropZone.propTypes = {
   setNewAvatarFile: PropTypes.func.isRequired,
   isReseted: PropTypes.bool,
   isModalZone: PropTypes.bool,
+  isDisabled: PropTypes.bool,
 };

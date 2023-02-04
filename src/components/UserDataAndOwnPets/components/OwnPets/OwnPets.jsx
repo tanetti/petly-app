@@ -1,31 +1,15 @@
+import { useGetOwnPetsQuery } from 'redux/ownPets/ownPetsApi';
 import { AnimatePresence } from 'framer-motion';
-import { AddPetButton } from 'components/Shared';
+import { AddPetButton, ErrorLayout, LoaderLayout } from 'components/Shared';
 import { NoOwnPetsLayout, OwnPetsItem } from './components';
 import { ButtonContainer, OwnPetsList } from './OwnPetsStyled';
 import { useState } from 'react';
 import { AddOwnPetModal } from 'components/AddOwnPetModal/AddOwnPetModal';
-
-const petsItem = [
-  // {
-  //   _id: '234567890fgh',
-  //   name: 'Jake',
-  //   bithday: '22.04.2018',
-  //   breed: 'Persian cat',
-  //   comments:
-  //     'Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur',
-  // },
-  // {
-  //   _id: '2345656hfghss',
-  //   name: 'Pikachy',
-  //   bithday: '22.04.2022',
-  //   breed: 'cat',
-  //   comments:
-  //     'Lorem ipsum dolor sit amet, consecteturLorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur',
-  // },
-];
+import { standartAnimation } from 'constants/animationVariants';
 
 export const OwnPets = () => {
   const [isAddPetModalOpened, setIsAddPetModalOpened] = useState(false);
+  const { data, error, isLoading, isPending } = useGetOwnPetsQuery();
 
   return (
     <>
@@ -33,17 +17,29 @@ export const OwnPets = () => {
         <AddPetButton onButtonClick={() => setIsAddPetModalOpened(true)} />
       </ButtonContainer>
 
-      {petsItem && !petsItem.length ? <NoOwnPetsLayout /> : null}
+      <AnimatePresence mode="wait">
+        {!isLoading && !isPending && error ? <ErrorLayout /> : null}
 
-      {petsItem && petsItem.length ? (
-        <AnimatePresence>
-          <OwnPetsList>
-            {petsItem.map(petData => (
-              <OwnPetsItem key={petData._id} petData={petData} />
-            ))}
-          </OwnPetsList>
-        </AnimatePresence>
-      ) : null}
+        {!data && isLoading ? <LoaderLayout requestEntityName="pets" /> : null}
+
+        {data && !data.length ? <NoOwnPetsLayout /> : null}
+
+        {data && data.length && !error ? (
+          <AnimatePresence>
+            <OwnPetsList
+              key="ownPetsList"
+              variants={standartAnimation}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              {data.map(petData => (
+                <OwnPetsItem key={petData._id} petData={petData} />
+              ))}
+            </OwnPetsList>
+          </AnimatePresence>
+        ) : null}
+      </AnimatePresence>
 
       <AddOwnPetModal
         isOpened={isAddPetModalOpened}

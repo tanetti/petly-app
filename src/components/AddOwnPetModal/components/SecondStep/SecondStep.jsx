@@ -22,6 +22,7 @@ export const SecondStep = ({
   saveImageToState,
   saveCommentsToState,
   onSubmit,
+  isPetAdding,
 }) => {
   const {
     register,
@@ -53,6 +54,7 @@ export const SecondStep = ({
           currentAvatarUrl={image ? URL.createObjectURL(image) : null}
           setNewAvatarFile={saveImageToState}
           isModalZone={true}
+          isDisabled={isPetAdding}
         />
         {isImageError && <ImageErrorLabel>Image is required</ImageErrorLabel>}
       </ImageContainer>
@@ -68,6 +70,7 @@ export const SecondStep = ({
             placeholder="Type comments"
             title="Place here your comments"
             size="small"
+            disabled={isPetAdding}
             {...register('comments', {
               onBlur: e => {
                 saveCommentsToState(e.target.value);
@@ -92,4 +95,5 @@ SecondStep.propTypes = {
   saveImageToState: PropTypes.func.isRequired,
   saveCommentsToState: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  isPetAdding: PropTypes.bool.isRequired,
 };
