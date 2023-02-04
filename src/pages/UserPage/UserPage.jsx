@@ -1,10 +1,3 @@
-import { Container } from 'components/Shared';
-import { UserPageComponent } from 'components/UserPageComponent/UserPageComponent';
+import { UserDataAndOwnPets } from 'components/UserDataAndOwnPets/UserDataAndOwnPets';
 
-export const UserPage = () => (
-  <section>
-    <Container>
-      <UserPageComponent />
-    </Container>
-  </section>
-);
+export const UserPage = () => <UserDataAndOwnPets />;

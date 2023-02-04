@@ -1,0 +1,1 @@
+export const SEARCH_TRIGGER_DELAY = 600;

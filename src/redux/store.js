@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { authReducer } from './auth/authSlice';
+import { currentUserInfoApi } from './currentUserInfo/currentUserInfoApi';
 import { newsApi } from './news/newsApi';
 import { servicesApi } from './services/servicesApi';
 import { noticesApi } from './notices/noticesApi';
@@ -22,6 +23,7 @@ const middleware = [
       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
     },
   }),
+  currentUserInfoApi.middleware,
   newsApi.middleware,
   servicesApi.middleware,
   noticesApi.middleware,
@@ -36,6 +38,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    [currentUserInfoApi.reducerPath]: currentUserInfoApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
     [servicesApi.reducerPath]: servicesApi.reducer,
     [noticesApi.reducerPath]: noticesApi.reducer,

@@ -29,6 +29,10 @@ export const appTheme = createTheme({
       main: 'rgba(17, 17, 17, 0.6)',
       dark: 'rgba(27, 27, 27, 0.6)',
     },
+    newsGradient: {
+      light: '#ffdf48',
+      main: '#ff634e',
+    },
   },
   breakpoints: {
     values: {
@@ -45,3 +49,5 @@ export const appTheme = createTheme({
 
 appTheme.shadows[50] = '7px 4px 14px rgba(49, 21, 4, 0.07)';
 appTheme.shadows[51] = '7px 4px 14px rgba(0, 0, 0, 0.11)';
+appTheme.shadows[52] = '0px 4px 14px rgba(0, 0, 0, 0.11)';
+appTheme.shadows[53] = '4px 4px 8px rgba(0, 0, 0, 0.25)';
