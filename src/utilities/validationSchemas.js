@@ -2,8 +2,7 @@ import * as yup from 'yup';
 import {
   PASSWORD_PATTERN,
   ONLY_LETTERS_PATTERN,
-  DATE_PATTERN,
-  LETTERS_AND_SYMBOLS_PATTERN,
+  LETTERS_DIGITS_AND_SYMBOLS_PATTERN,
 } from 'constants/patterns';
 
 yup.addMethod(
@@ -113,27 +112,23 @@ export const userDataValidationSchema = yup.object().shape({
 export const ModalAddsPetFirstStepFormValidationSchema = yup.object().shape({
   name: yup
     .string()
-    .required('Required *')
-    .matches(ONLY_LETTERS_PATTERN, 'Letters only')
+    .required('Please enter your pet Name')
+    .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
     .min(2, 'It seems too short...')
-    .max(16, 'Must not exceed 16 characters'),
-  date: yup
-    .string()
-    .required('Required *')
-    .matches(DATE_PATTERN, 'DD.MM.YYYY format'),
+    .max(30, 'Must not exceed 30 characters'),
+  date: yup.string().required('Please provide your pet Bithday'),
   breed: yup
     .string()
-    .required('Required *')
-    .matches(ONLY_LETTERS_PATTERN, 'Letters only')
+    .required('Please enter your pet Breed')
+    .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
     .min(2, 'It seems too short...')
-    .max(16, 'Must not exceed 16 characters'),
+    .max(30, 'Must not exceed 30 characters'),
 });
 
 export const ModalAddsPetSecondStepFormValidationSchema = yup.object().shape({
   comments: yup
     .string()
-    .required('Required *')
-    .matches(LETTERS_AND_SYMBOLS_PATTERN, 'Letters and symbols only')
-    .min(8, 'It seems too short...')
-    .max(120, 'Must not exceed 120 characters'),
+    .matches(LETTERS_DIGITS_AND_SYMBOLS_PATTERN, 'Letters and symbols only')
+    .stringLengthIfNotEmpty(8, 'It seems too short...')
+    .max(180, 'Must not exceed 180 characters'),
 });

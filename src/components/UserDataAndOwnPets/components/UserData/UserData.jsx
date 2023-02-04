@@ -9,7 +9,8 @@ import {
 import { useAuth } from 'hooks';
 import { AnimatePresence, motion } from 'framer-motion';
 import { standartAnimation } from 'constants/animationVariants';
-import { AvatarDropZone, EditParameterUnit } from './components';
+import { AvatarDropZone } from 'components/Shared';
+import { EditParameterUnit } from './components';
 import { EDIT_PARAMETERS } from './constants/editParameters';
 import {
   UserControlContainer,

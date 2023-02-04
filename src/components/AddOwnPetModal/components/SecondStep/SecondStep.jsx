@@ -2,18 +2,20 @@ import { PropTypes } from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
-  Form,
-  ImageContainer,
-  Label,
   ModalStepTwoDescription,
   Textarea,
   TextareaContainer,
   ImageErrorLabel,
-} from 'components/ModalAddsPet';
-import { AvatarDropZone } from 'components/UserDataAndOwnPets/components/UserData/components';
+  TextareaErrorContainer,
+  CommentsContainer,
+  ImageContainer,
+} from './SecondStepStyled';
+import { AvatarDropZone } from 'components/Shared';
 import { ModalAddsPetSecondStepFormValidationSchema } from 'utilities/validationSchemas';
+import { ModalForm } from './SecondStepStyled';
+import { ModalLabel } from '../Shared';
 
-export const SecondStepForm = ({
+export const SecondStep = ({
   image,
   isImageError,
   initialComments,
@@ -36,9 +38,8 @@ export const SecondStepForm = ({
   });
 
   return (
-    <Form
+    <ModalForm
       id="form-two"
-      action="#"
       onSubmit={handleSubmit(data => {
         onSubmit(data, reset);
       })}
@@ -46,37 +47,45 @@ export const SecondStepForm = ({
       <ModalStepTwoDescription>
         Add photo and some comments
       </ModalStepTwoDescription>
+
       <ImageContainer>
         <AvatarDropZone
           currentAvatarUrl={image ? URL.createObjectURL(image) : null}
           setNewAvatarFile={saveImageToState}
+          isModalZone={true}
         />
-        {isImageError && <ImageErrorLabel>Image is required *</ImageErrorLabel>}
+        {isImageError && <ImageErrorLabel>Image is required</ImageErrorLabel>}
       </ImageContainer>
 
-      <Label htmlFor="comments">Comments</Label>
-      <TextareaContainer>
-        <Textarea
-          id="comments"
-          className={errors.comments ? 'isError' : null}
-          type="text"
-          name="comments"
-          placeholder="Type comments"
-          title="Place here your comments"
-          size="small"
-          {...register('comments', {
-            onBlur: e => {
-              saveCommentsToState(e.target.value);
-            },
-          })}
-        />
-        <p>{errors.comments?.message}</p>
-      </TextareaContainer>
-    </Form>
+      <CommentsContainer>
+        <ModalLabel htmlFor="comments">Comments</ModalLabel>
+        <TextareaContainer>
+          <Textarea
+            id="comments"
+            className={errors.comments ? 'isError' : null}
+            type="text"
+            name="comments"
+            placeholder="Type comments"
+            title="Place here your comments"
+            size="small"
+            {...register('comments', {
+              onBlur: e => {
+                saveCommentsToState(e.target.value);
+              },
+            })}
+          />
+          <TextareaErrorContainer
+            className={errors.comments ? 'isError' : null}
+          >
+            {errors.comments?.message}
+          </TextareaErrorContainer>
+        </TextareaContainer>
+      </CommentsContainer>
+    </ModalForm>
   );
 };
 
-SecondStepForm.propTypes = {
+SecondStep.propTypes = {
   image: PropTypes.instanceOf(File),
   isImageError: PropTypes.bool.isRequired,
   initialComments: PropTypes.string.isRequired,

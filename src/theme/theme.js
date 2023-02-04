@@ -26,6 +26,7 @@ export const appTheme = createTheme({
       main: '#3091eb',
     },
     semiTransparentBlack: {
+      light: 'rgba(253, 247, 242, 0.6)',
       main: 'rgba(17, 17, 17, 0.6)',
       dark: 'rgba(27, 27, 27, 0.6)',
     },

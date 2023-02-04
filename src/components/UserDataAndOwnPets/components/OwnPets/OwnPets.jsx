@@ -1,6 +1,9 @@
 import { AnimatePresence } from 'framer-motion';
+import { AddPetButton } from 'components/Shared';
 import { NoOwnPetsLayout, OwnPetsItem } from './components';
-import { AddPetButton, AddPetIcon, OwnPetsList } from './OwnPetsStyled';
+import { ButtonContainer, OwnPetsList } from './OwnPetsStyled';
+import { useState } from 'react';
+import { AddOwnPetModal } from 'components/AddOwnPetModal/AddOwnPetModal';
 
 const petsItem = [
   // {
@@ -22,15 +25,13 @@ const petsItem = [
 ];
 
 export const OwnPets = () => {
-  const addPet = () => {
-    console.log('add');
-  };
+  const [isAddPetModalOpened, setIsAddPetModalOpened] = useState(false);
 
   return (
     <>
-      <AddPetButton title="Add pet" type="button" onClick={addPet}>
-        Add pet <AddPetIcon />
-      </AddPetButton>
+      <ButtonContainer>
+        <AddPetButton onButtonClick={() => setIsAddPetModalOpened(true)} />
+      </ButtonContainer>
 
       {petsItem && !petsItem.length ? <NoOwnPetsLayout /> : null}
 
@@ -43,6 +44,11 @@ export const OwnPets = () => {
           </OwnPetsList>
         </AnimatePresence>
       ) : null}
+
+      <AddOwnPetModal
+        isOpened={isAddPetModalOpened}
+        closeModal={() => setIsAddPetModalOpened(false)}
+      />
     </>
   );
 };

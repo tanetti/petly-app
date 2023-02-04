@@ -5,19 +5,29 @@ import AddAPhotoRoundedIcon from '@mui/icons-material/AddAPhotoRounded';
 import DoNotDisturbAltRoundedIcon from '@mui/icons-material/DoNotDisturbAltRounded';
 
 export const DropZoneContainer = styled('div')`
-  width: 100%;
+  width: ${({ isModalZone }) => (isModalZone ? '208px' : '100%')};
+  margin: ${({ isModalZone }) => (isModalZone ? '0 auto' : '0')};
+  margin-bottom: ${({ isModalZone }) => (isModalZone ? '20px' : '0')};
 
-  border-radius: 50%;
+  border-radius: ${({ isModalZone }) => (isModalZone ? '20px' : '50%')};
+  background-color: ${({ isModalZone, theme }) =>
+    isModalZone ? theme.palette.background.dark : 'transparent'};
 
   overflow: hidden;
 
-  box-shadow: ${({ theme }) => theme.shadows[52]};
+  box-shadow: ${({ theme, isModalZone }) =>
+    isModalZone ? 'none' : theme.shadows[52]};
 
   container-type: inline-size;
 
   ${({ theme }) => theme.breakpoints.up('tablet')} {
-    width: 233px;
-    height: 233px;
+    width: ${({ isModalZone }) => (isModalZone ? '182px' : '233px')};
+    height: ${({ isModalZone }) => (isModalZone ? '182px' : '233px')};
+
+    margin: ${({ isModalZone }) => (isModalZone ? '0 auto' : '0')};
+    margin-bottom: ${({ isModalZone }) => (isModalZone ? '40px' : '0')};
+
+    border-radius: ${({ isModalZone }) => (isModalZone ? '40px' : '50%')};
   }
 `;
 
@@ -50,7 +60,7 @@ export const ControlsContainer = styled('div')`
 
   color: ${({ theme }) => theme.palette.semiTransparentBlack.main};
 
-  border-radius: 50%;
+  border-radius: ${({ isModalZone }) => (isModalZone ? '20px' : '50%')};
 
   cursor: pointer;
 
@@ -82,9 +92,13 @@ export const IconContainer = styled(motion.div)`
   width: 100%;
   height: 100%;
 
-  background-color: ${({ theme }) => theme.palette.background.light};
+  background-color: ${({ is_modal_zone, theme }) =>
+    is_modal_zone === 'true'
+      ? theme.palette.semiTransparentBlack.light
+      : theme.palette.background.light};
 
-  border-radius: 50%;
+  border-radius: ${({ is_modal_zone }) =>
+    is_modal_zone === 'true' ? '20px' : '50%'};
 
   pointer-events: none;
 `;

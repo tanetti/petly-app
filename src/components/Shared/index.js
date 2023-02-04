@@ -15,3 +15,5 @@ export * from './SearchBox/SearchBox';
 export * from './LoaderLayout/LoaderLayout';
 export * from './NoResultLayout/NoResultLayout';
 export * from './ErrorLayout/ErrorLayout';
+export * from './AddPetButton/AddPetButton';
+export * from './AvatarDropZone/AvatarDropZone';

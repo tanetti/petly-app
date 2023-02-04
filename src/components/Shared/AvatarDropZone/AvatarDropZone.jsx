@@ -20,6 +20,7 @@ export const AvatarDropZone = ({
   currentAvatarUrl,
   setNewAvatarFile,
   isReseted,
+  isModalZone,
 }) => {
   const [base64AvatarUrl, setBase64AvatarUrl] = useState(null);
   const [isAvatarContainerHovered, setIsAvatarContainerHovered] =
@@ -58,7 +59,7 @@ export const AvatarDropZone = ({
   const presentImage = base64AvatarUrl || currentAvatarUrl;
 
   return (
-    <DropZoneContainer>
+    <DropZoneContainer isModalZone={isModalZone}>
       <InnerContainer>
         <AnimatePresence>
           {!!presentImage ? (
@@ -75,9 +76,10 @@ export const AvatarDropZone = ({
         </AnimatePresence>
         <ControlsContainer
           {...getRootProps()}
+          isModalZone={isModalZone}
           title="Choose your photo"
           aria-label="Choose your photo"
-          tabIndex={1}
+          tabIndex={0}
           role="button"
           onMouseEnter={() => setIsAvatarContainerHovered(true)}
           onMouseOut={() => setIsAvatarContainerHovered(false)}
@@ -87,6 +89,7 @@ export const AvatarDropZone = ({
             {(!presentImage || isAvatarContainerHovered) &&
             !(isFileDialogActive || isDragAccept || isDragReject) ? (
               <IconContainer
+                is_modal_zone={isModalZone ? 'true' : 'false'}
                 key="AddImageIcon"
                 variants={standartAnimation}
                 initial="initial"
@@ -98,6 +101,7 @@ export const AvatarDropZone = ({
             ) : null}
             {(isFileDialogActive || isDragAccept) && !isDragReject ? (
               <IconContainer
+                is_modal_zone={isModalZone ? 'true' : 'false'}
                 key="AllowedImageIcon"
                 variants={standartAnimation}
                 initial="initial"
@@ -109,6 +113,7 @@ export const AvatarDropZone = ({
             ) : null}
             {isDragReject ? (
               <IconContainer
+                is_modal_zone={isModalZone ? 'true' : 'false'}
                 key="NotAllowedImageIcon"
                 variants={standartAnimation}
                 initial="initial"
@@ -128,5 +133,6 @@ export const AvatarDropZone = ({
 AvatarDropZone.propTypes = {
   currentAvatarUrl: PropTypes.string,
   setNewAvatarFile: PropTypes.func.isRequired,
-  isReseted: PropTypes.bool.isRequired,
+  isReseted: PropTypes.bool,
+  isModalZone: PropTypes.bool,
 };
