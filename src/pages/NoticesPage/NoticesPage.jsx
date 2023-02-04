@@ -6,10 +6,11 @@ import notices from './notices';
 // import { useEffect } from 'react';
 // import { fetchNotices } from 'redux/notices/noticesOperations';
 import { Container, PageTitle } from 'components/Shared';
-import { NoticesSearch } from 'components/NoticesPage/NoticesSearch';
-import { NoticesCategoriesNav } from 'components/NoticesPage/NoticesCategoriesNav';
+import { NoticesSearch } from 'components/Notices/components/NoticesSearch';
+import { NoticesCategoriesNav } from 'components/Notices/components/NoticesCategoriesNav';
+// import { AddNoticeButton } from 'components/NoticesPage/AddNoticeButton';
 
-import { NoticesCategoriesList } from 'components/NoticesPage/NoticesCategoriesList';
+import { NoticesCategoriesList } from 'components/Notices/components/NoticesCategoriesList';
 // import { useState, useEffect } from 'react';
 // import { useSearchParams } from 'react-router-dom';
 // import { fetchSearchNotices } from 'services/api';
@@ -76,17 +77,19 @@ export const NoticesPage = () => {
   return (
     <section>
       <Container>
+        {/* <News></News> */}
         <PageTitle>Find your favorite pet</PageTitle>
         <NoticesSearch
         // getSearchQuery={handleSearchQuery}
         />
         <NoticesCategoriesNav />
+        {/* <AddNoticeButton /> */}
         {/* {isLoading&&<p>Loading...</p>} */}
         {notices && <NoticesCategoriesList notices={notices} />}
         {/* {error && <p>{ error}</p>} */}
         {/* {status === 'pending' && <h3>loading...</h3>}
       {status==='rejected' && <h3>Something went wrong...</h3>} */}
-        {/* <AddNoticeButton /> */}
+        
       </Container>
     </section>
   );

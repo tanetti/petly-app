@@ -1,4 +1,3 @@
-// import styled from 'styled-components';
 import { styled } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -9,7 +8,7 @@ display: flex;
   border: 1px solid transparent;
   padding-left: 12px;
   padding-right: 12px;
-  width: 280px;
+  width: 100%;
   margin: 0 auto 28px auto;
   height: 40px;
   background-color: ${({ theme }) => theme.palette.background.main};
@@ -29,7 +28,7 @@ export const Input = styled('input')`
   border: none;
   margin: 0;
   outline: none;  
-    
+    max-width: 100%;
   font-size: 16px;
   
   ::placeholder {

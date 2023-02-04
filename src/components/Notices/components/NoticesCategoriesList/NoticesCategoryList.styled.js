@@ -3,6 +3,8 @@ import { styled } from '@mui/material/styles';
 export const Wrapper = styled('div')`
   width: 100%;
   position: relative;
+  margin-left: auto;
+margin-right: auto;
    
 `;
 
@@ -10,11 +12,11 @@ export const List = styled('ul')`
 list-style:none;
   display: flex;
   flex-direction: column;
-  // grid-template-columns: repeat(1, 1fr);
-  grid-gap:32px;
+
+  gap:32px;
   margin-left: auto;
   margin-right: auto;
-  // justify-content: center;
+  justify-content: center;
   position: absolute;
   left: 50%;
   transform: translate(-50%);

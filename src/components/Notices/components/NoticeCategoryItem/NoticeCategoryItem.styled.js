@@ -1,11 +1,11 @@
 import { styled } from '@mui/material/styles';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 
 export const Item = styled('li')`
 display:flex;
 flex-direction: column;
-
   width: 280px;
 
   position: relative;
@@ -50,24 +50,20 @@ export const Img = styled('img')`
 `;
 
 export const Cover = styled('div')`
-position: relative;
+
+display: flex;
+align-items: center;
+padding-left:20px;
 border-radius: 0 14px 14px 0;
 background: rgba(255, 255, 255, 0.6);
 width: 158px;
-height: 28px;`;
-
-
-export const Label = styled('p')`
-position: absolute;
-
-top:50%;
-left:20px;
-transform: translate(0, -50%);
-
+height: 28px;
 font-size: 12px;
-line-height: 16px;
-
+line-height: 15px;
+letter-spacing: 0.04em;
 `;
+
+
 
 export const FavBtn = styled('button')`
 display: flex;
@@ -135,45 +131,47 @@ font-weight: 700;
 font-size: 28px;
 line-height: 38px;
 letter-spacing: -0.01em;
+color:${({ theme }) => theme.palette.text.primary};
 
   
 `;
 
 export const PetInfo = styled('ul')`
+grid-template-columns: auto 1fr;
+grid-column-gap: 40px;
+grid-row-gap: 8px;
+  ${({ theme }) => theme.breakpoints.up('desktop')} {
+    grid-column-gap: 37px;
+  }
+
 list-style:none;
 margin:0;
 padding:0;
 font-size: 16px;
 line-height: 22px;
+
+color:${({ theme }) => theme.palette.text.primary};
+display: grid;
+  
 `;
 export const ItemInfo = styled('li')`
-padding:0;
-display: flex;
-position:relative;
+// padding:0;
+// display: flex;
+// position:relative;
+
 
 &:not(:last-of-type) {
     margin-bottom: 8px;
   }
 
 `;
-export const NameInfo = styled('span')``;
+export const NameInfo = styled('span')`
+`;
 export const ValueInfo = styled('div')`
-
-position:absolute;
-left: 90px;
-flex-wrap: wrap; 
-
-width: 150px;
-
 overflow: hidden;
 white-space: nowrap;
 text-overflow: ellipsis;
-${({ theme }) => theme.breakpoints.up('tablet')} {
-    width: 206px;
-  }
-  ${({ theme }) => theme.breakpoints.up('desktop')} {
-    width: 158px;
-  }
+
 `;
 
 export const BoxBtn = styled('div')`
@@ -187,6 +185,11 @@ margin-bottom: 12px;
 `;
 
 export const CardBtn = styled('button')`
+display:flex;
+justify-content: center;
+align-items: center;
+gap: 15px;
+
 width:100%;
 height: 38px;
 background:${({ theme }) => theme.palette.background.main};
@@ -214,6 +217,10 @@ transition: ${({ theme }) =>
     color: ${({ theme }) => theme.palette.text.white};
     border-color: ${({ theme }) => theme.palette.accent.dark};
   }
+`;
+
+export const DelIcon = styled(DeleteForeverRoundedIcon)`
+height: 17.5px;
 `;
 
 
