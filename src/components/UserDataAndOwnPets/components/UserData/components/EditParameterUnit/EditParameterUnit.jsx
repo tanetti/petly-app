@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   useGetCurrentInfoQuery,
   useUpdateCurrentInfoMutation,
@@ -37,6 +37,8 @@ export const EditParameterUnit = ({
   currentData,
 }) => {
   const [parameterValue, setParameterValue] = useState('');
+  const [isFieldEditing, setIsFieldEditing] = useState(false);
+  const currentField = useRef(null);
   const {
     label: unitLabel,
     name: unitName,
@@ -45,23 +47,22 @@ export const EditParameterUnit = ({
   } = unitSettings;
 
   const { isLoading } = useGetCurrentInfoQuery();
-  const [updateInfo, { isLoading: isUpdating }] =
+  const [updateInfo, { error, isLoading: isUpdating }] =
     useUpdateCurrentInfoMutation();
 
   const currentUnitData = currentData ? currentData[unitName] : null;
 
-  useEffect(() => {
-    if (!currentUnitData) return;
-
-    setParameterValue(currentUnitData);
-  }, [currentUnitData, unitName]);
-
   const onValueChange = ({ currentTarget }) =>
     setParameterValue(currentTarget.value);
 
-  const onParameterButtonClick = async () => {
+  const onParameterButtonClick = useCallback(async () => {
     if (activeUnit !== unitName) {
       setActiveUnit(unitName);
+
+      setTimeout(
+        () => currentField.current && currentField.current.focus(),
+        100
+      );
       return;
     }
 
@@ -81,7 +82,44 @@ export const EditParameterUnit = ({
       updateInfo({ [unitName]: trimmedParameterValue });
     }
     setActiveUnit(null);
-  };
+  }, [
+    activeUnit,
+    currentUnitData,
+    parameterValue,
+    setActiveUnit,
+    unitName,
+    updateInfo,
+  ]);
+
+  const onEnterKeyDown = useCallback(
+    ({ key }) => {
+      if (key !== 'Enter') return;
+
+      onParameterButtonClick({ currentTarget: { value: '' } });
+    },
+    [onParameterButtonClick]
+  );
+
+  useEffect(() => {
+    if (isFieldEditing) document.addEventListener('keydown', onEnterKeyDown);
+
+    if (!isFieldEditing)
+      document.removeEventListener('keydown', onEnterKeyDown);
+
+    return () => document.removeEventListener('keydown', onEnterKeyDown);
+  }, [isFieldEditing, onEnterKeyDown]);
+
+  useEffect(() => {
+    if (!error) return;
+
+    makeToast(error?.data?.code);
+  }, [error]);
+
+  useEffect(() => {
+    if (!currentUnitData) return;
+
+    setParameterValue(currentUnitData);
+  }, [currentUnitData, unitName]);
 
   return (
     <>
@@ -126,12 +164,15 @@ export const EditParameterUnit = ({
       {unitFieldVariant === 'mask' ? (
         <ParameterInput
           as={InputMask}
+          ref={currentField}
           mask="+38 (999) 999-99-99"
           maskPlaceholder={null}
           id={unitName}
           value={parameterValue}
           type={unitType}
           disabled={activeUnit !== unitName}
+          onFocus={() => setIsFieldEditing(true)}
+          onBlur={() => setIsFieldEditing(false)}
           onChange={onValueChange}
         />
       ) : null}
@@ -155,6 +196,8 @@ export const EditParameterUnit = ({
             <div ref={InputProps.ref}>
               <ParameterInput
                 {...inputProps}
+                onFocus={() => setIsFieldEditing(true)}
+                onBlur={() => setIsFieldEditing(false)}
                 type={unitType}
                 disabled={activeUnit !== unitName}
               />
@@ -169,6 +212,9 @@ export const EditParameterUnit = ({
           type={unitType}
           value={parameterValue}
           disabled={activeUnit !== unitName}
+          ref={currentField}
+          onFocus={() => setIsFieldEditing(true)}
+          onBlur={() => setIsFieldEditing(false)}
           onChange={onValueChange}
         />
       ) : null}
