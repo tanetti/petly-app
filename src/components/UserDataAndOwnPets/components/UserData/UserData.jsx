@@ -144,7 +144,7 @@ export const UserData = () => {
           startIcon={<LogoutIcon />}
           loadingPosition="start"
           loading={isUserPending}
-          onClick={() => dispatch(logOut())}
+          onClick={() => dispatch(logOut(dispatch))}
         >
           Log Out
         </LogoutButton>
