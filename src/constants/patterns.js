@@ -5,3 +5,5 @@ export const ONLY_LETTERS_PATTERN = /^[A-Za-zа-яА-ЯёЁіїІЇ\s]+$/;
 
 export const LETTERS_DIGITS_AND_SYMBOLS_PATTERN =
   /^[a-zA-Zа-яА-ЯёЁіїІЇ0-9!@#№$%^&*()_=+{}|;':",.<>/?`~[\]\-\s\\]*$/;
+
+export const LETTERS_AND_COMMA_PATTERN = /^[A-Za-z,а-яА-ЯёЁіїІЇ\s]+$/;
