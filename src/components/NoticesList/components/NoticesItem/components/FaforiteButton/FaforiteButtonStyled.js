@@ -37,7 +37,7 @@ export const IconSet = styled(motion.div)`
 
 export const DefaultBackgroundIcon = styled(FavoriteIcon)`
   position: absolute;
-  top: 1px;
+  top: 3px;
   left: 1px;
 
   width: 28px;
@@ -46,7 +46,7 @@ export const DefaultBackgroundIcon = styled(FavoriteIcon)`
 
 export const DefaultFrontIcon = styled(FavoriteBorderOutlinedIcon)`
   position: absolute;
-  top: 0;
+  top: 2px;
   left: 0;
 
   width: 30px;
@@ -57,7 +57,7 @@ export const DefaultFrontIcon = styled(FavoriteBorderOutlinedIcon)`
 
 export const InFavoriteIcon = styled(FavoriteIcon)`
   position: absolute;
-  top: 0;
+  top: 2px;
   left: 0;
 
   width: 30px;
