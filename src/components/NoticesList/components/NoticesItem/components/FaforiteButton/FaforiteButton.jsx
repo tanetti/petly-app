@@ -1,4 +1,6 @@
 import PropTypes from 'prop-types';
+import { useAuth } from 'hooks';
+import { useEffect, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import {
   useAddFavoriteMutation,
@@ -13,35 +15,53 @@ import {
   InFavoriteIcon,
   StyledButton,
 } from './FaforiteButtonStyled';
-import { useAuth } from 'hooks';
 
 export const FavoriteButton = ({ noticeId }) => {
+  const [isActionInProgress, setIsActionInProgress] = useState(false);
   const { isUserLoggedIn } = useAuth();
-  const { data: userFavorite } = useGetFavoriteQuery(null, {
-    skip: !isUserLoggedIn,
-  });
+  const { data: userFavorite, isFetching: isFavoriteFetching } =
+    useGetFavoriteQuery(null, {
+      skip: !isUserLoggedIn,
+    });
 
   const [addFavorite, { isLoading: isFavoriteAdding }] =
     useAddFavoriteMutation();
   const [deleteFavorite, { isLoading: isFavoriteDeletting }] =
     useDeleteFavoriteMutation();
 
+  useEffect(() => {
+    if (
+      !isActionInProgress ||
+      isFavoriteFetching ||
+      isFavoriteAdding ||
+      isFavoriteDeletting
+    )
+      return;
+
+    setIsActionInProgress(false);
+  }, [
+    isActionInProgress,
+    isFavoriteAdding,
+    isFavoriteDeletting,
+    isFavoriteFetching,
+  ]);
+
   const isThisNoticeInFavorite = userFavorite?.includes(noticeId);
 
   const onFavoriteButtonClick = () => {
     if (isThisNoticeInFavorite) {
+      setIsActionInProgress(true);
       deleteFavorite(noticeId);
     } else {
+      setIsActionInProgress(true);
       addFavorite(noticeId);
     }
   };
 
   return (
-    <StyledButton loading={isFavoriteAdding} onClick={onFavoriteButtonClick}>
+    <StyledButton loading={isActionInProgress} onClick={onFavoriteButtonClick}>
       <AnimatePresence mode="wait">
-        {!isThisNoticeInFavorite &&
-        !isFavoriteAdding &&
-        !isFavoriteDeletting ? (
+        {!isThisNoticeInFavorite && !isActionInProgress ? (
           <IconSet
             key="default"
             variants={standartAnimation}
@@ -54,7 +74,7 @@ export const FavoriteButton = ({ noticeId }) => {
           </IconSet>
         ) : null}
 
-        {isThisNoticeInFavorite && !isFavoriteAdding && !isFavoriteDeletting ? (
+        {isThisNoticeInFavorite && !isActionInProgress ? (
           <IconSet
             key="favorite"
             variants={standartAnimation}

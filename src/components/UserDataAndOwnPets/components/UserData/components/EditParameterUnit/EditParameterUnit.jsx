@@ -39,6 +39,7 @@ export const EditParameterUnit = ({
 }) => {
   const [parameterValue, setParameterValue] = useState('');
   const [isFieldEditing, setIsFieldEditing] = useState(false);
+  const [isUpdatingInProgress, setIsUpdatingInProgress] = useState(false);
   const currentField = useRef(null);
   const {
     label: unitLabel,
@@ -80,6 +81,7 @@ export const EditParameterUnit = ({
         return;
       }
 
+      setIsUpdatingInProgress(true);
       updateInfo({ [unitName]: trimmedParameterValue });
     }
     setActiveUnit(null);
@@ -100,6 +102,12 @@ export const EditParameterUnit = ({
     },
     [onParameterButtonClick]
   );
+
+  useEffect(() => {
+    if (!isUpdatingInProgress || isUpdating || isLoading) return;
+
+    setIsUpdatingInProgress(false);
+  }, [isLoading, isUpdating, isUpdatingInProgress]);
 
   useEffect(() => {
     if (isFieldEditing) document.addEventListener('keydown', onEnterKeyDown);
@@ -241,12 +249,12 @@ export const EditParameterUnit = ({
           activeUnit === unitName ? `Save ${unitName}` : `Edit ${unitName}`
         }
         type="button"
-        loading={isLoading || isUpdating}
+        loading={isLoading || isUpdatingInProgress}
         disabled={activeUnit && activeUnit !== unitName}
         onClick={onParameterButtonClick}
       >
         <AnimatePresence mode="wait">
-          {activeUnit !== unitName && !isLoading && !isUpdating ? (
+          {activeUnit !== unitName && !isLoading && !isUpdatingInProgress ? (
             <motion.div
               key="editIcon"
               variants={standartAnimation}
@@ -258,7 +266,7 @@ export const EditParameterUnit = ({
             </motion.div>
           ) : null}
 
-          {activeUnit === unitName && !isLoading && !isUpdating ? (
+          {activeUnit === unitName && !isLoading && !isUpdatingInProgress ? (
             <motion.div
               key="saveIcon"
               variants={standartAnimation}
