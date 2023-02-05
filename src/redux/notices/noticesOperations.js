@@ -5,9 +5,10 @@ axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
 
 export const fetchNotices = createAsyncThunk(
   'notices/getCategory',
-  async (categoryName, thunkAPI) => {
-    try {
-      const response = await axios.get(`/notices/${categoryName}`);
+  async (searchQuery, thunkAPI) => {
+      try {
+        const {categoryName, searchParams} = searchQuery
+      const response = await axios.get(`/notices/${categoryName}?${searchParams}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

@@ -7,16 +7,10 @@ export const Item = styled('li')`
 display:flex;
 flex-direction: column;
   width: 280px;
-
   position: relative;
   background: ${({theme})=>theme.palette.background.main};
-  
-
   border-radius: 0px 0px 20px 20px;
 
-  
-  
-  
     
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     width: 336px;
@@ -26,8 +20,7 @@ flex-direction: column;
   }
   ${({ theme }) => theme.breakpoints.up('desktop')} {
     width: 288px;
-    
-    
+      
   }
 `;
 export const BoxImg = styled('div')``;
@@ -106,6 +99,9 @@ width: 24px;
 
 export const BoxInfo = styled('div')`
 padding: 20px;
+display: flex;
+flex-direction: column;
+flex-grow: 1;
 
 `;
 
@@ -117,7 +113,7 @@ height: 76px;
 
 export const Title = styled('p')`
 
-
+align-items: center;
 margin:0;
 margin-bottom:20px;
   display: -webkit-box;
@@ -125,7 +121,6 @@ margin-bottom:20px;
 -webkit-box-orient: vertical;
 overflow: hidden;
 text-overflow: ellipsis;
-  
   
 font-weight: 700;
 font-size: 28px;
@@ -145,8 +140,7 @@ grid-row-gap: 8px;
   }
 
 list-style:none;
-margin:0;
-padding:0;
+
 font-size: 16px;
 line-height: 22px;
 
@@ -178,10 +172,11 @@ export const BoxBtn = styled('div')`
 display: flex;
 flex-direction: column;
 justify-content: center;
-flex-grow:1;
+// flex-grow:1;
 margin-left:20px;
 margin-right:20px;
 margin-bottom: 12px;
+height:88px;
 `;
 
 export const CardBtn = styled('button')`
