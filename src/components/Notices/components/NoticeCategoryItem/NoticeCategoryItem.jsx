@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { CommonModal } from 'components/Shared';
 import { useDispatch } from 'react-redux';
-// import { useAuth } from 'hooks';
+import { useAuth } from 'hooks';
 import {
   Item,
   BoxImg,
@@ -29,7 +29,10 @@ export const NoticeCategoryItem = ({ notice }) => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isFavorite, setIsFavorite] =useState(false);
   const dispatch = useDispatch();
-  const isUserLoggedIn = true;
+const { isUserLoggedIn, /*user*/ } = useAuth();
+  // const { userId } = user;
+  // console.log(user);
+  
   const userId = "63d6a53112e1915ac93d1913";
   const { _id, category, petsAvatarURL, title, breed, birthdate, comments, favorite,location, price, sex, owner } = notice;
   useEffect(() => {
@@ -37,7 +40,7 @@ export const NoticeCategoryItem = ({ notice }) => {
       setIsFavorite(true);
     }
   }, [favorite]);
-
+  
   function getAge() {
     const today = new Date();
     const birthDate = new Date(birthdate);
@@ -67,8 +70,7 @@ export const NoticeCategoryItem = ({ notice }) => {
       <BoxInfo>
         <BoxTitle>
           <Title>{title}</Title>
-        </BoxTitle>
-        
+        </BoxTitle>        
         <PetInfo>
             <NameInfo>Breed:</NameInfo>
             <ValueInfo>{breed}</ValueInfo>
@@ -81,8 +83,8 @@ export const NoticeCategoryItem = ({ notice }) => {
               {getAge()} {getAge() === 'one' ? 'year' : 'years'}
             </ValueInfo>
           
-            <NameInfo>Price:</NameInfo>
-            <ValueInfo>{price}</ValueInfo>
+          {price!==0 && <NameInfo>Price:</NameInfo>}
+          {price!==0 && <ValueInfo>{price}</ValueInfo>}
         </PetInfo>
       </BoxInfo>
       <BoxBtn>

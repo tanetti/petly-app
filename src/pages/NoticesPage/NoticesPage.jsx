@@ -1,95 +1,64 @@
-// import { useSelector } from "react-redux";
 // import { useGetAllNoticesQuery } from 'redux/notices/noticesApi';
-import notices from './notices';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { selectNotices, selectIsLoading, selectError } from 'redux/notices/noticesSelectors';
-// import { useEffect } from 'react';
-// import { fetchNotices } from 'redux/notices/noticesOperations';
-import { Container, PageTitle } from 'components/Shared';
-import { NoticesSearch } from 'components/Notices/components/NoticesSearch';
+import notices from './notices'; /*===Это нужно закомментировать, остальное- наоборот, высветить===*/
+import { Container, PageTitle, SearchBox } from 'components/Shared';
+// import { useParams } from 'react-router-dom';
 import { NoticesCategoriesNav } from 'components/Notices/components/NoticesCategoriesNav';
-// import { AddNoticeButton } from 'components/NoticesPage/AddNoticeButton';
-
 import { NoticesCategoriesList } from 'components/Notices/components/NoticesCategoriesList';
-// import { useState, useEffect } from 'react';
 // import { useSearchParams } from 'react-router-dom';
-// import { fetchSearchNotices } from 'services/api';
-
+// import { ErrorLayout, LoaderLayout, NoResultLayout } from 'components/Shared';
+import { BtnBox, BtnSign, AddNoticeButton, WrapperIcon, AddNoticeIcon } from '../../components/Notices/Notices.styled';
+import { CommonModal } from 'components/Shared';
+import { useState } from 'react';
+// import { useAuth } from 'hooks';
 export const NoticesPage = () => {
-  // const dispatch = useDispatch();
-  // const notices = useSelector(selectNotices);
-  // const isLoading = useSelector(selectIsLoading);
-  // const error = useSelector(selectError);
-
-  // useEffect(() => {
-  //   dispatch(fetchNotices());
-  // },[dispatch])
-  
-  // const { data: notices, isSucess } = useGetAllNoticesQuery();
-  // const [notices, setNotices] = useState([]);
-  // const [query, setQuery] = useState('');
-  // const [status, setStatus] = useState('idle');
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const noticeName = searchParams.get('query') ?? '';
-  // const newQuery = query => {
-  //   const newParams = query !== '' ? { query } : {};
-  //   setSearchParams(newParams);
-  // };
-
-  // useEffect(() => {
-  //   if (noticeName === '') {
-  //     return;
-  //   }
-  //   async function getNotices() {
-  //     try {
-  //       setStatus('pending');
-  //       const response = await fetchSearchNotices(noticeName);
-  //       setNotices(response);
-  //       setStatus('resolved');
-  //     } catch (error) {
-  //       setStatus('rejected');
-  //       console.log(error);
-  //     }
-  //   }
-  //   getNotices();
-  // }, [noticeName]);
-
-  // useEffect(() => {
-  //   if (query === '') {
-  //     return;
-  //   }
-  //   async function getNotices() {
-  //     try {
-  //       setStatus('pending');
-  //       const response = await fetchSearchNotices(query);
-  //       setNotices(response);
-  //       setStatus('resolved');
-  //     } catch (error) {
-  //       setStatus('rejected');
-  //     }
-  //   }
-  //   getNotices();
-  // }, [query]);
-  // const handleSearchQuery = input => {
-  //   setQuery(input.trim());
-  //   newQuery(input.trim());
-  // };
+  // const [searchParams] = useSearchParams();
+  // const { categoryName } = useParams();
+  // const newCategoryName = categoryName ? categoryName : "sell";
+  // const searchValue = searchParams.get('search');
+  // const { data: notices, error, isLoading, isPending } = useGetAllNoticesQuery({ newCategoryName, searchValue });
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  // const { isUserLoggedIn } = useAuth();
   return (
     <section>
-      <Container>
-        {/* <News></News> */}
+      <Container>        
         <PageTitle>Find your favorite pet</PageTitle>
-        <NoticesSearch
-        // getSearchQuery={handleSearchQuery}
-        />
-        <NoticesCategoriesNav />
-        {/* <AddNoticeButton /> */}
-        {/* {isLoading&&<p>Loading...</p>} */}
-        {notices && <NoticesCategoriesList notices={notices} />}
-        {/* {error && <p>{ error}</p>} */}
-        {/* {status === 'pending' && <h3>loading...</h3>}
-      {status==='rejected' && <h3>Something went wrong...</h3>} */}
+        <SearchBox/>
+        <BtnBox>
+          <div><NoticesCategoriesNav /></div>
+        <AddNoticeButton title="Add pet" type="button" onClick={() => setIsModalOpened(true)}>
+            <BtnSign>Add pet</BtnSign>
+            <WrapperIcon>
+              <AddNoticeIcon />
+            </WrapperIcon>
+      </AddNoticeButton>
+        </BtnBox>
         
+        {/* <AddNoticeButton /> */}
+        {/* {isLoading ? <LoaderLayout requestEntityName="news" /> : null}
+        {!isLoading && !isPending && error ? <ErrorLayout /> : null} */}
+        {/* {!isLoading && !isPending && !error && notices.length===0 ? (
+        <NoResultLayout />
+        ) : null} */}
+        {/*!isLoading && !error && */notices.length > 0 ? <NoticesCategoriesList notices={notices} />: null}
+      
+      <CommonModal
+        title="Common modal"
+        isOpened={isModalOpened}
+        isActionsDisabled={false}
+        closeModal={() => setIsModalOpened(false)}
+      >
+        <p>MODAL FOR ADD PET</p>
+        
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        <p>MODAL</p>
+        </CommonModal>
       </Container>
     </section>
   );

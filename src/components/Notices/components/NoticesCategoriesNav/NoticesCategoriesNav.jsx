@@ -1,9 +1,9 @@
 import { NavList } from './NoticesCategoriesNav.styled';
 import { NavLinkButtonLike } from '../../../Shared/NavLinkButtonLikeStyled';
-// import { useAuth } from 'hooks';
+import { useAuth } from 'hooks';
 export const NoticesCategoriesNav = () => {
-    // const {isUserLoggedIn} = useAuth()
-    const isUserLoggedIn = true;
+    const {isUserLoggedIn} = useAuth()
+    // const isUserLoggedIn = true;
     return (
         <NavList>        
             <li><NavLinkButtonLike to="/notices/lost-found">lost/found</NavLinkButtonLike></li>
