@@ -29,7 +29,8 @@ export const ModalParagtaph = styled('p')`
   font-weight: 600;
   font-size: 14px;
   align-items: center;
-
+  display: flex;
+  column-gap: 57px;
   ${({ theme }) => theme.breakpoints.up('tablet')} {
   }
 `;

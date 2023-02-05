@@ -77,29 +77,36 @@ export const NoticeCategoryItem = ({ notice }) => {
         <ModalTitleNotice>{title}</ModalTitleNotice>
         <ModalContentWraper>
           <ModalParagtaph>
-            <NoticeWraper>Birthday:{birthdate}:</NoticeWraper>
+            <NoticeWraper>Name:</NoticeWraper>
+            <ModalPetInfoWraper>{'name'}</ModalPetInfoWraper>
+          </ModalParagtaph>
+          <ModalParagtaph>
+            <NoticeWraper>Birthday:</NoticeWraper>
+            <ModalPetInfoWraper>{birthdate}</ModalPetInfoWraper>
           </ModalParagtaph>
           <ModalParagtaph>
             <NoticeWraper>Breed:</NoticeWraper>
-            <div>{breed}</div>
+            <ModalPetInfoWraper>{breed}</ModalPetInfoWraper>
           </ModalParagtaph>
           <ModalParagtaph>
             <NoticeWraper>Lovation:</NoticeWraper>
-            <div>{location}</div>
+            <ModalPetInfoWraper>{location}</ModalPetInfoWraper>
           </ModalParagtaph>
           <ModalParagtaph>
-            <NoticeWraper>The sex:</NoticeWraper> <div>{price}</div>
+            <NoticeWraper>The sex:</NoticeWraper>{' '}
+            <ModalPetInfoWraper>{'sex'}</ModalPetInfoWraper>
           </ModalParagtaph>
           <ModalParagtaph>
-            <NoticeWraper>Email:</NoticeWraper> <div>{'email'}</div>
+            <NoticeWraper>Email:</NoticeWraper>{' '}
+            <ModalPetInfoWraper>{'email'}</ModalPetInfoWraper>
           </ModalParagtaph>
           <ModalParagtaph>
             <NoticeWraper>Phone:</NoticeWraper>
-            <div>{'phone'}</div>
+            <ModalPetInfoWraper>{'phone'}</ModalPetInfoWraper>
           </ModalParagtaph>
           <ModalParagtaph>
-            <div>Price:</div>
-            <div>{'price'}</div>
+            <NoticeWraper>Price:</NoticeWraper>
+            <ModalPetInfoWraper>{'price'}</ModalPetInfoWraper>
           </ModalParagtaph>
           <ModalParagtaph>
             <div>Comments:</div>Lorem ipsum dolor sit amet, consectetur Lorem
