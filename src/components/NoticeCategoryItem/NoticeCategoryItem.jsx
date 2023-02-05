@@ -14,6 +14,9 @@ import {
   StyledImg,
   ModalTitleNotice,
   ModalParagtaph,
+  ModalImgWraper,
+  ModalPetInfoWraper,
+  ModalContentWraper,
 } from '../ModalNotice/CommonModal/NoticeModalStyled';
 import numWords from 'num-words';
 export const NoticeCategoryItem = ({ notice }) => {
@@ -63,22 +66,50 @@ export const NoticeCategoryItem = ({ notice }) => {
       </BoxInfo>
 
       <CommonModal
-        title="Common modal"
-        isOpened={isModalOpened}
+        isOpened={true}
         isActionsDisabled={false}
         closeModal={() => setIsModalOpened(false)}
       >
-        <p>{_id}</p>
-        <StyledImg src={avatar} alt="Pet" />
+        <ModalImgWraper>
+          <StyledImg src={avatar} alt="Pet" />
+        </ModalImgWraper>
+
         <ModalTitleNotice>{title}</ModalTitleNotice>
-        <ModalParagtaph>{birthdate}</ModalParagtaph>
-        <ModalParagtaph>{breed}</ModalParagtaph>
-        <ModalParagtaph>{location}</ModalParagtaph>
-        <ModalParagtaph>{price}</ModalParagtaph>
-        <ModalParagtaph>MODAL</ModalParagtaph>
-        <ModalParagtaph>MODAL</ModalParagtaph>
-        <ModalParagtaph>MODAL</ModalParagtaph>
-        <ModalParagtaph>MODAL</ModalParagtaph>
+        <div></div>
+        <ModalParagtaph>
+          <div>Birthday:</div>
+          <div>{birthdate}</div>
+        </ModalParagtaph>
+        <ModalParagtaph>
+          <div>Breed:</div>
+          <div>{breed}</div>
+        </ModalParagtaph>
+        <ModalParagtaph>
+          <div>Lovation:</div> <div>{location}</div>
+        </ModalParagtaph>
+        <ModalParagtaph>
+          <div>The sex:</div> <div>{price}</div>
+        </ModalParagtaph>
+        <ModalParagtaph>
+          <div>Email:</div> <div>MODAL</div>
+        </ModalParagtaph>
+        <ModalParagtaph>
+          <div>Phone:</div>
+          <div>MODAL</div>
+        </ModalParagtaph>
+        <ModalParagtaph>
+          <div>Price:</div>
+          <div>{'MODAL'}</div>
+        </ModalParagtaph>
+        <ModalParagtaph>
+          <div>Comments:</div>Lorem ipsum dolor sit amet, consectetur Lorem
+          ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+          consectetur Lorem
+        </ModalParagtaph>
+        <div>
+          <button type="button">Contact</button>
+          <button type="button">Add to f</button>
+        </div>
       </CommonModal>
     </Item>
   );

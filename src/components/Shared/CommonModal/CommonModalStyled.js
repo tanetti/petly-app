@@ -37,8 +37,8 @@ export const ModalCloseButton = styled(IconButton)`
   top: 20px;
   right: 20px;
 
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
   padding: 0;
 
   color: inherit;
@@ -57,7 +57,7 @@ export const ModalCloseButton = styled(IconButton)`
 `;
 
 export const CloseButtonIcon = styled(CloseRoundedIcon)`
-  font-size: 36px;
+  font-size: 34px;
 `;
 
 export const ModalWindowGradient = styled('div')`
@@ -90,7 +90,7 @@ export const ModalWindowGradient = styled('div')`
 
 export const ContentContainer = styled('div')`
   width: 100%;
-  max-height: 100cqh;
+  max-height: 100;
   padding: 30px 10px;
 
   overflow-x: hidden;
