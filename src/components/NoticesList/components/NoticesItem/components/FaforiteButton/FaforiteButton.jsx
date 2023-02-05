@@ -13,9 +13,14 @@ import {
   InFavoriteIcon,
   StyledButton,
 } from './FaforiteButtonStyled';
+import { useAuth } from 'hooks';
 
 export const FavoriteButton = ({ noticeId }) => {
-  const { data: userFavorite } = useGetFavoriteQuery();
+  const { isUserLoggedIn } = useAuth();
+  const { data: userFavorite } = useGetFavoriteQuery(null, {
+    skip: !isUserLoggedIn,
+  });
+
   const [addFavorite, { isLoading: isFavoriteAdding }] =
     useAddFavoriteMutation();
   const [deleteFavorite, { isLoading: isFavoriteDeletting }] =
