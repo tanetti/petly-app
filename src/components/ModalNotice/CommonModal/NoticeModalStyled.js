@@ -1,7 +1,6 @@
 import { styled } from '@mui/material/styles';
-import { IconButton, Modal } from '@mui/material';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
+import { FilledButton, OutlinedButton } from 'components/Shared';
 export const StyledImg = styled('img')`
   max-width: 100%;
   border-bottmom: 1px;
@@ -34,6 +33,24 @@ export const ModalParagtaph = styled('p')`
   ${({ theme }) => theme.breakpoints.up('tablet')} {
   }
 `;
+export const Comments = styled('p')`
+  color: ${({ theme }) => theme.palette.text.black};
+  margin-bottom: 40px;
+  font-size: 14px;
+  align-items: center;
+  font-weight: 400;
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+  }
+`;
+export const CommentsWraper = styled('span')`
+  color: ${({ theme }) => theme.palette.text.black};
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+  }
+`;
 
 export const ModalImgWraper = styled('div')`
   padding-top: 20px;
@@ -53,6 +70,29 @@ export const ModalContentWraper = styled('div')`
   }
 `;
 export const NoticeWraper = styled('div')`
+  width: 63px;
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+  }
+`;
+export const BtnWraper = styled('div')`
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+  }
+`;
+export const BtnAdd = styled(OutlinedButton)`
+  width: 240px;
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.37;
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+    width: 160px;
+    &:not(:last-of-type) {
+      margin-bottom: 0;
+    }
+  }
+`;
+export const Btn = styled('button')`
   ${({ theme }) => theme.breakpoints.up('tablet')} {
   }
 `;

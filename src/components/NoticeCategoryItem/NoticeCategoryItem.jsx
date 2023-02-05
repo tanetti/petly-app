@@ -18,6 +18,11 @@ import {
   ModalPetInfoWraper,
   ModalContentWraper,
   NoticeWraper,
+  Comments,
+  CommentsWraper,
+  BtnWraper,
+  Btn,
+  BtnAdd,
 } from '../ModalNotice/CommonModal/NoticeModalStyled';
 import numWords from 'num-words';
 export const NoticeCategoryItem = ({ notice }) => {
@@ -108,16 +113,16 @@ export const NoticeCategoryItem = ({ notice }) => {
             <NoticeWraper>Price:</NoticeWraper>
             <ModalPetInfoWraper>{'price'}</ModalPetInfoWraper>
           </ModalParagtaph>
-          <ModalParagtaph>
-            <div>Comments:</div>Lorem ipsum dolor sit amet, consectetur Lorem
-            ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-            consectetur Lorem
-          </ModalParagtaph>
+          <Comments>
+            <CommentsWraper>Comments:</CommentsWraper>Lorem ipsum dolor sit
+            amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem
+            ipsum dolor sit amet, consectetur Lorem
+          </Comments>
         </ModalContentWraper>
-        <div>
-          <button type="button">Contact</button>
-          <button type="button">Add to f</button>
-        </div>
+        <BtnWraper>
+          <BtnAdd type="button">Contact</BtnAdd>
+          <BtnAdd type="button">Add to f</BtnAdd>
+        </BtnWraper>
       </CommonModal>
     </Item>
   );
