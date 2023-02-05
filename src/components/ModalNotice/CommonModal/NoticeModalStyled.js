@@ -6,10 +6,10 @@ export const StyledImg = styled('img')`
   max-width: 100%;
   border-bottmom: 1px;
   border-radius: 0px 0px 40px 40px;
+
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     max-width: 288px;
     min-height: 328pxpx;
-    margin-right: 0px;
   }
 `;
 
@@ -19,7 +19,7 @@ export const ModalTitleNotice = styled('p')`
   font-size: 24px;
   line-height: 33px;
   letter-spacing: -0.01em;
-
+  margin-bottom: 16px;
   ${({ theme }) => theme.breakpoints.up('tablet')} {
   }
 `;
@@ -36,6 +36,7 @@ export const ModalParagtaph = styled('p')`
 
 export const ModalImgWraper = styled('div')`
   padding-top: 20px;
+  margin-bottom: 16px;
   ${({ theme }) => theme.breakpoints.up('tablet')} {
   }
 `;
@@ -44,6 +45,13 @@ export const ModalPetInfoWraper = styled('div')`
   }
 `;
 export const ModalContentWraper = styled('div')`
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+  }
+`;
+export const NoticeWraper = styled('div')`
   ${({ theme }) => theme.breakpoints.up('tablet')} {
   }
 `;

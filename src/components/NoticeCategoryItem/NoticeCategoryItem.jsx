@@ -17,6 +17,7 @@ import {
   ModalImgWraper,
   ModalPetInfoWraper,
   ModalContentWraper,
+  NoticeWraper,
 } from '../ModalNotice/CommonModal/NoticeModalStyled';
 import numWords from 'num-words';
 export const NoticeCategoryItem = ({ notice }) => {
@@ -73,39 +74,39 @@ export const NoticeCategoryItem = ({ notice }) => {
         <ModalImgWraper>
           <StyledImg src={avatar} alt="Pet" />
         </ModalImgWraper>
-
         <ModalTitleNotice>{title}</ModalTitleNotice>
-        <div></div>
-        <ModalParagtaph>
-          <div>Birthday:</div>
-          <div>{birthdate}</div>
-        </ModalParagtaph>
-        <ModalParagtaph>
-          <div>Breed:</div>
-          <div>{breed}</div>
-        </ModalParagtaph>
-        <ModalParagtaph>
-          <div>Lovation:</div> <div>{location}</div>
-        </ModalParagtaph>
-        <ModalParagtaph>
-          <div>The sex:</div> <div>{price}</div>
-        </ModalParagtaph>
-        <ModalParagtaph>
-          <div>Email:</div> <div>MODAL</div>
-        </ModalParagtaph>
-        <ModalParagtaph>
-          <div>Phone:</div>
-          <div>MODAL</div>
-        </ModalParagtaph>
-        <ModalParagtaph>
-          <div>Price:</div>
-          <div>{'MODAL'}</div>
-        </ModalParagtaph>
-        <ModalParagtaph>
-          <div>Comments:</div>Lorem ipsum dolor sit amet, consectetur Lorem
-          ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
-          consectetur Lorem
-        </ModalParagtaph>
+        <ModalContentWraper>
+          <ModalParagtaph>
+            <NoticeWraper>Birthday:{birthdate}:</NoticeWraper>
+          </ModalParagtaph>
+          <ModalParagtaph>
+            <NoticeWraper>Breed:</NoticeWraper>
+            <div>{breed}</div>
+          </ModalParagtaph>
+          <ModalParagtaph>
+            <NoticeWraper>Lovation:</NoticeWraper>
+            <div>{location}</div>
+          </ModalParagtaph>
+          <ModalParagtaph>
+            <NoticeWraper>The sex:</NoticeWraper> <div>{price}</div>
+          </ModalParagtaph>
+          <ModalParagtaph>
+            <NoticeWraper>Email:</NoticeWraper> <div>{'email'}</div>
+          </ModalParagtaph>
+          <ModalParagtaph>
+            <NoticeWraper>Phone:</NoticeWraper>
+            <div>{'phone'}</div>
+          </ModalParagtaph>
+          <ModalParagtaph>
+            <div>Price:</div>
+            <div>{'price'}</div>
+          </ModalParagtaph>
+          <ModalParagtaph>
+            <div>Comments:</div>Lorem ipsum dolor sit amet, consectetur Lorem
+            ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet,
+            consectetur Lorem
+          </ModalParagtaph>
+        </ModalContentWraper>
         <div>
           <button type="button">Contact</button>
           <button type="button">Add to f</button>
