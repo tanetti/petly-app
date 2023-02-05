@@ -23,6 +23,7 @@ import {
   BtnWraper,
   Btn,
   BtnAdd,
+  Heart,
 } from '../ModalNotice/CommonModal/NoticeModalStyled';
 import numWords from 'num-words';
 export const NoticeCategoryItem = ({ notice }) => {
@@ -121,7 +122,9 @@ export const NoticeCategoryItem = ({ notice }) => {
         </ModalContentWraper>
         <BtnWraper>
           <BtnAdd type="button">Contact</BtnAdd>
-          <BtnAdd type="button">Add to f</BtnAdd>
+          <Btn type="button">
+            Add to <Heart />
+          </Btn>
         </BtnWraper>
       </CommonModal>
     </Item>

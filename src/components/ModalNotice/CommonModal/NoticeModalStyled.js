@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
-
-import { FilledButton, OutlinedButton } from 'components/Shared';
+import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import { FilledButton } from 'components/Shared';
+import { OutlinedButton } from 'components/Shared/OutlinedButtonStyled';
 export const StyledImg = styled('img')`
   max-width: 100%;
   border-bottmom: 1px;
@@ -78,13 +79,14 @@ export const BtnWraper = styled('div')`
   ${({ theme }) => theme.breakpoints.up('tablet')} {
   }
 `;
-export const BtnAdd = styled(OutlinedButton)`
+export const BtnAdd = styled(FilledButton)`
   width: 240px;
   display: flex;
   font-size: 16px;
   align-items: center;
   justify-content: center;
   line-height: 1.37;
+
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     width: 160px;
     &:not(:last-of-type) {
@@ -92,7 +94,25 @@ export const BtnAdd = styled(OutlinedButton)`
     }
   }
 `;
-export const Btn = styled('button')`
+export const Btn = styled(OutlinedButton)`
+  width: 240px;
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.37;
+
   ${({ theme }) => theme.breakpoints.up('tablet')} {
+    width: 160px;
+    &:not(:last-of-type) {
+      margin-bottom: 0;
+    }
   }
+`;
+export const Heart = styled(FavoriteOutlinedIcon)`
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+
+  color: ${({ theme }) => theme.palette.accent.main};
 `;
