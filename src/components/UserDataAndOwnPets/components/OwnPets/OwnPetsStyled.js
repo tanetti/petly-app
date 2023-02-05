@@ -3,11 +3,11 @@ import { motion } from 'framer-motion';
 
 export const ButtonContainer = styled('div')`
   position: absolute;
-  top: 18px;
+  top: 14px;
   right: 20px;
 
   ${({ theme }) => theme.breakpoints.up('tablet')} {
-    top: 9px;
+    top: 6px;
     right: 30px;
   }
 

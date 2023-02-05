@@ -17,6 +17,7 @@ import { ownPetsApi } from './ownPets/ownPetsApi';
 import { newsApi } from './news/newsApi';
 import { servicesApi } from './services/servicesApi';
 import { noticesApi } from './notices/noticesApi';
+import { favoriteApi } from './favorite/favoriteApi';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -26,6 +27,7 @@ const middleware = [
   }),
   currentUserInfoApi.middleware,
   ownPetsApi.middleware,
+  favoriteApi.middleware,
   newsApi.middleware,
   servicesApi.middleware,
   noticesApi.middleware,
@@ -42,6 +44,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     [currentUserInfoApi.reducerPath]: currentUserInfoApi.reducer,
     [ownPetsApi.reducerPath]: ownPetsApi.reducer,
+    [favoriteApi.reducerPath]: favoriteApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
     [servicesApi.reducerPath]: servicesApi.reducer,
     [noticesApi.reducerPath]: noticesApi.reducer,

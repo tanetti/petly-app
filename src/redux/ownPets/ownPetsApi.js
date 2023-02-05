@@ -12,12 +12,12 @@ export const ownPetsApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['ownPetsApi'],
+  tagTypes: ['OwnPets'],
   refetchOnFocus: true,
   endpoints: builder => ({
     getOwnPets: builder.query({
       query: () => '/users/own',
-      providesTags: ['ownPetsApi'],
+      providesTags: ['OwnPets'],
     }),
     addOwnPet: builder.mutation({
       query: body => ({
@@ -25,14 +25,14 @@ export const ownPetsApi = createApi({
         method: 'POST',
         body: body,
       }),
-      invalidatesTags: ['ownPetsApi'],
+      invalidatesTags: ['OwnPets'],
     }),
     deleteOwnPet: builder.mutation({
       query: ownPetId => ({
         url: `/users/own/${ownPetId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['ownPetsApi'],
+      invalidatesTags: ['OwnPets'],
     }),
   }),
 });

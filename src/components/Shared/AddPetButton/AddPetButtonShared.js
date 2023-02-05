@@ -30,8 +30,8 @@ export const StyledButton = styled(Button)`
 `;
 
 export const AddPetIcon = styled(AddCircleRoundedIcon)`
-  width: 40px;
-  height: 40px;
+  width: 46px;
+  height: 46px;
   margin-left: 15px;
 
   color: ${({ theme }) => theme.palette.accent.main};

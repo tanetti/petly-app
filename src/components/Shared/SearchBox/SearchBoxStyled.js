@@ -7,11 +7,11 @@ export const SearchContainer = styled('div')`
   position: relative;
 
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     max-width: 608px;
-    margin: 0 auto 60px auto;
+    margin: 0 auto 40px auto;
   }
 `;
 

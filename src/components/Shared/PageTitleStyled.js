@@ -18,6 +18,6 @@ export const PageTitle = styled('h2')`
   }
 
   ${({ theme }) => theme.breakpoints.up('desktop')} {
-    padding: 23px 0 60px 0;
+    padding: 23px 0 40px 0;
   }
 `;

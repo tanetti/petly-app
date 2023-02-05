@@ -16,9 +16,15 @@ export const noticesApi = createApi({
   refetchOnFocus: true,
   endpoints: builder => ({
     getAllNotices: builder.query({
-      query: (categoryName, searchValue) => searchValue
-        ? `/notices/${categoryName}?search=${searchValue}`
-        : `/notices/${categoryName}`,
+      query: params => {
+        const { categoryName, searchValue } = params;
+
+        if (!categoryName) return;
+
+        return searchValue
+          ? `/notices/${categoryName}?search=${searchValue}`
+          : `/notices/${categoryName}`;
+      },
       providesTags: ['Notices'],
     }),
     addNotice: builder.mutation({

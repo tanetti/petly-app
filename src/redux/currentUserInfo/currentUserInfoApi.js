@@ -12,12 +12,12 @@ export const currentUserInfoApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['currentUserInfo'],
+  tagTypes: ['CurrentUserInfo'],
   refetchOnFocus: true,
   endpoints: builder => ({
     getCurrentInfo: builder.query({
       query: () => '/users/current',
-      providesTags: ['currentUserInfo'],
+      providesTags: ['CurrentUserInfo'],
     }),
     updateCurrentInfo: builder.mutation({
       query: infoParameter => ({
@@ -25,7 +25,7 @@ export const currentUserInfoApi = createApi({
         method: 'PATCH',
         body: infoParameter,
       }),
-      invalidatesTags: ['currentUserInfo'],
+      invalidatesTags: ['CurrentUserInfo'],
     }),
     uploadAvatar: builder.mutation({
       query: formData => ({
@@ -33,14 +33,14 @@ export const currentUserInfoApi = createApi({
         method: 'POST',
         body: formData,
       }),
-      invalidatesTags: ['currentUserInfo'],
+      invalidatesTags: ['CurrentUserInfo'],
     }),
     deleteAvatar: builder.mutation({
       query: () => ({
         url: `/users/avatars`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['currentUserInfo'],
+      invalidatesTags: ['CurrentUserInfo'],
     }),
   }),
 });
