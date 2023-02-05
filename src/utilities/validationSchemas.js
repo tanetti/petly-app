@@ -3,6 +3,7 @@ import {
   PASSWORD_PATTERN,
   ONLY_LETTERS_PATTERN,
   LETTERS_DIGITS_AND_SYMBOLS_PATTERN,
+  LETTERS_AND_COMMA_PATTERN,
 } from 'constants/patterns';
 
 yup.addMethod(
@@ -132,3 +133,44 @@ export const ModalAddsPetSecondStepFormValidationSchema = yup.object().shape({
     .stringLengthIfNotEmpty(8, 'It seems too short...')
     .max(500, 'Must not exceed 500 characters'),
 });
+
+export const ModalAddNoticeFirstStepFormValidationSchema = yup.object().shape({
+  title: yup
+    .string()
+    .required('Please enter title of ad')
+    .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
+    .min(2, 'It seems too short...')
+    .max(48, 'Must not exceed 48 characters'),
+  name: yup
+    .string()
+    .required('Please enter your pet Name')
+    .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
+    .min(2, 'It seems too short...')
+    .max(30, 'Must not exceed 30 characters'),
+  date: yup.string().required('Please provide your pet Bithday'),
+  breed: yup
+    .string()
+    .required('Please enter your pet Breed')
+    .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
+    .min(2, 'It seems too short...')
+    .max(30, 'Must not exceed 30 characters'),
+});
+
+export const getModalAddNoticeSecondStepFormValidationSchema = isSellAdType => {
+  return yup.object().shape({
+    location: yup
+      .string()
+      .required('Please enter your location')
+      .matches(LETTERS_AND_COMMA_PATTERN, 'Must contain only letters'),
+    price: yup.number().when([], {
+      is: () => isSellAdType,
+      then: yup
+        .number('Must contain only integer number')
+        .min(1, "Price can't be zero")
+        .max(999999, 'Too large price')
+        .required('Please enter price')
+        .integer('Must contain only integer number'),
+      otherwise: yup.number(),
+    }),
+  });
+};
