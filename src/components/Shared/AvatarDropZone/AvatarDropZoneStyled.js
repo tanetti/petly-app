@@ -41,10 +41,17 @@ export const InnerContainer = styled('div')`
   height: 100cqw;
 `;
 
-export const CurrentImage = styled(motion.img)`
+export const CurrentImage = styled('img')`
   height: 100%;
 
   object-fit: cover;
+
+  opacity: ${({ shouldShown }) => (shouldShown ? '1' : '0')};
+
+  transition: ${({ theme }) =>
+    theme.transitions.create(['opacity'], {
+      duration: theme.transitions.duration.standard,
+    })};
 `;
 
 export const ControlsContainer = styled('div')`

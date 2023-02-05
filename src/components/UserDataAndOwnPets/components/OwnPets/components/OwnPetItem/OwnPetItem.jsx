@@ -1,20 +1,27 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import dayjs from 'dayjs';
 import { AnimatePresence, motion } from 'framer-motion';
+import { CircularProgress } from '@mui/material';
 import { standartAnimation } from 'constants/animationVariants';
 import noPhotoImage from 'images/no-photo.webp';
 import {
   PetsItem,
+  ImageContainer,
   PetImage,
   PetInfo,
   PetDataItem,
   DeleteIcon,
   DeletePetButton,
+  PetDataCaption,
+  ImageLoaderContainer,
 } from './OwnPetItemStyled';
 import { useDeleteOwnPetMutation } from 'redux/ownPets/ownPetsApi';
 
 export const OwnPetsItem = ({ petData }) => {
   const { _id, name, birthdate, breed, comments, avatarURL } = petData;
+  const [shouldImageShown, setShouldImageShown] = useState(false);
+  const [imageOnError, setImageOnError] = useState(false);
   const [deleteOwnPet, { isLoading: isOwnPetDeleting }] =
     useDeleteOwnPetMutation();
 
@@ -26,7 +33,20 @@ export const OwnPetsItem = ({ petData }) => {
       animate="animate"
       exit="exit"
     >
-      <PetImage src={avatarURL || noPhotoImage} alt={name || 'My pet'} />
+      <ImageContainer>
+        <PetImage
+          src={imageOnError || avatarURL || noPhotoImage}
+          alt={name || 'My pet'}
+          shouldShown={shouldImageShown}
+          onLoad={() => setShouldImageShown(true)}
+          onError={() => setImageOnError(noPhotoImage)}
+        />
+
+        <ImageLoaderContainer shouldHide={shouldImageShown}>
+          <CircularProgress />
+        </ImageLoaderContainer>
+      </ImageContainer>
+
       <PetInfo>
         <DeletePetButton
           type="button"
@@ -49,12 +69,21 @@ export const OwnPetsItem = ({ petData }) => {
             ) : null}
           </AnimatePresence>
         </DeletePetButton>
-        <PetDataItem>Name: {name}</PetDataItem>
         <PetDataItem>
-          Date of birth: {dayjs(birthdate).format('DD.MM.YYYY')}
+          <PetDataCaption>Name:</PetDataCaption> {name}
         </PetDataItem>
-        <PetDataItem>Breed: {breed}</PetDataItem>
-        {comments ? <PetDataItem>Comments: {comments}</PetDataItem> : null}
+        <PetDataItem>
+          <PetDataCaption>Date of birth:</PetDataCaption>{' '}
+          {dayjs(birthdate).format('DD.MM.YYYY')}
+        </PetDataItem>
+        <PetDataItem>
+          <PetDataCaption>Breed:</PetDataCaption> {breed}
+        </PetDataItem>
+        {comments ? (
+          <PetDataItem>
+            <PetDataCaption>Comments:</PetDataCaption> {comments}
+          </PetDataItem>
+        ) : null}
       </PetInfo>
     </PetsItem>
   );

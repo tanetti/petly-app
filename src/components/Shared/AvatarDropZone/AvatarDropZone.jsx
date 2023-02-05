@@ -24,6 +24,7 @@ export const AvatarDropZone = ({
   isDisabled,
 }) => {
   const [base64AvatarUrl, setBase64AvatarUrl] = useState(null);
+  const [shouldImageShown, setShouldImageShown] = useState(false);
   const [isAvatarContainerHovered, setIsAvatarContainerHovered] =
     useState(false);
 
@@ -62,19 +63,20 @@ export const AvatarDropZone = ({
   return (
     <DropZoneContainer isModalZone={isModalZone}>
       <InnerContainer>
-        <AnimatePresence>
-          {!!presentImage ? (
-            <CurrentImage
-              key="userImage"
-              variants={standartAnimation}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              src={presentImage}
-              alt="Avatar"
-            />
-          ) : null}
-        </AnimatePresence>
+        {!!presentImage ? (
+          <CurrentImage
+            key="userImage"
+            variants={standartAnimation}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            src={presentImage}
+            alt="Avatar"
+            shouldShown={shouldImageShown}
+            onLoad={() => setShouldImageShown(true)}
+            onError={() => setShouldImageShown(false)}
+          />
+        ) : null}
         <ControlsContainer
           {...getRootProps()}
           isModalZone={isModalZone}

@@ -31,6 +31,7 @@ export const CommonModal = ({
       <Fade in={isOpened} timeout={theme.transitions.duration.standard}>
         <ModalWindow>
           <ModalWindowGradient />
+
           <ContentContainer>
             {title ? <ModalTitle>{title}</ModalTitle> : null}
             <ModalCloseButton

@@ -17,6 +17,7 @@ import { userDataValidationSchema } from 'utilities/validationSchemas';
 import { standartAnimation } from 'constants/animationVariants';
 import { CITIES } from 'constants/cities';
 import {
+  AutocompleteWrapper,
   DateInputWrapper,
   EditIcon,
   ParameterButton,
@@ -66,7 +67,7 @@ export const EditParameterUnit = ({
       return;
     }
 
-    const trimmedParameterValue = parameterValue.trim();
+    const trimmedParameterValue = parameterValue?.trim() ?? '';
 
     if (currentUnitData !== trimmedParameterValue) {
       try {
@@ -193,7 +194,7 @@ export const EditParameterUnit = ({
           isOptionEqualToValue={(option, value) => option === value}
           onChange={(_, value) => onValueChange({ currentTarget: { value } })}
           renderInput={({ InputProps, inputProps }) => (
-            <div ref={InputProps.ref}>
+            <AutocompleteWrapper ref={InputProps?.ref}>
               <ParameterInput
                 {...inputProps}
                 onFocus={() => setIsFieldEditing(true)}
@@ -201,7 +202,20 @@ export const EditParameterUnit = ({
                 type={unitType}
                 disabled={activeUnit !== unitName}
               />
-            </div>
+              <AnimatePresence>
+                {activeUnit === unitName ? (
+                  <motion.div
+                    key="datePicker"
+                    variants={standartAnimation}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                  >
+                    {InputProps?.endAdornment}
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+            </AutocompleteWrapper>
           )}
         />
       ) : null}

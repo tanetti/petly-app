@@ -15,7 +15,7 @@ export const NoResultLayout = () => {
       exit="exit"
     >
       <NoResultIcon />
-      <NoResultMessage>Sorry, nothing was found</NoResultMessage>
+      <NoResultMessage>No matches were found</NoResultMessage>
     </NoResultContainer>
   );
 };

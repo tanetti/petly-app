@@ -46,6 +46,14 @@ export const DateInputWrapper = styled('div')`
   }
 `;
 
+export const AutocompleteWrapper = styled('div')`
+  position: relative;
+
+  & .MuiAutocomplete-endAdornment {
+    padding-right: 7px;
+  }
+`;
+
 export const ParameterInput = styled('input')`
   width: 100%;
   padding: 4px 18px;

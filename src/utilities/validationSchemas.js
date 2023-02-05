@@ -130,5 +130,5 @@ export const ModalAddsPetSecondStepFormValidationSchema = yup.object().shape({
     .string()
     .matches(LETTERS_DIGITS_AND_SYMBOLS_PATTERN, 'Letters and symbols only')
     .stringLengthIfNotEmpty(8, 'It seems too short...')
-    .max(180, 'Must not exceed 180 characters'),
+    .max(500, 'Must not exceed 500 characters'),
 });
