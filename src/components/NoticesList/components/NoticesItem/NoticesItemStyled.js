@@ -75,7 +75,7 @@ export const NoticeTitle = styled('h3')`
 
   font-weight: 700;
   font-size: 28px;
-  line-height: 1.36;
+  line-height: 1.39;
   letter-spacing: -0.01em;
 
   overflow: hidden;

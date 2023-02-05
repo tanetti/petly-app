@@ -11,5 +11,9 @@ export const getStringAge = birthdate => {
     age--;
   }
 
-  return numWords(age);
+  const ageWord = numWords(age);
+
+  const fullAge = `${ageWord} ${ageWord === 'one' ? 'year' : 'years'}`;
+
+  return fullAge;
 };
