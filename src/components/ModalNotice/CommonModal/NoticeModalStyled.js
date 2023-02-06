@@ -4,7 +4,7 @@ import { FilledButton } from 'components/Shared';
 import { OutlinedButton } from 'components/Shared/OutlinedButtonStyled';
 export const StyledImg = styled('img')`
   max-width: 100%;
-  border-bottmom: 1px;
+
   border-radius: 0px 0px 40px 40px;
 
   ${({ theme }) => theme.breakpoints.up('tablet')} {
@@ -58,9 +58,27 @@ export const CommentsWraper = styled('span')`
 export const ModalImgWraper = styled('div')`
   padding-top: 20px;
   margin-bottom: 16px;
+  position: relative;
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+    margin-right: 20px;
+  }
+`;
+export const Phlag = styled('p')`
+  position: absolute;
+  top: 46px;
+  left: 0px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 20px;
+  padding-right: 53px;
+
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(50px);
+  border-radius: 0px 40px 40px 0px;
   ${({ theme }) => theme.breakpoints.up('tablet')} {
   }
 `;
+
 export const ModalPetInfoWraper = styled('div')`
   ${({ theme }) => theme.breakpoints.up('tablet')} {
   }
@@ -82,7 +100,7 @@ export const BtnWraper = styled('div')`
   flex-direction: column;
   align-items: center;
   ${({ theme }) => theme.breakpoints.up('tablet')} {
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: end;
   }
 `;
@@ -110,6 +128,7 @@ export const Btn = styled(OutlinedButton)`
   line-height: 1.37;
 
   ${({ theme }) => theme.breakpoints.up('tablet')} {
+    margin-right: 12px;
     width: 160px;
     &:not(:last-of-type) {
       margin-bottom: 0;

@@ -26,6 +26,7 @@ import {
   Heart,
   TabWraper,
   TitleContentWraper,
+  Phlag,
 } from '../ModalNotice/CommonModal/NoticeModalStyled';
 import numWords from 'num-words';
 export const NoticeCategoryItem = ({ notice }) => {
@@ -81,6 +82,7 @@ export const NoticeCategoryItem = ({ notice }) => {
       >
         <TabWraper>
           <ModalImgWraper>
+            <Phlag>in good hands</Phlag>
             <StyledImg src={avatar} alt="Pet" />
           </ModalImgWraper>
           <TitleContentWraper>
