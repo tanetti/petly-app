@@ -49,6 +49,7 @@ export const ModalInput = styled(TextField)`
   }
 
   & input {
+    height: 40px;
     padding: 11px 14px;
 
     font-family: inherit;
@@ -66,6 +67,7 @@ export const ModalInput = styled(TextField)`
     text-overflow: ellipsis;
 
     ${({ theme }) => theme.breakpoints.up('tablet')} {
+      height: 48px;
       padding: 11px 16px;
     }
   }

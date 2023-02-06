@@ -1,4 +1,6 @@
 import { styled } from '@mui/material/styles';
+import maleBgImage from 'images/male-sign.svg';
+import femaleBgImage from 'images/female-sign.svg';
 
 export const ModalForm = styled('form')`
   display: flex;
@@ -25,6 +27,14 @@ export const ModalStepTwoDescription = styled('p')`
 
 export const ImageContainer = styled('div')`
   position: relative;
+
+  & > div {
+    margin: 0 auto 20px 0;
+
+    ${({ theme }) => theme.breakpoints.up('tablet')} {
+      margin: 0 auto 28px 0;
+    }
+  }
 `;
 
 export const ImageErrorLabel = styled('p')`
@@ -45,13 +55,66 @@ export const ImageErrorLabel = styled('p')`
 `;
 
 export const SexContainer = styled('div')`
-  padding: 15px;
   display: flex;
+  padding-top: 8px;
+
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+    padding-top: 16px;
+  }
 `;
 
 export const CheckboxContainer = styled('div')`
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 71px;
+
   &:not(:last-child) {
-    margin-right: 20px;
+    margin-right: 40px;
+  }
+
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 87px;
+
+    &:not(:last-child) {
+      margin-right: 83px;
+    }
+  }
+`;
+
+export const CheckboxLabel = styled('label')`
+  &:before {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 40px;
+    height: 40px;
+
+    top: 0px;
+    left: 0px;
+
+    ${({ theme }) => theme.breakpoints.up('tablet')} {
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+  &.male:before {
+    background: url(${maleBgImage}) center / contain no-repeat;
+  }
+
+  &.female:before {
+    background: url(${femaleBgImage}) center / contain no-repeat;
+  }
+
+  & > p {
+    margin-top: 52px;
+
+    ${({ theme }) => theme.breakpoints.up('tablet')} {
+      margin-top: 80px;
+    }
   }
 
   & > p.isActive {
@@ -59,15 +122,12 @@ export const CheckboxContainer = styled('div')`
   }
 `;
 
-export const CheckboxInput = styled('input')``;
+export const CheckboxInput = styled('input')`
+  display: none;
+`;
 
 export const CommentsContainer = styled('div')`
   width: 100%;
-
-  ${({ theme }) => theme.breakpoints.up('tablet')} {
-    width: 394px;
-    margin: 0 auto;
-  }
 `;
 
 export const TextareaContainer = styled('div')`

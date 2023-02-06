@@ -6,6 +6,7 @@ import {
   TextareaContainer,
   SexContainer,
   CheckboxContainer,
+  CheckboxLabel,
   CheckboxInput,
   ImageErrorLabel,
   TextareaErrorContainer,
@@ -62,34 +63,38 @@ export const SecondStep = ({
       <ModalLabel htmlFor="sex">The sex</ModalLabel>
       <SexContainer>
         <CheckboxContainer>
-          <CheckboxInput
-            id="sex"
-            type="checkbox"
-            name="sex"
-            title="Select sex"
-            size="small"
-            checked={sex === 'male'}
-            className={sex === 'male' ? 'isActive' : null}
-            onChange={() => {
-              saveSexToState('male');
-            }}
-          />
-          <p className={sex === 'male' ? 'isActive' : null}>Male</p>
+          <CheckboxLabel className={'male'}>
+            <CheckboxInput
+              id="sex"
+              type="checkbox"
+              name="sex"
+              title="Select sex"
+              size="small"
+              checked={sex === 'male'}
+              className={sex === 'male' ? 'isActive' : null}
+              onChange={() => {
+                saveSexToState('male');
+              }}
+            />
+            <p className={sex === 'male' ? 'isActive' : null}>Male</p>
+          </CheckboxLabel>
         </CheckboxContainer>
         <CheckboxContainer>
-          <CheckboxInput
-            id="sex"
-            type="checkbox"
-            name="sex"
-            title="Select sex"
-            size="small"
-            checked={sex === 'female'}
-            className={sex === 'female' ? 'isActive' : null}
-            onChange={() => {
-              saveSexToState('female');
-            }}
-          />
-          <p className={sex === 'female' ? 'isActive' : null}>Female</p>
+          <CheckboxLabel className={'female'}>
+            <CheckboxInput
+              id="sex"
+              type="checkbox"
+              name="sex"
+              title="Select sex"
+              size="small"
+              checked={sex === 'female'}
+              className={sex === 'female' ? 'isActive' : null}
+              onChange={() => {
+                saveSexToState('female');
+              }}
+            />
+            <p className={sex === 'female' ? 'isActive' : null}>Female</p>
+          </CheckboxLabel>
         </CheckboxContainer>
       </SexContainer>
 
@@ -118,7 +123,7 @@ export const SecondStep = ({
             type="number"
             name="price"
             placeholder="Type price"
-            title="Price in dollars"
+            title="Price in UAH"
             size="small"
             helperText={errors.price?.message}
             error={errors.price ? true : false}
