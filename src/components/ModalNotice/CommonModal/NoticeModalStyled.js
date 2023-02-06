@@ -59,6 +59,7 @@ export const ModalImgWraper = styled('div')`
   padding-top: 20px;
   margin-bottom: 16px;
   position: relative;
+
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     margin-right: 20px;
   }
