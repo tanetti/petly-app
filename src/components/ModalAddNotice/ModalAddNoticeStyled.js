@@ -12,13 +12,17 @@ export const ModalContainer = styled('div')`
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     width: 608px;
     padding: 0 60px;
+
+    &.secondStep {
+      padding-top: 20px;
+    }
   }
 `;
 
 export const ModalButtonContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     flex-direction: row-reverse;

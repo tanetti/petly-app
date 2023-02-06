@@ -161,7 +161,9 @@ export const getModalAddNoticeSecondStepFormValidationSchema = isSellAdType => {
     location: yup
       .string()
       .required('Please enter your location')
-      .matches(LETTERS_AND_COMMA_PATTERN, 'Must contain only letters'),
+      .matches(LETTERS_AND_COMMA_PATTERN, 'Must contain only letters and comma')
+      .min(2, 'It seems too short...')
+      .max(30, 'Must not exceed 30 characters'),
     price: yup.number().when([], {
       is: () => isSellAdType,
       then: yup
