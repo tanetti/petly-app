@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import {
-  useGetCurrentInfoQuery,
-  useUpdateCurrentInfoMutation,
-} from 'redux/currentUserInfo/currentUserInfoApi';
+import { useUpdateCurrentInfoMutation } from 'redux/currentUserInfo/currentUserInfoApi';
 import { AnimatePresence, motion } from 'framer-motion';
 import InputMask from 'react-input-mask';
 import * as yup from 'yup';
@@ -36,6 +33,7 @@ export const EditParameterUnit = ({
   activeUnit,
   setActiveUnit,
   currentData,
+  isDataLoading,
 }) => {
   const [parameterValue, setParameterValue] = useState('');
   const [isFieldEditing, setIsFieldEditing] = useState(false);
@@ -48,7 +46,6 @@ export const EditParameterUnit = ({
     fieldVariant: unitFieldVariant,
   } = unitSettings;
 
-  const { isLoading } = useGetCurrentInfoQuery();
   const [updateInfo, { error, isLoading: isUpdating }] =
     useUpdateCurrentInfoMutation();
 
@@ -104,10 +101,10 @@ export const EditParameterUnit = ({
   );
 
   useEffect(() => {
-    if (!isUpdatingInProgress || isUpdating || isLoading) return;
+    if (!isUpdatingInProgress || isUpdating || isDataLoading) return;
 
     setIsUpdatingInProgress(false);
-  }, [isLoading, isUpdating, isUpdatingInProgress]);
+  }, [isDataLoading, isUpdating, isUpdatingInProgress]);
 
   useEffect(() => {
     if (isFieldEditing) document.addEventListener('keydown', onEnterKeyDown);
@@ -249,12 +246,14 @@ export const EditParameterUnit = ({
           activeUnit === unitName ? `Save ${unitName}` : `Edit ${unitName}`
         }
         type="button"
-        loading={isLoading || isUpdatingInProgress}
+        loading={isDataLoading || isUpdatingInProgress}
         disabled={activeUnit && activeUnit !== unitName}
         onClick={onParameterButtonClick}
       >
         <AnimatePresence mode="wait">
-          {activeUnit !== unitName && !isLoading && !isUpdatingInProgress ? (
+          {activeUnit !== unitName &&
+          !isDataLoading &&
+          !isUpdatingInProgress ? (
             <motion.div
               key="editIcon"
               variants={standartAnimation}
@@ -266,7 +265,9 @@ export const EditParameterUnit = ({
             </motion.div>
           ) : null}
 
-          {activeUnit === unitName && !isLoading && !isUpdatingInProgress ? (
+          {activeUnit === unitName &&
+          !isDataLoading &&
+          !isUpdatingInProgress ? (
             <motion.div
               key="saveIcon"
               variants={standartAnimation}
@@ -293,4 +294,5 @@ EditParameterUnit.propTypes = {
   activeUnit: PropTypes.string,
   setActiveUnit: PropTypes.func.isRequired,
   currentData: PropTypes.object,
+  isDataLoading: PropTypes.bool,
 };

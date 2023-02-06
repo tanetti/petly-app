@@ -26,7 +26,7 @@ import {
 
 export const UserData = () => {
   const { isUserLoggedIn, isUserPending } = useAuth();
-  const { data } = useGetCurrentInfoQuery(null, {
+  const { data, isLoading: isDataLoading } = useGetCurrentInfoQuery(null, {
     skip: !isUserLoggedIn,
   });
   const [
@@ -137,6 +137,7 @@ export const UserData = () => {
               activeUnit={activeUnit}
               setActiveUnit={setActiveUnit}
               currentData={data}
+              isDataLoading={isDataLoading}
             />
           ))}
         </DataForm>
