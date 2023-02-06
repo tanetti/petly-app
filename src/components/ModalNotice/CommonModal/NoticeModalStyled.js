@@ -76,6 +76,9 @@ export const NoticeWraper = styled('div')`
   }
 `;
 export const BtnWraper = styled('div')`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   ${({ theme }) => theme.breakpoints.up('tablet')} {
   }
 `;
@@ -115,4 +118,16 @@ export const Heart = styled(FavoriteOutlinedIcon)`
   margin-left: 8px;
 
   color: ${({ theme }) => theme.palette.accent.main};
+`;
+
+export const TabWraper = styled('div')`
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+    display: flex;
+  }
+`;
+export const TitleContentWraper = styled('div')`
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+    display: flex;
+    flex-direction: column;
+  }
 `;

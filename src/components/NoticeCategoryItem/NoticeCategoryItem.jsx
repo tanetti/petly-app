@@ -24,11 +24,13 @@ import {
   Btn,
   BtnAdd,
   Heart,
+  TabWraper,
+  TitleContentWraper,
 } from '../ModalNotice/CommonModal/NoticeModalStyled';
 import numWords from 'num-words';
 export const NoticeCategoryItem = ({ notice }) => {
   const [isModalOpened, setIsModalOpened] = useState(false);
-  const [isModalNotiesOpened, setIsModalNoticeOpened] = useState(false);
+
   const { _id, avatar, title, breed, birthdate, location, price } = notice;
 
   function getAge() {
@@ -77,49 +79,53 @@ export const NoticeCategoryItem = ({ notice }) => {
         isActionsDisabled={false}
         closeModal={() => setIsModalOpened(false)}
       >
-        <ModalImgWraper>
-          <StyledImg src={avatar} alt="Pet" />
-        </ModalImgWraper>
-        <ModalTitleNotice>{title}</ModalTitleNotice>
-        <ModalContentWraper>
-          <ModalParagtaph>
-            <NoticeWraper>Name:</NoticeWraper>
-            <ModalPetInfoWraper>{'name'}</ModalPetInfoWraper>
-          </ModalParagtaph>
-          <ModalParagtaph>
-            <NoticeWraper>Birthday:</NoticeWraper>
-            <ModalPetInfoWraper>{birthdate}</ModalPetInfoWraper>
-          </ModalParagtaph>
-          <ModalParagtaph>
-            <NoticeWraper>Breed:</NoticeWraper>
-            <ModalPetInfoWraper>{breed}</ModalPetInfoWraper>
-          </ModalParagtaph>
-          <ModalParagtaph>
-            <NoticeWraper>Lovation:</NoticeWraper>
-            <ModalPetInfoWraper>{location}</ModalPetInfoWraper>
-          </ModalParagtaph>
-          <ModalParagtaph>
-            <NoticeWraper>The sex:</NoticeWraper>{' '}
-            <ModalPetInfoWraper>{'sex'}</ModalPetInfoWraper>
-          </ModalParagtaph>
-          <ModalParagtaph>
-            <NoticeWraper>Email:</NoticeWraper>{' '}
-            <ModalPetInfoWraper>{'email'}</ModalPetInfoWraper>
-          </ModalParagtaph>
-          <ModalParagtaph>
-            <NoticeWraper>Phone:</NoticeWraper>
-            <ModalPetInfoWraper>{'phone'}</ModalPetInfoWraper>
-          </ModalParagtaph>
-          <ModalParagtaph>
-            <NoticeWraper>Price:</NoticeWraper>
-            <ModalPetInfoWraper>{'price'}</ModalPetInfoWraper>
-          </ModalParagtaph>
-          <Comments>
-            <CommentsWraper>Comments:</CommentsWraper>Lorem ipsum dolor sit
-            amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem
-            ipsum dolor sit amet, consectetur Lorem
-          </Comments>
-        </ModalContentWraper>
+        <TabWraper>
+          <ModalImgWraper>
+            <StyledImg src={avatar} alt="Pet" />
+          </ModalImgWraper>
+          <TitleContentWraper>
+            <ModalTitleNotice>{title}</ModalTitleNotice>
+            <ModalContentWraper>
+              <ModalParagtaph>
+                <NoticeWraper>Name:</NoticeWraper>
+                <ModalPetInfoWraper>{'name'}</ModalPetInfoWraper>
+              </ModalParagtaph>
+              <ModalParagtaph>
+                <NoticeWraper>Birthday:</NoticeWraper>
+                <ModalPetInfoWraper>{birthdate}</ModalPetInfoWraper>
+              </ModalParagtaph>
+              <ModalParagtaph>
+                <NoticeWraper>Breed:</NoticeWraper>
+                <ModalPetInfoWraper>{breed}</ModalPetInfoWraper>
+              </ModalParagtaph>
+              <ModalParagtaph>
+                <NoticeWraper>Lovation:</NoticeWraper>
+                <ModalPetInfoWraper>{location}</ModalPetInfoWraper>
+              </ModalParagtaph>
+              <ModalParagtaph>
+                <NoticeWraper>The sex:</NoticeWraper>{' '}
+                <ModalPetInfoWraper>{'sex'}</ModalPetInfoWraper>
+              </ModalParagtaph>
+              <ModalParagtaph>
+                <NoticeWraper>Email:</NoticeWraper>{' '}
+                <ModalPetInfoWraper>{'email'}</ModalPetInfoWraper>
+              </ModalParagtaph>
+              <ModalParagtaph>
+                <NoticeWraper>Phone:</NoticeWraper>
+                <ModalPetInfoWraper>{'phone'}</ModalPetInfoWraper>
+              </ModalParagtaph>
+              <ModalParagtaph>
+                <NoticeWraper>Price:</NoticeWraper>
+                <ModalPetInfoWraper>{'price'}</ModalPetInfoWraper>
+              </ModalParagtaph>
+            </ModalContentWraper>
+          </TitleContentWraper>
+        </TabWraper>
+        <Comments>
+          <CommentsWraper>Comments:</CommentsWraper>Lorem ipsum dolor sit amet,
+          consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor
+          sit amet, consectetur Lorem
+        </Comments>
         <BtnWraper>
           <BtnAdd type="button">Contact</BtnAdd>
           <Btn type="button">
