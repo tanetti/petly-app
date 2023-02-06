@@ -150,8 +150,10 @@ export const TabWraper = styled('div')`
   }
 `;
 export const TitleContentWraper = styled('div')`
+  margin-bottom: 28px;
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     display: flex;
     flex-direction: column;
+    margin-bottom: 0;
   }
 `;
