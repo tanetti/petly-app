@@ -21,6 +21,8 @@ export const ModalTitleNotice = styled('p')`
   letter-spacing: -0.01em;
   margin-bottom: 16px;
   ${({ theme }) => theme.breakpoints.up('tablet')} {
+    margin-bottom: 20px;
+    padding-top: 20px;
   }
 `;
 
@@ -80,6 +82,8 @@ export const BtnWraper = styled('div')`
   flex-direction: column;
   align-items: center;
   ${({ theme }) => theme.breakpoints.up('tablet')} {
+    flex-direction: row;
+    justify-content: end;
   }
 `;
 export const BtnAdd = styled(FilledButton)`

@@ -118,14 +118,14 @@ export const NoticeCategoryItem = ({ notice }) => {
                 <NoticeWraper>Price:</NoticeWraper>
                 <ModalPetInfoWraper>{'price'}</ModalPetInfoWraper>
               </ModalParagtaph>
+              <Comments>
+                <CommentsWraper>Comments:</CommentsWraper>Lorem ipsum dolor sit
+                amet, consectetur Lorem ipsum dolor sit amet, consectetur Lorem
+                ipsum dolor sit amet, consectetur Lorem
+              </Comments>
             </ModalContentWraper>
           </TitleContentWraper>
         </TabWraper>
-        <Comments>
-          <CommentsWraper>Comments:</CommentsWraper>Lorem ipsum dolor sit amet,
-          consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor
-          sit amet, consectetur Lorem
-        </Comments>
         <BtnWraper>
           <BtnAdd type="button">Contact</BtnAdd>
           <Btn type="button">
