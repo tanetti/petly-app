@@ -8,12 +8,11 @@ export const getStringAge = birthdate => {
   const month = today.getMonth() - birthDate.getMonth();
 
   if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
+    age -= 1;
   }
 
   const ageWord = numWords(age);
+  const yearsWord = ageWord === 'one' ? 'year' : 'years';
 
-  const fullAge = `${ageWord} ${ageWord === 'one' ? 'year' : 'years'}`;
-
-  return fullAge;
+  return `${ageWord} ${yearsWord}`;
 };

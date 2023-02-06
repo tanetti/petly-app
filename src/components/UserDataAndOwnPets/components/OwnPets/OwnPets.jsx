@@ -6,10 +6,14 @@ import { ButtonContainer, OwnPetsList } from './OwnPetsStyled';
 import { useState } from 'react';
 import { AddOwnPetModal } from 'components/AddOwnPetModal/AddOwnPetModal';
 import { standartAnimation } from 'constants/animationVariants';
+import { useAuth } from 'hooks';
 
 export const OwnPets = () => {
   const [isAddPetModalOpened, setIsAddPetModalOpened] = useState(false);
-  const { data, error, isLoading, isPending } = useGetOwnPetsQuery();
+  const { isUserLoggedIn } = useAuth();
+  const { data, error, isLoading, isPending } = useGetOwnPetsQuery(null, {
+    skip: !isUserLoggedIn,
+  });
 
   return (
     <>

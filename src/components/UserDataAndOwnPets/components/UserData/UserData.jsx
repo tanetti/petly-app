@@ -25,7 +25,10 @@ import {
 } from './UserDataStyled';
 
 export const UserData = () => {
-  const { data } = useGetCurrentInfoQuery();
+  const { isUserLoggedIn, isUserPending } = useAuth();
+  const { data } = useGetCurrentInfoQuery(null, {
+    skip: !isUserLoggedIn,
+  });
   const [
     uploadAvatar,
     {
@@ -34,6 +37,7 @@ export const UserData = () => {
       isLoading: isUploading,
     },
   ] = useUploadAvatarMutation();
+
   const [
     deleteAvatar,
     {
@@ -46,7 +50,6 @@ export const UserData = () => {
   const [newAvatarFile, setNewAvatarFile] = useState(null);
   const [activeUnit, setActiveUnit] = useState(null);
   const dispatch = useDispatch();
-  const { isUserPending } = useAuth();
 
   useEffect(() => {
     if (!isUploadSuccess) return;
