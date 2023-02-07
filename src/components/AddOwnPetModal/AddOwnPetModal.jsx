@@ -3,11 +3,7 @@ import { PropTypes } from 'prop-types';
 import { useAddOwnPetMutation } from 'redux/ownPets/ownPetsApi';
 import { AnimatePresence, motion } from 'framer-motion';
 import { makeToast } from 'utilities/makeToast';
-import {
-  CommonModal,
-  CommonProgressBar,
-  CommonProgressBarContainer,
-} from 'components/Shared';
+import { CommonModal } from 'components/Shared';
 import { standartAnimation } from 'constants/animationVariants';
 import { FirstStep, SecondStep } from './components';
 import {
@@ -225,20 +221,6 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
           )}
         </AnimatePresence>
       </ModalContainer>
-      <CommonProgressBarContainer>
-        <AnimatePresence>
-          {isPetAdding ? (
-            <motion.div
-              variants={standartAnimation}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <CommonProgressBar />
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
-      </CommonProgressBarContainer>
     </CommonModal>
   );
 };

@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import dayjs from 'dayjs';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CircularProgress } from '@mui/material';
 import { standartAnimation } from 'constants/animationVariants';
-import {
-  useDeleteOwnPetMutation,
-  useGetOwnPetsQuery,
-} from 'redux/ownPets/ownPetsApi';
+import { useDeleteOwnPetMutation } from 'redux/ownPets/ownPetsApi';
 import noPhotoImage from 'images/no-photo.webp';
 import {
   PetsItem,
@@ -20,24 +17,20 @@ import {
   PetDataCaption,
   ImageLoaderContainer,
 } from './OwnPetItemStyled';
+import { DeletePromptModal } from 'components/DeletePromptModal/DeletePromptModal';
 
 export const OwnPetsItem = ({ petData }) => {
   const { _id, name, birthdate, breed, comments, avatarURL } = petData;
+  const [isDeletePromptModalOpened, setIsDeletePromptModalOpened] =
+    useState(false);
   const [shouldImageShown, setShouldImageShown] = useState(false);
-  const [isDelettingInProgress, setIsDelettingInProgress] = useState(false);
   const [imageOnError, setImageOnError] = useState(false);
-  const { isFetching: isOwnPetsPending } = useGetOwnPetsQuery();
-  const [deleteOwnPet, { isLoading: isOwnPetDeleting }] =
-    useDeleteOwnPetMutation();
+  const [
+    deleteOwnPet,
+    { isError: isOwnPetDeleteError, isLoading: isOwnPetDeleting },
+  ] = useDeleteOwnPetMutation();
 
-  useEffect(() => {
-    if (!isDelettingInProgress || isOwnPetDeleting || isOwnPetsPending) return;
-
-    setIsDelettingInProgress(false);
-  }, [isDelettingInProgress, isOwnPetDeleting, isOwnPetsPending]);
-
-  const onDeletePetButtonClick = () => {
-    setIsDelettingInProgress(true);
+  const onDeletePet = () => {
     deleteOwnPet(_id);
   };
 
@@ -68,11 +61,11 @@ export const OwnPetsItem = ({ petData }) => {
           type="button"
           title="Delete pet"
           aria-label="Delete pet"
-          loading={isDelettingInProgress}
-          onClick={onDeletePetButtonClick}
+          loading={isOwnPetDeleting}
+          onClick={() => setIsDeletePromptModalOpened(true)}
         >
           <AnimatePresence mode="wait">
-            {!isDelettingInProgress ? (
+            {!isOwnPetDeleting ? (
               <motion.div
                 key="deleteIcon"
                 variants={standartAnimation}
@@ -101,6 +94,16 @@ export const OwnPetsItem = ({ petData }) => {
           </PetDataItem>
         ) : null}
       </PetInfo>
+
+      <DeletePromptModal
+        isOpened={isDeletePromptModalOpened}
+        closeModal={() => setIsDeletePromptModalOpened(false)}
+        action={onDeletePet}
+        isLoading={isOwnPetDeleting}
+        isError={isOwnPetDeleteError}
+        whoWord={name}
+        fromWord="own collection"
+      />
     </PetsItem>
   );
 };

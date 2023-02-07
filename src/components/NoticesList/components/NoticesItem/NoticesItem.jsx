@@ -63,7 +63,7 @@ export const NoticesItem = ({ noticeData }) => {
           </>
         ) : null}
       </NoticeStats>
-      <BottomButtons noticeId={_id} ownerId={ownerId} />
+      <BottomButtons noticeId={_id} ownerId={ownerId} petName={name} />
     </NoticeContainer>
   );
 };

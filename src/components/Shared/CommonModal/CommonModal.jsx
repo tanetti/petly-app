@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Fade, useTheme } from '@mui/material';
 import { backdropSlotProps } from 'theme/backdropSlotProps';
+import { standartAnimation } from 'constants/animationVariants';
+import {
+  CommonProgressBar,
+  CommonProgressBarContainer,
+} from '../CommonProgressBarStyled';
 import {
   StyledModal,
   ModalWindow,
@@ -44,6 +50,21 @@ export const CommonModal = ({
             </ModalCloseButton>
             {children}
           </ContentContainer>
+
+          <CommonProgressBarContainer>
+            <AnimatePresence>
+              {isActionsDisabled ? (
+                <motion.div
+                  variants={standartAnimation}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                >
+                  <CommonProgressBar />
+                </motion.div>
+              ) : null}
+            </AnimatePresence>
+          </CommonProgressBarContainer>
         </ModalWindow>
       </Fade>
     </StyledModal>

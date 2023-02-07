@@ -6,8 +6,6 @@ import { standartAnimation } from 'constants/animationVariants';
 import { FirstStep, SecondStep } from './components';
 import {
   CommonModal,
-  CommonProgressBar,
-  CommonProgressBarContainer,
 } from 'components/Shared';
 import { ModalContainer } from './AddNoticeModalStyled';
 import { makeToast } from 'utilities/makeToast';
@@ -90,21 +88,6 @@ export const AddNoticeModal = ({ isOpened, closeModal }) => {
           )}
         </AnimatePresence>
       </ModalContainer>
-
-      <CommonProgressBarContainer>
-        <AnimatePresence>
-          {isNoticeAdding ? (
-            <motion.div
-              variants={standartAnimation}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <CommonProgressBar />
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
-      </CommonProgressBarContainer>
     </CommonModal>
   );
 };

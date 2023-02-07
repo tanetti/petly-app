@@ -79,6 +79,7 @@ export const NoticeTitle = styled('h3')`
   line-height: 1.36;
   letter-spacing: -0.01em;
 
+  word-wrap: break-word;
   overflow: hidden;
 `;
 
