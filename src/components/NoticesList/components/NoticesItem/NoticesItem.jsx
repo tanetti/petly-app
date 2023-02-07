@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useScreen } from 'hooks';
 import { getStringAge } from './utilities/getStringAge';
+import { standartAnimation } from 'constants/animationVariants';
 import { BottomButtons, FavoriteButton, NoticeAvatar } from './components';
 import {
   CategoryBadge,
@@ -32,7 +33,14 @@ export const NoticesItem = ({ noticeData }) => {
   ).name;
 
   return (
-    <NoticeContainer>
+    <NoticeContainer
+      key={_id}
+      variants={standartAnimation}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      layout
+    >
       <CategoryBadge>
         {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}
       </CategoryBadge>

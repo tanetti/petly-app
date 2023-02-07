@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 
-export const NoticeContainer = styled('li')`
+export const NoticeContainer = styled(motion.li)`
   position: relative;
 
   display: flex;

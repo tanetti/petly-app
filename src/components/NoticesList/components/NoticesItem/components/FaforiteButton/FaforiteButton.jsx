@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
-import { useAuth } from 'hooks';
 import { useEffect, useState } from 'react';
+import { useAuth } from 'hooks';
+import { useDispatch } from 'react-redux';
+import { noticesApi } from 'redux/notices/noticesApi';
+import { useParams } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import {
   useAddFavoriteMutation,
@@ -19,15 +22,21 @@ import {
 export const FavoriteButton = ({ noticeId }) => {
   const [isActionInProgress, setIsActionInProgress] = useState(false);
   const { isUserLoggedIn } = useAuth();
+  const dispatch = useDispatch();
+  const { categoryName } = useParams();
   const { data: userFavorite, isFetching: isFavoriteFetching } =
     useGetFavoriteQuery(null, {
       skip: !isUserLoggedIn,
     });
 
-  const [addFavorite, { isLoading: isFavoriteAdding }] =
-    useAddFavoriteMutation();
-  const [deleteFavorite, { isLoading: isFavoriteDeletting }] =
-    useDeleteFavoriteMutation();
+  const [
+    addFavorite,
+    { isSuccess: isFavoriteAddSuccess, isLoading: isFavoriteAdding },
+  ] = useAddFavoriteMutation();
+  const [
+    deleteFavorite,
+    { isSuccess: isFavoriteDeleteSuccess, isLoading: isFavoriteDeletting },
+  ] = useDeleteFavoriteMutation();
 
   useEffect(() => {
     if (
@@ -39,9 +48,21 @@ export const FavoriteButton = ({ noticeId }) => {
       return;
 
     setIsActionInProgress(false);
+
+    if (
+      (!isFavoriteAddSuccess && !isFavoriteDeleteSuccess) ||
+      categoryName !== 'favorite'
+    )
+      return;
+
+    dispatch(noticesApi.util.invalidateTags(['Notices']));
   }, [
+    categoryName,
+    dispatch,
     isActionInProgress,
+    isFavoriteAddSuccess,
     isFavoriteAdding,
+    isFavoriteDeleteSuccess,
     isFavoriteDeletting,
     isFavoriteFetching,
   ]);
