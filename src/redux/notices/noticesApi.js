@@ -23,8 +23,6 @@ export const noticesApi = createApi({
       query: params => {
         const { categoryName, searchValue } = params;
 
-        if (!categoryName) return;
-
         if (
           [
             ...PUBLIC_CATEGORIES.map(({ category }) => category),

@@ -4,7 +4,7 @@ import { CircularProgress } from '@mui/material';
 import noPhotoImage from 'images/no-photo.webp';
 import { AvatarContainer, Avatar, Loader } from './NoticeAvatarStyled';
 import { AnimatePresence } from 'framer-motion';
-import { standartAnimation } from 'constants/animationVariants';
+import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 
 export const NoticeAvatar = ({ avatarURL, name }) => {
   const [shouldImageShown, setShouldImageShown] = useState(false);
@@ -24,7 +24,7 @@ export const NoticeAvatar = ({ avatarURL, name }) => {
         {!shouldImageShown ? (
           <Loader
             key="loader"
-            variants={standartAnimation}
+            variants={ATANDART_ANIMATION_VARIANT}
             initial="initial"
             animate="animate"
             exit="exit"

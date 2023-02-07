@@ -8,7 +8,7 @@ import {
   SexFieldsetLegend,
 } from './SexFieldsetStyled';
 import { AnimatePresence } from 'framer-motion';
-import { standartAnimation } from 'constants/animationVariants';
+import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 
 export const SexFieldset = ({ control, error, isDisabled }) => (
   <SexFieldsetContainer>
@@ -54,7 +54,7 @@ export const SexFieldset = ({ control, error, isDisabled }) => (
       {!!error ? (
         <SexErrorContainer
           key="sexError"
-          variants={standartAnimation}
+          variants={ATANDART_ANIMATION_VARIANT}
           initial="initial"
           animate="animate"
           exit="exit"

@@ -10,7 +10,7 @@ import {
   useDeleteFavoriteMutation,
   useGetFavoriteQuery,
 } from 'redux/favorite/favoriteApi';
-import { standartAnimation } from 'constants/animationVariants';
+import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import {
   DefaultBackgroundIcon,
   DefaultFrontIcon,
@@ -18,8 +18,11 @@ import {
   InFavoriteIcon,
   StyledButton,
 } from './FaforiteButtonStyled';
+import { RestrictedActionModal } from 'components/RestrictedActionModal/RestrictedActionModal';
 
 export const FavoriteButton = ({ noticeId }) => {
+  const [isRestrictedActionModalOpened, setIsRestrictedActionModalOpened] =
+    useState(false);
   const [isActionInProgress, setIsActionInProgress] = useState(false);
   const { isUserLoggedIn } = useAuth();
   const dispatch = useDispatch();
@@ -33,6 +36,7 @@ export const FavoriteButton = ({ noticeId }) => {
     addFavorite,
     { isSuccess: isFavoriteAddSuccess, isLoading: isFavoriteAdding },
   ] = useAddFavoriteMutation();
+
   const [
     deleteFavorite,
     { isSuccess: isFavoriteDeleteSuccess, isLoading: isFavoriteDeletting },
@@ -70,6 +74,8 @@ export const FavoriteButton = ({ noticeId }) => {
   const isThisNoticeInFavorite = userFavorite?.includes(noticeId);
 
   const onFavoriteButtonClick = () => {
+    if (!isUserLoggedIn) return setIsRestrictedActionModalOpened(true);
+
     if (isThisNoticeInFavorite) {
       setIsActionInProgress(true);
       deleteFavorite(noticeId);
@@ -80,34 +86,44 @@ export const FavoriteButton = ({ noticeId }) => {
   };
 
   return (
-    <StyledButton loading={isActionInProgress} onClick={onFavoriteButtonClick}>
-      <AnimatePresence mode="wait">
-        {!isThisNoticeInFavorite && !isActionInProgress ? (
-          <IconSet
-            key="default"
-            variants={standartAnimation}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            <DefaultBackgroundIcon />
-            <DefaultFrontIcon />
-          </IconSet>
-        ) : null}
+    <>
+      <StyledButton
+        loading={isActionInProgress}
+        onClick={onFavoriteButtonClick}
+      >
+        <AnimatePresence mode="wait">
+          {!isThisNoticeInFavorite && !isActionInProgress ? (
+            <IconSet
+              key="default"
+              variants={ATANDART_ANIMATION_VARIANT}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <DefaultBackgroundIcon />
+              <DefaultFrontIcon />
+            </IconSet>
+          ) : null}
 
-        {isThisNoticeInFavorite && !isActionInProgress ? (
-          <IconSet
-            key="favorite"
-            variants={standartAnimation}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            <InFavoriteIcon />
-          </IconSet>
-        ) : null}
-      </AnimatePresence>
-    </StyledButton>
+          {isThisNoticeInFavorite && !isActionInProgress ? (
+            <IconSet
+              key="favorite"
+              variants={ATANDART_ANIMATION_VARIANT}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <InFavoriteIcon />
+            </IconSet>
+          ) : null}
+        </AnimatePresence>
+      </StyledButton>
+
+      <RestrictedActionModal
+        isOpened={isRestrictedActionModalOpened}
+        closeModal={() => setIsRestrictedActionModalOpened(false)}
+      />
+    </>
   );
 };
 

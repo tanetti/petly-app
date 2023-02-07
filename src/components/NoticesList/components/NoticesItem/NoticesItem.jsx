@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { useScreen } from 'hooks';
 import { getStringAge } from './utilities/getStringAge';
-import { standartAnimation } from 'constants/animationVariants';
+import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { PUBLIC_CATEGORIES } from 'constants/noticesCategory';
+import { CURRENCY_FORMAT } from 'constants/currencyFormat';
 import { BottomButtons, FavoriteButton, NoticeAvatar } from './components';
 import {
   CategoryBadge,
@@ -9,7 +11,6 @@ import {
   NoticeStats,
   NoticeTitle,
 } from './NoticesItemStyled';
-import { PUBLIC_CATEGORIES } from 'constants/noticesCategory';
 
 export const NoticesItem = ({ noticeData }) => {
   const screen = useScreen();
@@ -35,7 +36,7 @@ export const NoticesItem = ({ noticeData }) => {
   return (
     <NoticeContainer
       key={_id}
-      variants={standartAnimation}
+      variants={ATANDART_ANIMATION_VARIANT}
       initial="initial"
       animate="animate"
       exit="exit"
@@ -59,7 +60,7 @@ export const NoticesItem = ({ noticeData }) => {
         {price ? (
           <>
             <span>Price:</span>
-            <span>{`${price} UAH`}</span>
+            <span>{CURRENCY_FORMAT.format(price)}</span>
           </>
         ) : null}
       </NoticeStats>

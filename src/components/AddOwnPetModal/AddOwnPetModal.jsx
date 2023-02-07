@@ -4,7 +4,7 @@ import { useAddOwnPetMutation } from 'redux/ownPets/ownPetsApi';
 import { AnimatePresence, motion } from 'framer-motion';
 import { makeToast } from 'utilities/makeToast';
 import { CommonModal } from 'components/Shared';
-import { standartAnimation } from 'constants/animationVariants';
+import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { FirstStep, SecondStep } from './components';
 import {
   ModalContainer,
@@ -140,7 +140,7 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
           {step === 1 ? (
             <motion.div
               key="stepOne"
-              variants={standartAnimation}
+              variants={ATANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -153,7 +153,7 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
               />
               <ButtonContainer
                 key="stepOneButtons"
-                variants={standartAnimation}
+                variants={ATANDART_ANIMATION_VARIANT}
                 initial="initial"
                 animate="animate"
                 exit="exit"
@@ -177,7 +177,7 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
           ) : (
             <motion.div
               key="stepTwo"
-              variants={standartAnimation}
+              variants={ATANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -193,7 +193,7 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
               />
               <ButtonContainer
                 key="stepTwoButtons"
-                variants={standartAnimation}
+                variants={ATANDART_ANIMATION_VARIANT}
                 initial="initial"
                 animate="animate"
                 exit="exit"

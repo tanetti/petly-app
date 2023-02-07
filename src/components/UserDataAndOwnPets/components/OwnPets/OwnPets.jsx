@@ -5,7 +5,7 @@ import { NoOwnPetsLayout, OwnPetsItem } from './components';
 import { ButtonContainer, OwnPetsList } from './OwnPetsStyled';
 import { useState } from 'react';
 import { AddOwnPetModal } from 'components/AddOwnPetModal/AddOwnPetModal';
-import { standartAnimation } from 'constants/animationVariants';
+import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { useAuth } from 'hooks';
 
 export const OwnPets = () => {
@@ -32,7 +32,7 @@ export const OwnPets = () => {
           <AnimatePresence>
             <OwnPetsList
               key="ownPetsList"
-              variants={standartAnimation}
+              variants={ATANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"

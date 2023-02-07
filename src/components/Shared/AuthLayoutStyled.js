@@ -54,7 +54,9 @@ export const LayoutHint = styled('p')`
 `;
 
 export const LayoutHintLink = styled(Link)`
-  text-decoration-line: underline;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-decoration-thickness: 1px;
 
   color: ${({ theme }) => theme.palette.blueLink.main};
 `;

@@ -1,4 +1,4 @@
-import { standartAnimation } from 'constants/animationVariants';
+import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import {
   NoResultContainer,
   NoResultIcon,
@@ -9,7 +9,7 @@ export const NoResultLayout = () => {
   return (
     <NoResultContainer
       key="noResultLayout"
-      variants={standartAnimation}
+      variants={ATANDART_ANIMATION_VARIANT}
       initial="initial"
       animate="animate"
       exit="exit"
