@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { AnimatePresence } from 'framer-motion';
 import { makeToast } from 'utilities/makeToast';
-import { convertImageToBase64Url } from 'utilities/convertImageToBase64Url';
 import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import {
   AddImageIcon,
@@ -23,7 +22,7 @@ export const AvatarDropZone = ({
   variant,
   isDisabled,
 }) => {
-  const [base64AvatarUrl, setBase64AvatarUrl] = useState(null);
+  const [selectedAvatarUrl, setSelectedAvatarUrl] = useState(null);
   const [shouldImageShown, setShouldImageShown] = useState(false);
   const [isAvatarContainerHovered, setIsAvatarContainerHovered] =
     useState(false);
@@ -31,7 +30,7 @@ export const AvatarDropZone = ({
   useEffect(() => {
     if (!isReseted) return;
 
-    setBase64AvatarUrl(null);
+    setSelectedAvatarUrl(null);
   }, [isReseted]);
 
   const {
@@ -50,7 +49,7 @@ export const AvatarDropZone = ({
     },
     onDropAccepted: files => {
       setIsAvatarContainerHovered(false);
-      convertImageToBase64Url(files[0], setBase64AvatarUrl);
+      setSelectedAvatarUrl(URL.createObjectURL(files[0]));
       setNewAvatarFile(files[0]);
     },
     onDropRejected: fileRejections =>
@@ -58,7 +57,7 @@ export const AvatarDropZone = ({
     onError: error => makeToast(error),
   });
 
-  const presentImage = base64AvatarUrl || currentAvatarUrl;
+  const presentImage = selectedAvatarUrl || currentAvatarUrl;
 
   return (
     <DropZoneContainer variant={variant}>
