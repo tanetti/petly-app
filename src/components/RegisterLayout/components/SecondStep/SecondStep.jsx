@@ -52,7 +52,7 @@ export const SecondStep = ({
     Object.entries(secondStepFormData).forEach(([key, value]) =>
       setValue(key, value)
     );
-  }, [firstStepFormData, secondStepFormData, setValue]);
+  }, [secondStepFormData, setValue]);
 
   useEffect(() => {
     if (!userError || !userError.startsWith('register')) return;
@@ -81,8 +81,7 @@ export const SecondStep = ({
     dispatch(resetWasRegistered());
   });
 
-  const onMoveBackward = event => {
-    event.preventDefault();
+  const onMoveBackward = () => {
     setSecondStepFormData(getValues());
     moveBackward();
   };

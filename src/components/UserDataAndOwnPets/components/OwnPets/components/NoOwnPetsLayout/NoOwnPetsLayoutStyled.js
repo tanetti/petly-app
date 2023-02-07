@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 
-export const NoOwnPetsWrapper = styled('div')`
+export const NoOwnPetsWrapper = styled(motion.div)`
   display: grid;
   place-items: center;
   gap: 40px;

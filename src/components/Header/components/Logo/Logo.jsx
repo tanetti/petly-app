@@ -1,8 +1,10 @@
-import { LogoAccent, LogoWrapper } from './LogoStyled';
+import { LogoAccent, LogoLink, LogoWrapper } from './LogoStyled';
 
 export const Logo = () => (
   <LogoWrapper>
-    pe<LogoAccent>t</LogoAccent>
-    ly
+    <LogoLink to="/">
+      pe<LogoAccent>t</LogoAccent>
+      ly
+    </LogoLink>
   </LogoWrapper>
 );

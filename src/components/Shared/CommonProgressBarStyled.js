@@ -5,6 +5,7 @@ export const CommonProgressBarContainer = styled('div')`
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: 20;
 
   width: 100%;
 

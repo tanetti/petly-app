@@ -32,4 +32,13 @@ export const TOAST_CASES = {
     message: 'Maximal Name length - 30 symbols',
     severity: 'error',
   },
+
+  'user-update-email-format-error': {
+    message: 'Wrong Email format',
+    severity: 'error',
+  },
+  'user-update-email-0102-error': {
+    message: 'Email already in use',
+    severity: 'error',
+  },
 };

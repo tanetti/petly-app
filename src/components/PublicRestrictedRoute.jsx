@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 export const PublicRestrictedRoute = ({
   component: Component,
-  redirectTo = '/notices',
+  redirectTo = '/user',
 }) => {
   const location = useLocation();
   const { isUserLoggedIn } = useAuth();

@@ -61,4 +61,9 @@ export const globalStyles = theme => ({
   p: {
     margin: 0,
   },
+  fieldset: {
+    margin: 0,
+    padding: 0,
+    borderWidth: 0,
+  },
 });

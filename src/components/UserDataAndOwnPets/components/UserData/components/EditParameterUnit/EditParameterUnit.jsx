@@ -1,18 +1,20 @@
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useUpdateCurrentInfoMutation } from 'redux/currentUserInfo/currentUserInfoApi';
 import { AnimatePresence, motion } from 'framer-motion';
 import InputMask from 'react-input-mask';
 import * as yup from 'yup';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import 'dayjs/locale/uk';
+import 'dayjs/locale/en';
 import { Autocomplete, createFilterOptions } from '@mui/material';
 import { makeToast } from 'utilities/makeToast';
 import { userDataValidationSchema } from 'utilities/validationSchemas';
-import { standartAnimation } from 'constants/animationVariants';
+import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { CITIES } from 'constants/cities';
 import {
+  AutocompleteWrapper,
   DateInputWrapper,
   EditIcon,
   ParameterButton,
@@ -31,8 +33,12 @@ export const EditParameterUnit = ({
   activeUnit,
   setActiveUnit,
   currentData,
+  isDataLoading,
 }) => {
   const [parameterValue, setParameterValue] = useState('');
+  const [isFieldEditing, setIsFieldEditing] = useState(false);
+  const [isUpdatingInProgress, setIsUpdatingInProgress] = useState(false);
+  const currentField = useRef(null);
   const {
     label: unitLabel,
     name: unitName,
@@ -40,24 +46,26 @@ export const EditParameterUnit = ({
     fieldVariant: unitFieldVariant,
   } = unitSettings;
 
-  const currentUnitData = currentData[unitName];
+  const [updateInfo, { error, isLoading: isUpdating }] =
+    useUpdateCurrentInfoMutation();
 
-  useEffect(() => {
-    if (!currentUnitData) return;
-
-    setParameterValue(currentUnitData);
-  }, [currentUnitData, unitName]);
+  const currentUnitData = currentData ? currentData[unitName] : null;
 
   const onValueChange = ({ currentTarget }) =>
     setParameterValue(currentTarget.value);
 
-  const onParameterButtonClick = async () => {
+  const onParameterButtonClick = useCallback(async () => {
     if (activeUnit !== unitName) {
       setActiveUnit(unitName);
+
+      setTimeout(
+        () => currentField.current && currentField.current.focus(),
+        100
+      );
       return;
     }
 
-    const trimmedParameterValue = parameterValue.trim();
+    const trimmedParameterValue = parameterValue?.trim() ?? '';
 
     if (currentUnitData !== trimmedParameterValue) {
       try {
@@ -70,18 +78,64 @@ export const EditParameterUnit = ({
         return;
       }
 
-      console.log(trimmedParameterValue ?? '');
+      setIsUpdatingInProgress(true);
+      updateInfo({ [unitName]: trimmedParameterValue });
     }
     setActiveUnit(null);
-  };
+  }, [
+    activeUnit,
+    currentUnitData,
+    parameterValue,
+    setActiveUnit,
+    unitName,
+    updateInfo,
+  ]);
+
+  const onEnterKeyDown = useCallback(
+    ({ key }) => {
+      if (key !== 'Enter') return;
+
+      onParameterButtonClick({ currentTarget: { value: '' } });
+    },
+    [onParameterButtonClick]
+  );
+
+  useEffect(() => {
+    if (!isUpdatingInProgress || isUpdating || isDataLoading) return;
+
+    setIsUpdatingInProgress(false);
+  }, [isDataLoading, isUpdating, isUpdatingInProgress]);
+
+  useEffect(() => {
+    if (isFieldEditing) document.addEventListener('keydown', onEnterKeyDown);
+
+    if (!isFieldEditing)
+      document.removeEventListener('keydown', onEnterKeyDown);
+
+    return () => document.removeEventListener('keydown', onEnterKeyDown);
+  }, [isFieldEditing, onEnterKeyDown]);
+
+  useEffect(() => {
+    if (!error) return;
+
+    makeToast(error?.data?.code);
+  }, [error]);
+
+  useEffect(() => {
+    if (!currentUnitData) return;
+
+    setParameterValue(currentUnitData);
+  }, [currentUnitData, unitName]);
 
   return (
     <>
       <ParameterLabel htmlFor={unitName}>{`${unitLabel}:`}</ParameterLabel>
       {unitFieldVariant === 'datePicker' ? (
-        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="uk">
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
           <DatePicker
             value={parameterValue}
+            inputFormat="DD.MM.YYYY"
+            disableFuture={true}
             onChange={value =>
               onValueChange({ currentTarget: { value: value.toString() } })
             }
@@ -100,7 +154,7 @@ export const EditParameterUnit = ({
                   {activeUnit === unitName ? (
                     <motion.div
                       key="datePicker"
-                      variants={standartAnimation}
+                      variants={ATANDART_ANIMATION_VARIANT}
                       initial="initial"
                       animate="animate"
                       exit="exit"
@@ -118,12 +172,15 @@ export const EditParameterUnit = ({
       {unitFieldVariant === 'mask' ? (
         <ParameterInput
           as={InputMask}
+          ref={currentField}
           mask="+38 (999) 999-99-99"
           maskPlaceholder={null}
           id={unitName}
           value={parameterValue}
           type={unitType}
           disabled={activeUnit !== unitName}
+          onFocus={() => setIsFieldEditing(true)}
+          onBlur={() => setIsFieldEditing(false)}
           onChange={onValueChange}
         />
       ) : null}
@@ -144,13 +201,28 @@ export const EditParameterUnit = ({
           isOptionEqualToValue={(option, value) => option === value}
           onChange={(_, value) => onValueChange({ currentTarget: { value } })}
           renderInput={({ InputProps, inputProps }) => (
-            <div ref={InputProps.ref}>
+            <AutocompleteWrapper ref={InputProps?.ref}>
               <ParameterInput
                 {...inputProps}
+                onFocus={() => setIsFieldEditing(true)}
+                onBlur={() => setIsFieldEditing(false)}
                 type={unitType}
                 disabled={activeUnit !== unitName}
               />
-            </div>
+              <AnimatePresence>
+                {activeUnit === unitName ? (
+                  <motion.div
+                    key="datePicker"
+                    variants={ATANDART_ANIMATION_VARIANT}
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                  >
+                    {InputProps?.endAdornment}
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+            </AutocompleteWrapper>
           )}
         />
       ) : null}
@@ -161,6 +233,9 @@ export const EditParameterUnit = ({
           type={unitType}
           value={parameterValue}
           disabled={activeUnit !== unitName}
+          ref={currentField}
+          onFocus={() => setIsFieldEditing(true)}
+          onBlur={() => setIsFieldEditing(false)}
           onChange={onValueChange}
         />
       ) : null}
@@ -173,15 +248,17 @@ export const EditParameterUnit = ({
           activeUnit === unitName ? `Save ${unitName}` : `Edit ${unitName}`
         }
         type="button"
-        loading={null}
+        loading={isDataLoading || isUpdatingInProgress}
         disabled={activeUnit && activeUnit !== unitName}
         onClick={onParameterButtonClick}
       >
         <AnimatePresence mode="wait">
-          {activeUnit !== unitName && 'NOT_LOADING' ? (
+          {activeUnit !== unitName &&
+          !isDataLoading &&
+          !isUpdatingInProgress ? (
             <motion.div
               key="editIcon"
-              variants={standartAnimation}
+              variants={ATANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -190,10 +267,12 @@ export const EditParameterUnit = ({
             </motion.div>
           ) : null}
 
-          {activeUnit === unitName && 'NOT_LOADING' ? (
+          {activeUnit === unitName &&
+          !isDataLoading &&
+          !isUpdatingInProgress ? (
             <motion.div
               key="saveIcon"
-              variants={standartAnimation}
+              variants={ATANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -216,5 +295,6 @@ EditParameterUnit.propTypes = {
   }).isRequired,
   activeUnit: PropTypes.string,
   setActiveUnit: PropTypes.func.isRequired,
-  currentData: PropTypes.object.isRequired,
+  currentData: PropTypes.object,
+  isDataLoading: PropTypes.bool,
 };

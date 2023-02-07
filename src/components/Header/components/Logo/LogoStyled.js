@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 export const LogoWrapper = styled('h1')`
   margin: 0;
@@ -20,6 +21,22 @@ export const LogoWrapper = styled('h1')`
   }
 `;
 
+export const LogoLink = styled(Link)`
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    & span {
+      color: ${({ theme }) => theme.palette.accent.dark};
+    }
+  }
+`;
+
 export const LogoAccent = styled('span')`
   color: ${({ theme }) => theme.palette.accent.main};
+
+  transition: ${({ theme }) =>
+    theme.transitions.create(['color'], {
+      duration: theme.transitions.duration.standard,
+    })};
 `;

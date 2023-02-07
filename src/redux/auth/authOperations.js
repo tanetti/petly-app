@@ -1,5 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { currentUserInfoApi } from 'redux/currentUserInfo/currentUserInfoApi';
+import { ownPetsApi } from 'redux/ownPets/ownPetsApi';
+import { favoriteApi } from 'redux/favorite/favoriteApi';
 import { setAuthHeader, clearAuthHeader } from './authHeaderUtilities';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_BASE_URL;
@@ -32,16 +35,22 @@ export const logIn = createAsyncThunk(
   }
 );
 
-export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-  try {
-    await axios.post('users/logout');
-    clearAuthHeader();
-  } catch (error) {
-    const errorCode = error.response?.data?.code ?? error.message;
+export const logOut = createAsyncThunk(
+  'auth/logout',
+  async (dispatch, thunkAPI) => {
+    try {
+      await axios.post('users/logout');
+      clearAuthHeader();
+      dispatch(currentUserInfoApi.util.resetApiState());
+      dispatch(ownPetsApi.util.resetApiState());
+      dispatch(favoriteApi.util.resetApiState());
+    } catch (error) {
+      const errorCode = error.response?.data?.code ?? error.message;
 
-    return thunkAPI.rejectWithValue(errorCode);
+      return thunkAPI.rejectWithValue(errorCode);
+    }
   }
-});
+);
 
 export const refreshUser = createAsyncThunk(
   'auth/refresh',

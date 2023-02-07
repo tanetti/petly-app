@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth, useScreen } from 'hooks';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FirstStep, SecondStep } from './components';
-import { standartAnimation } from 'constants/animationVariants';
+import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import {
   AuthMotionContainer,
   CommonProgressBar,
@@ -27,7 +27,7 @@ export const RegisterLayout = () => {
         {isOnTheFirstStep ? (
           <AuthMotionContainer
             key="firstStep"
-            variants={standartAnimation}
+            variants={ATANDART_ANIMATION_VARIANT}
             initial="initial"
             animate="animate"
             exit="exit"
@@ -41,7 +41,7 @@ export const RegisterLayout = () => {
         ) : (
           <AuthMotionContainer
             key="secondStep"
-            variants={standartAnimation}
+            variants={ATANDART_ANIMATION_VARIANT}
             initial="initial"
             animate="animate"
             exit="exit"
@@ -65,7 +65,7 @@ export const RegisterLayout = () => {
           {(currentScreen === 'tablet' || currentScreen === 'desktop') &&
           isUserPending ? (
             <motion.div
-              variants={standartAnimation}
+              variants={ATANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
