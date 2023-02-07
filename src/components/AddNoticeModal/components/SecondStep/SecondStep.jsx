@@ -265,6 +265,7 @@ export const SecondStep = ({
         <ModalOutlinedButton
           title="Back"
           type="button"
+          disabled={isNoticeAdding}
           onClick={onMoveBackward}
         >
           Back
