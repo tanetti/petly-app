@@ -67,10 +67,10 @@ export const FirstStep = ({
     setError(field, { message });
   }, [dispatch, setError, userError]);
 
-  const onSubmit = data => {
+  const onSubmit = ({ email, password }) => {
     if (userError) dispatch(resetError());
 
-    setFirstStepFormData(data);
+    setFirstStepFormData({ email, password });
     moveForward();
   };
 
