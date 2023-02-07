@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import 'dayjs/locale/uk';
+import 'dayjs/locale/en';
 import { ModalAddsPetFirstStepFormValidationSchema } from 'utilities/validationSchemas';
 import { ModalForm, ModalInput } from './FirstStepStyled';
 import { ModalLabel } from '../Shared';
@@ -55,11 +55,13 @@ export const FirstStep = ({
       <Controller
         name="date"
         control={control}
-        render={({ field: { onChange, ...restField } }) => (
-          <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="uk">
+        render={({ field: { onChange, value, ...restField } }) => (
+          <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
             <DatePicker
               {...restField}
-              placeholder={null}
+              disableFuture={true}
+              inputFormat="DD.MM.YYYY"
+              value={value || null}
               onChange={value => onChange(value?.toString())}
               renderInput={params => {
                 params.inputProps.readOnly = true;

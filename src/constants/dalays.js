@@ -1,1 +1,3 @@
 export const SEARCH_TRIGGER_DELAY = 600;
+
+export const NOTICE_TITLE_SET_DELAY = 300;

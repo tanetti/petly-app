@@ -30,6 +30,7 @@ export const ButtonContainer = styled(motion.div)`
 export const ModalFilledButton = styled(FilledButton)`
   height: 40px;
 
+  font-family: inherit;
   font-size: 16px;
   line-height: 1.38;
   letter-spacing: 0.04em;
@@ -50,6 +51,7 @@ export const ModalFilledButton = styled(FilledButton)`
 export const ModalOutlinedButton = styled(OutlinedButton)`
   height: 40px;
 
+  font-family: inherit;
   font-size: 16px;
   line-height: 1.38;
   letter-spacing: 0.04em;

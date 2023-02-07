@@ -5,29 +5,62 @@ import AddAPhotoRoundedIcon from '@mui/icons-material/AddAPhotoRounded';
 import DoNotDisturbAltRoundedIcon from '@mui/icons-material/DoNotDisturbAltRounded';
 
 export const DropZoneContainer = styled('div')`
-  width: ${({ isModalZone }) => (isModalZone ? '208px' : '100%')};
-  margin: ${({ isModalZone }) => (isModalZone ? '0 auto' : '0')};
-  margin-bottom: ${({ isModalZone }) => (isModalZone ? '20px' : '0')};
+  width: ${({ variant }) => {
+    if (variant === 'own') return '208px';
+    if (variant === 'notice') return '116px';
+    return '100%';
+  }};
+  margin: ${({ variant }) => {
+    if (variant === 'own') return '0 auto';
+    if (variant === 'notice') return '0 auto 0 0';
+    return '0';
+  }};
+  margin-bottom: ${({ variant }) => {
+    if (variant === 'own') return '20px';
+    return '0';
+  }};
 
-  border-radius: ${({ isModalZone }) => (isModalZone ? '20px' : '50%')};
+  border-radius: ${({ variant }) => {
+    if (variant === 'own') return '20px';
+    if (variant === 'notice') return '20px';
+    return '50%';
+  }};
+
   background-color: ${({ isModalZone, theme }) =>
     isModalZone ? theme.palette.background.dark : 'transparent'};
 
   overflow: hidden;
 
-  box-shadow: ${({ theme, isModalZone }) =>
-    isModalZone ? 'none' : theme.shadows[52]};
+  box-shadow: ${({ theme, variant }) => {
+    if (variant === 'own') return 'none';
+    if (variant === 'notice') return 'none';
+    return theme.shadows[52];
+  }};
 
   container-type: inline-size;
 
   ${({ theme }) => theme.breakpoints.up('tablet')} {
-    width: ${({ isModalZone }) => (isModalZone ? '182px' : '233px')};
-    height: ${({ isModalZone }) => (isModalZone ? '182px' : '233px')};
+    width: ${({ variant }) => {
+      if (variant === 'own') return '182px';
+      if (variant === 'notice') return '140px';
+      return '233px';
+    }};
+    height: ${({ variant }) => {
+      if (variant === 'own') return '182px';
+      if (variant === 'notice') return '140px';
+      return '233px';
+    }};
 
-    margin: ${({ isModalZone }) => (isModalZone ? '0 auto' : '0')};
-    margin-bottom: ${({ isModalZone }) => (isModalZone ? '40px' : '0')};
+    margin-bottom: ${({ variant }) => {
+      if (variant === 'own') return '40px';
+      return '0';
+    }};
 
-    border-radius: ${({ isModalZone }) => (isModalZone ? '40px' : '50%')};
+    border-radius: ${({ variant }) => {
+      if (variant === 'own') return '40px';
+      if (variant === 'notice') return '20px';
+      return '50%';
+    }};
   }
 `;
 
@@ -67,7 +100,11 @@ export const ControlsContainer = styled('div')`
 
   color: ${({ theme }) => theme.palette.semiTransparentBlack.main};
 
-  border-radius: ${({ isModalZone }) => (isModalZone ? '20px' : '50%')};
+  border-radius: ${({ variant }) => {
+    if (variant === 'own') return '20px';
+    if (variant === 'notice') return '20px';
+    return '50%';
+  }};
 
   cursor: pointer;
 
@@ -101,13 +138,17 @@ export const IconContainer = styled(motion.div)`
   width: 100%;
   height: 100%;
 
-  background-color: ${({ is_modal_zone, theme }) =>
-    is_modal_zone === 'true'
-      ? theme.palette.semiTransparentBlack.light
-      : theme.palette.background.light};
+  background-color: ${({ theme, variant }) => {
+    if (variant === 'own') return theme.palette.semiTransparentBlack.light;
+    if (variant === 'notice') return theme.palette.semiTransparentBlack.light;
+    return theme.palette.background.light;
+  }};
 
-  border-radius: ${({ is_modal_zone }) =>
-    is_modal_zone === 'true' ? '20px' : '50%'};
+  border-radius: ${({ variant }) => {
+    if (variant === 'own') return '20px';
+    if (variant === 'notice') return '20px';
+    return '50%';
+  }};
 
   pointer-events: none;
 `;

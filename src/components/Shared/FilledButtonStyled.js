@@ -5,6 +5,7 @@ export const FilledButton = styled(LoadingButton)`
   min-width: 120px;
   padding: 8px 28px;
 
+  font-family: inherit;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.35;

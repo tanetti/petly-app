@@ -23,7 +23,7 @@ export const ownPetsApi = createApi({
       query: body => ({
         url: '/users/own',
         method: 'POST',
-        body: body,
+        body,
       }),
       invalidatesTags: ['OwnPets'],
     }),

@@ -24,6 +24,7 @@ export const NoticeButton = styled(OutlinedButton)`
   width: 100%;
   padding: 6px 28px;
 
+  font-family: inherit;
   font-size: 16px;
   line-height: 1.38;
 
@@ -36,7 +37,6 @@ export const NoticeButton = styled(OutlinedButton)`
   &:not(.MuiLoadingButton-loading) svg {
     width: 22px;
     height: 22px;
-    padding-bottom: 2px;
   }
 
   &.MuiLoadingButton-loading > div {

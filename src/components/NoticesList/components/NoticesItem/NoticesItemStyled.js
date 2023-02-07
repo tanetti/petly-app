@@ -69,13 +69,13 @@ export const NoticeTitle = styled('h3')`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 
-  height: ${({ isMobile }) => (isMobile ? 'auto' : '106px')};
+  height: ${({ isMobile }) => (isMobile ? 'auto' : '96px')};
 
-  padding: 20px 20px 10px 20px;
+  padding: 20px 20px 0 20px;
 
   font-weight: 700;
   font-size: 28px;
-  line-height: 1.39;
+  line-height: 1.36;
   letter-spacing: -0.01em;
 
   overflow: hidden;
@@ -90,7 +90,7 @@ export const NoticeStats = styled('p')`
 
   flex-grow: 1;
 
-  padding: 10px 20px 20px 20px;
+  padding: 20px;
 
   font-size: 16px;
   line-height: 1.38;

@@ -53,7 +53,7 @@ export const SecondStep = ({
         <AvatarDropZone
           currentAvatarUrl={image ? URL.createObjectURL(image) : null}
           setNewAvatarFile={saveImageToState}
-          isModalZone={true}
+          variant="own"
           isDisabled={isPetAdding}
         />
         {isImageError && <ImageErrorLabel>Image is required</ImageErrorLabel>}

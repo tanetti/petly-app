@@ -36,6 +36,7 @@ export const ModalCloseButton = styled(IconButton)`
   position: absolute;
   top: 20px;
   right: 20px;
+  z-index: 10;
 
   width: 44px;
   height: 44px;

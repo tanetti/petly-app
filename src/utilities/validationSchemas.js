@@ -3,7 +3,6 @@ import {
   PASSWORD_PATTERN,
   ONLY_LETTERS_PATTERN,
   LETTERS_DIGITS_AND_SYMBOLS_PATTERN,
-  LETTERS_AND_COMMA_PATTERN,
 } from 'constants/patterns';
 
 yup.addMethod(
@@ -45,6 +44,18 @@ yup.addMethod(
     );
   }
 );
+
+yup.addMethod(yup.mixed, 'isAvatarEmpty', function (param, errorMessage) {
+  return this.test('is-Avatar-Empty', errorMessage, function (value) {
+    const { path, createError } = this;
+
+    if (value === param) {
+      return createError({ path, message: errorMessage });
+    }
+
+    return true;
+  });
+});
 
 export const loginValidationSchema = yup.object().shape({
   email: yup
@@ -129,7 +140,10 @@ export const ModalAddsPetFirstStepFormValidationSchema = yup.object().shape({
 export const ModalAddsPetSecondStepFormValidationSchema = yup.object().shape({
   comments: yup
     .string()
-    .matches(LETTERS_DIGITS_AND_SYMBOLS_PATTERN, 'Letters and symbols only')
+    .matches(
+      LETTERS_DIGITS_AND_SYMBOLS_PATTERN,
+      'Letters digits and symbols only'
+    )
     .stringLengthIfNotEmpty(8, 'It seems too short...')
     .max(500, 'Must not exceed 500 characters'),
 });
@@ -137,17 +151,20 @@ export const ModalAddsPetSecondStepFormValidationSchema = yup.object().shape({
 export const ModalAddNoticeFirstStepFormValidationSchema = yup.object().shape({
   title: yup
     .string()
-    .required('Please enter title of ad')
+    .required('Please enter Title')
     .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
     .min(2, 'It seems too short...')
-    .max(48, 'Must not exceed 48 characters'),
+    .max(60, 'Must not exceed 60 characters'),
+
   name: yup
     .string()
     .required('Please enter your pet Name')
     .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
     .min(2, 'It seems too short...')
     .max(30, 'Must not exceed 30 characters'),
-  date: yup.string().required('Please provide your pet Bithday'),
+
+  birthdate: yup.string().required('Please provide your pet Birthday'),
+
   breed: yup
     .string()
     .required('Please enter your pet Breed')
@@ -156,23 +173,37 @@ export const ModalAddNoticeFirstStepFormValidationSchema = yup.object().shape({
     .max(30, 'Must not exceed 30 characters'),
 });
 
-export const getModalAddNoticeSecondStepFormValidationSchema = isSellAdType => {
-  return yup.object().shape({
-    location: yup
-      .string()
-      .required('Please enter your location')
-      .matches(LETTERS_AND_COMMA_PATTERN, 'Must contain only letters and comma')
-      .min(2, 'It seems too short...')
-      .max(30, 'Must not exceed 30 characters'),
-    price: yup.number().when([], {
-      is: () => isSellAdType,
-      then: yup
-        .number('Must contain only integer number')
-        .min(1, "Price can't be zero")
-        .max(999999, 'Too large price')
-        .required('Please enter price')
-        .integer('Must contain only integer number'),
-      otherwise: yup.number(),
-    }),
-  });
-};
+export const createAddNoticeModalSecondStepFormValidationSchema =
+  isCurrentCategorySell => {
+    return yup.object().shape({
+      sex: yup
+        .string()
+        .required('Please choose Sex of pet')
+        .oneOf(['male', 'female'], 'Please choose Sex of pet'),
+
+      location: yup.string().required('Please enter pet location'),
+
+      price: yup.number().when([], {
+        is: () => isCurrentCategorySell,
+        then: yup
+          .number('Must contain only integer number')
+          .min(1, "Price can't be zero")
+          .max(99999999, 'Too large price')
+          .required('Please enter price')
+          .integer('Must contain only integer number')
+          .nullable(true),
+        otherwise: yup.number().nullable(true),
+      }),
+
+      notice_avatar: yup.mixed().isAvatarEmpty(null, 'Image is required'),
+
+      comments: yup
+        .string()
+        .matches(
+          LETTERS_DIGITS_AND_SYMBOLS_PATTERN,
+          'Letters digits and symbols only'
+        )
+        .stringLengthIfNotEmpty(8, 'It seems too short...')
+        .max(500, 'Must not exceed 500 characters'),
+    });
+  };

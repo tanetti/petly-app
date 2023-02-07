@@ -1,129 +1,72 @@
 import { styled } from '@mui/material/styles';
-import maleBgImage from 'images/male-sign.svg';
-import femaleBgImage from 'images/female-sign.svg';
+import { motion } from 'framer-motion';
+import { Autocomplete } from '@mui/material';
 
 export const ModalForm = styled('form')`
   display: flex;
   flex-direction: column;
-
-  margin-bottom: 40px;
 `;
 
-export const ModalStepTwoDescription = styled('p')`
-  margin: 0 auto;
-  margin-bottom: 20px;
-
-  font-size: 16px;
-  line-height: 1.38;
-  letter-spacing: -0.01em;
-
-  color: ${({ theme }) => theme.palette.text.primary};
+export const StyledAutocomplete = styled(Autocomplete)`
+  margin-bottom: 16px;
 
   ${({ theme }) => theme.breakpoints.up('tablet')} {
-    font-size: 20px;
-    line-height: 1.2;
+    margin-bottom: 28px;
+  }
+
+  & .MuiTextField-root {
+    margin-bottom: 0;
+  }
+
+  & .MuiOutlinedInput-root.MuiInputBase-sizeSmall {
+    padding-left: 8px;
+
+    ${({ theme }) => theme.breakpoints.up('tablet')} {
+      padding-left: 10px;
+    }
   }
 `;
 
 export const ImageContainer = styled('div')`
   position: relative;
 
-  & > div {
-    margin: 0 auto 20px 0;
+  margin-bottom: 20px;
 
-    ${({ theme }) => theme.breakpoints.up('tablet')} {
-      margin: 0 auto 28px 0;
-    }
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+    margin-bottom: 28px;
   }
 `;
 
-export const ImageErrorLabel = styled('p')`
+export const ImageErrorContainer = styled(motion.p)`
   position: absolute;
-  top: 95%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  bottom: -24px;
+  left: 10px;
 
-  font-size: 12px;
-  line-height: 1.2;
+  max-width: 230px;
+  padding: 0 4px;
+
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1.3;
+
   color: ${({ theme }) => theme.palette.error.main};
+  background-color: ${({ theme }) => theme.palette.background.main};
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: ${({ theme }) => theme.palette.error.main};
+  border-radius: 8px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   ${({ theme }) => theme.breakpoints.up('tablet')} {
-    top: 89%;
+    left: 17px;
 
-    font-size: 14px;
+    font-size: 12px;
   }
-`;
-
-export const SexContainer = styled('div')`
-  display: flex;
-  padding-top: 8px;
-
-  ${({ theme }) => theme.breakpoints.up('tablet')} {
-    padding-top: 16px;
-  }
-`;
-
-export const CheckboxContainer = styled('div')`
-  position: relative;
-  width: 40px;
-  height: 40px;
-  margin-bottom: 71px;
-
-  &:not(:last-child) {
-    margin-right: 40px;
-  }
-
-  ${({ theme }) => theme.breakpoints.up('tablet')} {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 87px;
-
-    &:not(:last-child) {
-      margin-right: 83px;
-    }
-  }
-`;
-
-export const CheckboxLabel = styled('label')`
-  &:before {
-    position: absolute;
-    display: block;
-    content: '';
-    width: 40px;
-    height: 40px;
-
-    top: 0px;
-    left: 0px;
-
-    ${({ theme }) => theme.breakpoints.up('tablet')} {
-      width: 60px;
-      height: 60px;
-    }
-  }
-
-  &.male:before {
-    background: url(${maleBgImage}) center / contain no-repeat;
-  }
-
-  &.female:before {
-    background: url(${femaleBgImage}) center / contain no-repeat;
-  }
-
-  & > p {
-    margin-top: 52px;
-
-    ${({ theme }) => theme.breakpoints.up('tablet')} {
-      margin-top: 80px;
-    }
-  }
-
-  & > p.isActive {
-    color: ${({ theme }) => theme.palette.accent.main};
-  }
-`;
-
-export const CheckboxInput = styled('input')`
-  display: none;
 `;
 
 export const CommentsContainer = styled('div')`
@@ -132,6 +75,12 @@ export const CommentsContainer = styled('div')`
 
 export const TextareaContainer = styled('div')`
   position: relative;
+
+  margin-bottom: 14px;
+
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+    margin-bottom: 26px;
+  }
 `;
 
 export const Textarea = styled('textarea')`
@@ -197,7 +146,7 @@ export const Textarea = styled('textarea')`
   }
 `;
 
-export const TextareaErrorContainer = styled('p')`
+export const TextareaErrorContainer = styled(motion.p)`
   position: absolute;
   top: -7px;
   right: 14px;
@@ -218,8 +167,6 @@ export const TextareaErrorContainer = styled('p')`
   border-color: ${({ theme }) => theme.palette.error.main};
   border-radius: 8px;
 
-  opacity: 0;
-
   white-space: nowrap;
 
   overflow: hidden;
@@ -234,9 +181,5 @@ export const TextareaErrorContainer = styled('p')`
     top: -8px;
 
     font-size: 12px;
-  }
-
-  &.isError {
-    opacity: 1;
   }
 `;

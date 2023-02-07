@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import 'dayjs/locale/uk';
+import 'dayjs/locale/en';
 import { Autocomplete, createFilterOptions } from '@mui/material';
 import { makeToast } from 'utilities/makeToast';
 import { userDataValidationSchema } from 'utilities/validationSchemas';
@@ -131,9 +131,11 @@ export const EditParameterUnit = ({
     <>
       <ParameterLabel htmlFor={unitName}>{`${unitLabel}:`}</ParameterLabel>
       {unitFieldVariant === 'datePicker' ? (
-        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="uk">
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="en">
           <DatePicker
             value={parameterValue}
+            inputFormat="DD.MM.YYYY"
+            disableFuture={true}
             onChange={value =>
               onValueChange({ currentTarget: { value: value.toString() } })
             }

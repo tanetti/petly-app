@@ -8,6 +8,7 @@ import {
   NoticeStats,
   NoticeTitle,
 } from './NoticesItemStyled';
+import { PUBLIC_CATEGORIES } from 'constants/noticesCategory';
 
 export const NoticesItem = ({ noticeData }) => {
   const screen = useScreen();
@@ -26,11 +27,14 @@ export const NoticesItem = ({ noticeData }) => {
   } = noticeData;
 
   const stringAge = getStringAge(birthdate);
+  const categoryName = PUBLIC_CATEGORIES.find(
+    element => element.category === category
+  ).name;
 
   return (
     <NoticeContainer>
       <CategoryBadge>
-        {category.charAt(0).toUpperCase() + category.slice(1)}
+        {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}
       </CategoryBadge>
       <FavoriteButton noticeId={_id} />
       <NoticeAvatar avatarURL={avatarURL} name={name} />

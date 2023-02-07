@@ -68,11 +68,9 @@ export const FirstStep = ({
   }, [dispatch, setError, userError]);
 
   const onSubmit = data => {
-    const { email, password } = data;
-
     if (userError) dispatch(resetError());
 
-    setFirstStepFormData({ email, password });
+    setFirstStepFormData(data);
     moveForward();
   };
 

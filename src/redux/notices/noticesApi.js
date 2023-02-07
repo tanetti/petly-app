@@ -28,10 +28,10 @@ export const noticesApi = createApi({
       providesTags: ['Notices'],
     }),
     addNotice: builder.mutation({
-      query: notice => ({
+      query: body => ({
         url: `/notices`,
         method: 'POST',
-        body: notice,
+        body,
       }),
       invalidatesTags: ['Notices'],
     }),
