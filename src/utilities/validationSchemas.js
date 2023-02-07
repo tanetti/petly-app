@@ -7,6 +7,36 @@ import {
 
 yup.addMethod(
   yup.string,
+  'startsWithDigitsAndLetters',
+  function (errorMessage) {
+    return this.test(
+      'starts-With-Digits-And-Letters',
+      errorMessage,
+      function (value) {
+        const { path, createError } = this;
+        if (!value.charAt(0).match(/[A-Za-z1-9]/i)) {
+          return createError({ path, message: errorMessage });
+        }
+
+        return true;
+      }
+    );
+  }
+);
+
+yup.addMethod(yup.string, 'endsWithLetters', function (errorMessage) {
+  return this.test('ends-With-Letters', errorMessage, function (value) {
+    const { path, createError } = this;
+    if (!value.charAt(value.length - 1).match(/[A-Za-z]/i)) {
+      return createError({ path, message: errorMessage });
+    }
+
+    return true;
+  });
+});
+
+yup.addMethod(
+  yup.string,
   'stringLengthIfNotEmpty',
   function (param, errorMessage) {
     return this.test(
@@ -62,6 +92,8 @@ export const loginValidationSchema = yup.object().shape({
     .string()
     .trim()
     .email('Wrong Email format')
+    .startsWithDigitsAndLetters('Wrong Email format')
+    .endsWithLetters('Wrong Email format')
     .required('Enter your Email address'),
 
   password: yup.string().required('Enter your Password'),
@@ -72,6 +104,8 @@ export const registerFirstStepValidationSchema = yup.object().shape({
     .string()
     .trim()
     .email('Wrong Email format')
+    .startsWithDigitsAndLetters('Wrong Email format')
+    .endsWithLetters('Wrong Email format')
     .required('Enter your Email address'),
 
   password: yup
