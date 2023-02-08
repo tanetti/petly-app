@@ -1,9 +1,16 @@
 import PropTypes from 'prop-types';
-import { CommonModal } from 'components/Shared';
-import { ModalContainer, ModalTopContainer } from './SingleNoticeModalStyled';
-import { NoticeAvatar } from './components';
-import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { AnimatePresence } from 'framer-motion';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { DATE_FORMAT } from 'constants/dateFormat';
+import { CURRENCY_FORMAT } from 'constants/currencyFormat';
+import { CommonModal, NoticeAvatar } from 'components/Shared';
+import {
+  CommentsContainer,
+  InfoContainer,
+  ModalContainer,
+  ModalTitle,
+  ModalTopContainer,
+} from './SingleNoticeModalStyled';
 
 export const SingleNoticeModal = ({ isOpened, closeModal, noticeData }) => {
   return (
@@ -25,8 +32,64 @@ export const SingleNoticeModal = ({ isOpened, closeModal, noticeData }) => {
               <NoticeAvatar
                 avatarURL={noticeData.avatarURL}
                 name={noticeData.name}
+                categoryName={noticeData.category}
+                variant="modal"
               />
+
+              <div>
+                <ModalTitle>
+                  {noticeData.title.charAt(0).toUpperCase() +
+                    noticeData.title.slice(1)}
+                </ModalTitle>
+
+                <InfoContainer>
+                  <span>Name:</span>
+                  <span>
+                    {noticeData.name.charAt(0).toUpperCase() +
+                      noticeData.name.slice(1)}
+                  </span>
+
+                  <span>Birthday:</span>
+                  <span>{DATE_FORMAT.format(noticeData.birthday)}</span>
+
+                  <span>Breed:</span>
+                  <span>
+                    {noticeData.breed.charAt(0).toUpperCase() +
+                      noticeData.breed.slice(1)}
+                  </span>
+
+                  <span>Location:</span>
+                  <span>
+                    {noticeData.location.charAt(0).toUpperCase() +
+                      noticeData.location.slice(1)}
+                  </span>
+
+                  <span>The sex:</span>
+                  <span>
+                    {noticeData.sex.charAt(0).toUpperCase() +
+                      noticeData.sex.slice(1)}
+                  </span>
+
+                  <span>Email:</span>
+                  <span>{noticeData.owner.email}</span>
+
+                  <span>Phone:</span>
+                  <span>{noticeData.owner.phone}</span>
+
+                  {noticeData.price ? (
+                    <>
+                      <span>Price:</span>
+                      <span>{CURRENCY_FORMAT.format(noticeData.price)}</span>
+                    </>
+                  ) : null}
+                </InfoContainer>
+              </div>
             </ModalTopContainer>
+
+            <CommentsContainer>
+              <span>Comments:&nbsp;</span>
+              <span>{noticeData.comments}</span>
+            </CommentsContainer>
           </ModalContainer>
         ) : null}
       </AnimatePresence>

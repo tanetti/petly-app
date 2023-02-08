@@ -4,13 +4,9 @@ import { getStringAge } from './utilities/getStringAge';
 import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { PUBLIC_CATEGORIES } from 'constants/noticesCategory';
 import { CURRENCY_FORMAT } from 'constants/currencyFormat';
-import { BottomButtons, FavoriteButton, NoticeAvatar } from './components';
-import {
-  CategoryBadge,
-  NoticeContainer,
-  NoticeStats,
-  NoticeTitle,
-} from './NoticesItemStyled';
+import { BottomButtons, FavoriteButton } from './components';
+import { NoticeContainer, NoticeStats, NoticeTitle } from './NoticesItemStyled';
+import { NoticeAvatar } from 'components/Shared';
 
 export const NoticesItem = ({ noticeData }) => {
   const screen = useScreen();
@@ -42,18 +38,22 @@ export const NoticesItem = ({ noticeData }) => {
       exit="exit"
       layout
     >
-      <CategoryBadge>
-        {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}
-      </CategoryBadge>
       <FavoriteButton noticeId={_id} />
-      <NoticeAvatar avatarURL={avatarURL} name={name} />
+
+      <NoticeAvatar
+        avatarURL={avatarURL}
+        name={name}
+        categoryName={categoryName}
+      />
+
       <NoticeTitle isMobile={screen === 'mobile'}>
         {title.charAt(0).toUpperCase() + title.slice(1)}
       </NoticeTitle>
+
       <NoticeStats>
         <span>Breed:</span>
         <span>{breed.charAt(0).toUpperCase() + breed.slice(1)}</span>
-        <span>Place:</span>
+        <span>Location:</span>
         <span>{location.charAt(0).toUpperCase() + location.slice(1)}</span>
         <span>Age:</span>
         <span>{stringAge.charAt(0).toUpperCase() + stringAge.slice(1)}</span>
@@ -64,6 +64,7 @@ export const NoticesItem = ({ noticeData }) => {
           </>
         ) : null}
       </NoticeStats>
+
       <BottomButtons noticeId={_id} ownerId={ownerId} petName={name} />
     </NoticeContainer>
   );

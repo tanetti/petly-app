@@ -1,1 +1,1 @@
-export * from './NoticeAvatar/NoticeAvatar';
+
