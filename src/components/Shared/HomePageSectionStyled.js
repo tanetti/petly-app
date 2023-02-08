@@ -45,6 +45,10 @@ export const PageSection = styled('section')`
     background-image: url(${wavesMobileWebp3});
   }
 
+  @media screen and (min-width: 528px) and (max-width: 767px) {
+    background-position: bottom -180px left calc(50% - 10px);
+  }
+
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     background-size: 1449px;
     background-position: bottom -185px left calc(50% + 155px);
@@ -65,6 +69,11 @@ export const PageSection = styled('section')`
       background-image: url(${wavesTabletPng3});
       background-image: url(${wavesTabletWebp3});
     }
+  }
+
+  @media screen and (min-width: 1024px) and (max-width: 1279px) {
+    background-size: 1249px;
+    background-position: bottom -500px left calc(50% - 50px);
   }
 
   ${({ theme }) => theme.breakpoints.up('desktop')} {

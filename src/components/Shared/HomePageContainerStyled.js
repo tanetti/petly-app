@@ -46,6 +46,12 @@ export const HomePageContainer = styled(Container)`
     background-image: url(${portretMobileWebp3});
   }
 
+  @media screen and (min-width: 528px) and (max-width: 767px) {
+    padding-top: 20px;
+    background-size: 230px;
+    background-position: bottom 0 left calc(50% + 120px);
+  }
+
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     padding-top: 88px;
     background-size: 645px;
@@ -68,6 +74,12 @@ export const HomePageContainer = styled(Container)`
       background-image: url(${portretTabletPng3});
       background-image: url(${portretTabletWebp3});
     }
+  }
+
+  @media screen and (min-width: 1024px) and (max-width: 1279px) {
+    padding-top: 30px;
+    background-size: 420px;
+    background-position: bottom 0 right calc(50% - 180px);
   }
 
   ${({ theme }) => theme.breakpoints.up('desktop')} {
