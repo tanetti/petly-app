@@ -6,7 +6,7 @@ export const NoticeStats = ({ noticeData }) => {
   const {
     title,
     name,
-    birthday,
+    birthdate,
     breed,
     location,
     sex,
@@ -18,19 +18,14 @@ export const NoticeStats = ({ noticeData }) => {
     <InfoContainer>
       <span>Name:</span>
       <span>{name.charAt(0).toUpperCase() + name.slice(1)}</span>
-
       <span>Birthday:</span>
-      <span>{DATE_FORMAT.format(birthday)}</span>
-
+      <span>{DATE_FORMAT.format(Date.parse(birthdate))}</span>
       <span>Breed:</span>
       <span>{breed.charAt(0).toUpperCase() + breed.slice(1)}</span>
-
       <span>Location:</span>
       <span>{location.charAt(0).toUpperCase() + location.slice(1)}</span>
-
       <span>The sex:</span>
       <span>{sex.charAt(0).toUpperCase() + sex.slice(1)}</span>
-
       <span>Email:</span>
       <span>
         <InfoLink
@@ -39,7 +34,6 @@ export const NoticeStats = ({ noticeData }) => {
           {email}
         </InfoLink>
       </span>
-
       {phone ? (
         <>
           <span>Phone:</span>
@@ -48,7 +42,6 @@ export const NoticeStats = ({ noticeData }) => {
           </span>
         </>
       ) : null}
-
       {price ? (
         <>
           <span>Price:</span>

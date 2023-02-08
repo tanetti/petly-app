@@ -10,19 +10,19 @@ export const getStringAge = birthdate => {
   const msInDay = 86400000;
 
   const ageInYears = Math.floor(ageInMilliseconds / (msInDay * 365));
-  if (ageInYears)
+  if (ageInYears > 0)
     return `${numWords(ageInYears)} ${ageInYears === 1 ? 'year' : 'years'}`;
 
   const ageInMonths = Math.floor(ageInMilliseconds / (msInDay * 30));
-  if (ageInMonths)
+  if (ageInMonths > 0)
     return `${numWords(ageInMonths)} ${ageInMonths === 1 ? 'month' : 'months'}`;
 
   const ageInWeeks = Math.floor(ageInMilliseconds / (msInDay * 7));
-  if (ageInWeeks)
+  if (ageInWeeks > 0)
     return `${numWords(ageInWeeks)} ${ageInWeeks === 1 ? 'week' : 'weeks'}`;
 
   const ageInDays = Math.floor(ageInMilliseconds / msInDay);
-  if (ageInDays)
+  if (ageInDays > 0)
     return `${numWords(ageInDays)} ${ageInDays === 1 ? 'day' : 'days'}`;
 
   return 'one day';
