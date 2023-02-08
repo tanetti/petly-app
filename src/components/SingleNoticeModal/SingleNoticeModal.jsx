@@ -7,6 +7,7 @@ import { CommonModal, NoticeAvatar } from 'components/Shared';
 import {
   CommentsContainer,
   InfoContainer,
+  InfoLink,
   ModalContainer,
   ModalTitle,
   ModalTopContainer,
@@ -71,10 +72,24 @@ export const SingleNoticeModal = ({ isOpened, closeModal, noticeData }) => {
                   </span>
 
                   <span>Email:</span>
-                  <span>{noticeData.owner.email}</span>
+                  <span>
+                    <InfoLink
+                      href={`mailto:${noticeData.owner.email}?subject=Petly notice - ${noticeData.title} (${noticeData.name})`}
+                    >
+                      {noticeData.owner.email}
+                    </InfoLink>
+                  </span>
 
-                  <span>Phone:</span>
-                  <span>{noticeData.owner.phone}</span>
+                  {noticeData.owner.phone ? (
+                    <>
+                      <span>Phone:</span>
+                      <span>
+                        <InfoLink href={`tel:${noticeData.owner.phone}`}>
+                          {noticeData.owner.phone}
+                        </InfoLink>
+                      </span>
+                    </>
+                  ) : null}
 
                   {noticeData.price ? (
                     <>
@@ -86,10 +101,12 @@ export const SingleNoticeModal = ({ isOpened, closeModal, noticeData }) => {
               </div>
             </ModalTopContainer>
 
-            <CommentsContainer>
-              <span>Comments:&nbsp;</span>
-              <span>{noticeData.comments}</span>
-            </CommentsContainer>
+            {noticeData.comments ? (
+              <CommentsContainer>
+                <span>Comments:&nbsp;</span>
+                <span>{noticeData.comments}</span>
+              </CommentsContainer>
+            ) : null}
           </ModalContainer>
         ) : null}
       </AnimatePresence>

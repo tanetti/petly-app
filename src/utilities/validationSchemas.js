@@ -159,6 +159,7 @@ export const userDataValidationSchema = yup.object().shape({
 export const ModalAddsPetFirstStepFormValidationSchema = yup.object().shape({
   name: yup
     .string()
+    .trim()
     .required('Please enter your pet Name')
     .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
     .min(2, 'It seems too short...')
@@ -166,6 +167,7 @@ export const ModalAddsPetFirstStepFormValidationSchema = yup.object().shape({
   date: yup.string().required('Please provide your pet Bithday'),
   breed: yup
     .string()
+    .trim()
     .required('Please enter your pet Breed')
     .matches(LETTERS_AND_SYMBOLS_PATTERN, 'Only letters and symbols symbols')
     .min(2, 'It seems too short...')
@@ -175,6 +177,7 @@ export const ModalAddsPetFirstStepFormValidationSchema = yup.object().shape({
 export const ModalAddsPetSecondStepFormValidationSchema = yup.object().shape({
   comments: yup
     .string()
+    .trim()
     .matches(
       LETTERS_DIGITS_AND_SYMBOLS_PATTERN,
       'Letters digits and symbols only'
@@ -186,6 +189,7 @@ export const ModalAddsPetSecondStepFormValidationSchema = yup.object().shape({
 export const ModalAddNoticeFirstStepFormValidationSchema = yup.object().shape({
   title: yup
     .string()
+    .trim()
     .required('Please enter Title')
     .matches(LETTERS_AND_SYMBOLS_PATTERN, 'Must contain only letters')
     .min(2, 'It seems too short...')
@@ -193,6 +197,7 @@ export const ModalAddNoticeFirstStepFormValidationSchema = yup.object().shape({
 
   name: yup
     .string()
+    .trim()
     .required('Please enter your pet Name')
     .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
     .min(2, 'It seems too short...')
@@ -202,6 +207,7 @@ export const ModalAddNoticeFirstStepFormValidationSchema = yup.object().shape({
 
   breed: yup
     .string()
+    .trim()
     .required('Please enter your pet Breed')
     .matches(LETTERS_AND_SYMBOLS_PATTERN, 'Must contain only letters')
     .min(2, 'It seems too short...')
@@ -213,6 +219,7 @@ export const createAddNoticeModalSecondStepFormValidationSchema =
     return yup.object().shape({
       sex: yup
         .string()
+        .trim()
         .required('Please choose Sex of pet')
         .oneOf(['male', 'female'], 'Please choose Sex of pet'),
 
@@ -234,6 +241,7 @@ export const createAddNoticeModalSecondStepFormValidationSchema =
 
       comments: yup
         .string()
+        .trim()
         .matches(
           LETTERS_DIGITS_AND_SYMBOLS_PATTERN,
           'Letters digits and symbols only'

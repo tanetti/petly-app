@@ -85,3 +85,17 @@ export const CommentsContainer = styled('p')`
     font-weight: 600;
   }
 `;
+
+export const InfoLink = styled('a')`
+  color: inherit;
+
+  transition: ${({ theme }) =>
+    theme.transitions.create(['color'], {
+      duration: theme.transitions.duration.standard,
+    })};
+
+  &:hover,
+  &:focus {
+    color: ${({ theme }) => theme.palette.accent.dark};
+  }
+`;
