@@ -3,7 +3,7 @@ import { useState } from 'react';
 import dayjs from 'dayjs';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CircularProgress } from '@mui/material';
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { useDeleteOwnPetMutation } from 'redux/ownPets/ownPetsApi';
 import noPhotoImage from 'images/no-photo.webp';
 import {
@@ -37,7 +37,8 @@ export const OwnPetsItem = ({ petData }) => {
   return (
     <PetsItem
       layout
-      variants={ATANDART_ANIMATION_VARIANT}
+      key={name}
+      variants={STANDART_ANIMATION_VARIANT}
       initial="initial"
       animate="animate"
       exit="exit"
@@ -68,7 +69,7 @@ export const OwnPetsItem = ({ petData }) => {
             {!isOwnPetDeleting ? (
               <motion.div
                 key="deleteIcon"
-                variants={ATANDART_ANIMATION_VARIANT}
+                variants={STANDART_ANIMATION_VARIANT}
                 initial="initial"
                 animate="animate"
                 exit="exit"

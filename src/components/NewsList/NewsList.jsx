@@ -4,7 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import { NewsItem } from './components';
 import { NewsListStyled } from './NewsListStyled';
 import { ErrorLayout, LoaderLayout, NoResultLayout } from 'components/Shared';
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 
 export const NewsList = () => {
   const [searchParams] = useSearchParams();
@@ -24,7 +24,7 @@ export const NewsList = () => {
       {!isLoading && !error && data?.length ? (
         <NewsListStyled
           key="newsList"
-          variants={ATANDART_ANIMATION_VARIANT}
+          variants={STANDART_ANIMATION_VARIANT}
           initial="initial"
           animate="animate"
           exit="exit"

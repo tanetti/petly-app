@@ -1,11 +1,11 @@
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import sadBoyImage from 'images/sad-boy.webp';
 import { NotPetsImg, NoOwnPetsWrapper, NotPets } from './NoOwnPetsLayoutStyled';
 
 export const NoOwnPetsLayout = () => (
   <NoOwnPetsWrapper
     key="noOwnPetsLayout"
-    variants={ATANDART_ANIMATION_VARIANT}
+    variants={STANDART_ANIMATION_VARIANT}
     initial="initial"
     animate="animate"
     exit="exit"

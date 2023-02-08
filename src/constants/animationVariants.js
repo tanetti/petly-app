@@ -1,4 +1,4 @@
-export const ATANDART_ANIMATION_VARIANT = {
+export const STANDART_ANIMATION_VARIANT = {
   initial: { opacity: 0 },
   animate: {
     opacity: 1,

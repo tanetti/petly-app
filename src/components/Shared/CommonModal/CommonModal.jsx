@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Fade, useTheme } from '@mui/material';
 import { backdropSlotProps } from 'theme/backdropSlotProps';
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import {
   CommonProgressBar,
   CommonProgressBarContainer,
@@ -55,7 +55,7 @@ export const CommonModal = ({
             <AnimatePresence>
               {isActionsDisabled ? (
                 <motion.div
-                  variants={ATANDART_ANIMATION_VARIANT}
+                  variants={STANDART_ANIMATION_VARIANT}
                   initial="initial"
                   animate="animate"
                   exit="exit"

@@ -4,7 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import { NoticesItem } from './components';
 import { NoticesListStyled } from './NoticesListStyled';
 import { ErrorLayout, LoaderLayout, NoResultLayout } from 'components/Shared';
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 
 export const NoticesList = () => {
   const { categoryName } = useParams();
@@ -34,7 +34,7 @@ export const NoticesList = () => {
       {!isLoading && !error && data?.length ? (
         <NoticesListStyled
           key="noticesList"
-          variants={ATANDART_ANIMATION_VARIANT}
+          variants={STANDART_ANIMATION_VARIANT}
           initial="initial"
           animate="animate"
           exit="exit"

@@ -2,7 +2,7 @@ import { PropTypes } from 'prop-types';
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useAddNoticeMutation } from 'redux/notices/noticesApi';
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { FirstStep, SecondStep } from './components';
 import { CommonModal } from 'components/Shared';
 import { ModalContainer } from './AddNoticeModalStyled';
@@ -54,7 +54,7 @@ export const AddNoticeModal = ({ isOpened, closeModal }) => {
           {isOnTheFirstStep ? (
             <motion.div
               key="stepOne"
-              variants={ATANDART_ANIMATION_VARIANT}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -69,7 +69,7 @@ export const AddNoticeModal = ({ isOpened, closeModal }) => {
           ) : (
             <motion.div
               key="stepTwo"
-              variants={ATANDART_ANIMATION_VARIANT}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"

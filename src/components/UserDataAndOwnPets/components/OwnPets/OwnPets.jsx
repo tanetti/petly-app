@@ -5,7 +5,7 @@ import { NoOwnPetsLayout, OwnPetsItem } from './components';
 import { ButtonContainer, OwnPetsList } from './OwnPetsStyled';
 import { useState } from 'react';
 import { AddOwnPetModal } from 'components/AddOwnPetModal/AddOwnPetModal';
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { useAuth } from 'hooks';
 
 export const OwnPets = () => {
@@ -29,19 +29,19 @@ export const OwnPets = () => {
         {data && !data.length ? <NoOwnPetsLayout /> : null}
 
         {data && data.length && !error ? (
-          <AnimatePresence>
-            <OwnPetsList
-              key="ownPetsList"
-              variants={ATANDART_ANIMATION_VARIANT}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
+          <OwnPetsList
+            key="ownPetsList"
+            variants={STANDART_ANIMATION_VARIANT}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+          >
+            <AnimatePresence>
               {data.map(petData => (
                 <OwnPetsItem key={petData._id} petData={petData} />
               ))}
-            </OwnPetsList>
-          </AnimatePresence>
+            </AnimatePresence>
+          </OwnPetsList>
         ) : null}
       </AnimatePresence>
 

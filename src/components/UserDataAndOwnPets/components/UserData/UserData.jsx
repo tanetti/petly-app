@@ -8,7 +8,7 @@ import {
 } from 'redux/currentUserInfo/currentUserInfoApi';
 import { useAuth } from 'hooks';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { AvatarDropZone } from 'components/Shared';
 import { EditParameterUnit } from './components';
 import { EDIT_PARAMETERS } from './constants/editParameters';
@@ -88,7 +88,7 @@ export const UserData = () => {
           {data?.avatarURL && !newAvatarFile ? (
             <motion.div
               key="deletePhoto"
-              variants={ATANDART_ANIMATION_VARIANT}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -108,7 +108,7 @@ export const UserData = () => {
           {newAvatarFile ? (
             <motion.div
               key="savePhoto"
-              variants={ATANDART_ANIMATION_VARIANT}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"

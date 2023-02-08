@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { AnimatePresence } from 'framer-motion';
 import { makeToast } from 'utilities/makeToast';
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import {
   AddImageIcon,
   AllowedImageIcon,
@@ -65,7 +65,7 @@ export const AvatarDropZone = ({
         {!!presentImage ? (
           <CurrentImage
             key="userImage"
-            variants={ATANDART_ANIMATION_VARIANT}
+            variants={STANDART_ANIMATION_VARIANT}
             initial="initial"
             animate="animate"
             exit="exit"
@@ -94,7 +94,7 @@ export const AvatarDropZone = ({
               <IconContainer
                 variant={variant}
                 key="AddImageIcon"
-                variants={ATANDART_ANIMATION_VARIANT}
+                variants={STANDART_ANIMATION_VARIANT}
                 initial="initial"
                 animate="animate"
                 exit="exit"
@@ -106,7 +106,7 @@ export const AvatarDropZone = ({
               <IconContainer
                 variant={variant}
                 key="AllowedImageIcon"
-                variants={ATANDART_ANIMATION_VARIANT}
+                variants={STANDART_ANIMATION_VARIANT}
                 initial="initial"
                 animate="animate"
                 exit="exit"
@@ -118,7 +118,7 @@ export const AvatarDropZone = ({
               <IconContainer
                 variant={variant}
                 key="NotAllowedImageIcon"
-                variants={ATANDART_ANIMATION_VARIANT}
+                variants={STANDART_ANIMATION_VARIANT}
                 initial="initial"
                 animate="animate"
                 exit="exit"

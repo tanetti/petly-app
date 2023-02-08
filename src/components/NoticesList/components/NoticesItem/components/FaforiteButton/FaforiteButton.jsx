@@ -10,7 +10,7 @@ import {
   useDeleteFavoriteMutation,
   useGetFavoriteQuery,
 } from 'redux/favorite/favoriteApi';
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import {
   DefaultBackgroundIcon,
   DefaultFrontIcon,
@@ -95,7 +95,7 @@ export const FavoriteButton = ({ noticeId }) => {
           {!isThisNoticeInFavorite && !isActionInProgress ? (
             <IconSet
               key="default"
-              variants={ATANDART_ANIMATION_VARIANT}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -108,7 +108,7 @@ export const FavoriteButton = ({ noticeId }) => {
           {isThisNoticeInFavorite && !isActionInProgress ? (
             <IconSet
               key="favorite"
-              variants={ATANDART_ANIMATION_VARIANT}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"

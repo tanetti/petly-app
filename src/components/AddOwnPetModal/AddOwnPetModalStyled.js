@@ -1,5 +1,4 @@
 import { styled } from '@mui/material/styles';
-import { motion } from 'framer-motion';
 import { FilledButton, OutlinedButton } from 'components/Shared';
 
 export const ModalContainer = styled('div')`
@@ -15,7 +14,7 @@ export const ModalContainer = styled('div')`
   }
 `;
 
-export const ButtonContainer = styled(motion.div)`
+export const ButtonContainer = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 16px;

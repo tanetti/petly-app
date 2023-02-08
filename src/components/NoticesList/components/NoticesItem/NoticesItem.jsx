@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useScreen } from 'hooks';
 import { getStringAge } from './utilities/getStringAge';
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { PUBLIC_CATEGORIES } from 'constants/noticesCategory';
 import { CURRENCY_FORMAT } from 'constants/currencyFormat';
 import { BottomButtons, FavoriteButton, NoticeAvatar } from './components';
@@ -36,7 +36,7 @@ export const NoticesItem = ({ noticeData }) => {
   return (
     <NoticeContainer
       key={_id}
-      variants={ATANDART_ANIMATION_VARIANT}
+      variants={STANDART_ANIMATION_VARIANT}
       initial="initial"
       animate="animate"
       exit="exit"

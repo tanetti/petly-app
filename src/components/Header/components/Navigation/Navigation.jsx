@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth, useScreen } from 'hooks';
 import { AnimatePresence, motion } from 'framer-motion';
 import { backdropSlotProps } from 'theme/backdropSlotProps';
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { Nav, AuthNav, UserNav, MobileMenuButton } from './components';
 import {
   NavigationWrapper,
@@ -28,7 +28,7 @@ export const Navigation = () => {
             {isUserLoggedIn ? (
               <motion.div
                 key="loggedIn"
-                variants={ATANDART_ANIMATION_VARIANT}
+                variants={STANDART_ANIMATION_VARIANT}
                 initial="initial"
                 animate="animate"
                 exit="exit"
@@ -38,7 +38,7 @@ export const Navigation = () => {
             ) : (
               <motion.div
                 key="notLoggedIn"
-                variants={ATANDART_ANIMATION_VARIANT}
+                variants={STANDART_ANIMATION_VARIANT}
                 initial="initial"
                 animate="animate"
                 exit="exit"

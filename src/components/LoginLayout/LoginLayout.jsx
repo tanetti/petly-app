@@ -10,7 +10,7 @@ import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 import VisibilityOffRoundedIcon from '@mui/icons-material/VisibilityOffRounded';
 import { makeToast } from 'utilities/makeToast';
 import { loginValidationSchema } from 'utilities/validationSchemas';
-import { ATANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { errorCases } from 'constants/errorsCases';
 import {
   AuthInput,
@@ -63,7 +63,7 @@ export const LoginLayout = () => {
       <LayoutTitle>Login</LayoutTitle>
       <AnimatePresence mode="wait">
         <AuthMotionContainer
-          variants={ATANDART_ANIMATION_VARIANT}
+          variants={STANDART_ANIMATION_VARIANT}
           initial="initial"
           animate="animate"
           exit="exit"
@@ -155,7 +155,7 @@ export const LoginLayout = () => {
           {(currentScreen === 'tablet' || currentScreen === 'desktop') &&
           isUserPending ? (
             <motion.div
-              variants={ATANDART_ANIMATION_VARIANT}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
