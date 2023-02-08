@@ -13,6 +13,7 @@ export const Tittle = styled('h2')`
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     font-size: 68px;
     line-height: 1.47;
+    text-shadow: 0.5px 0.5px 0.2px white, -0.5px -0.5px 0.2px white;
   }
 
   ${({ theme }) => theme.breakpoints.up('desktop')} {

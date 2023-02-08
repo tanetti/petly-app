@@ -21,7 +21,7 @@ import wavesDesktopWebp3 from 'images/home-page/desktop/wave-desktop@3x.webp';
 export const PageSection = styled('section')`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  // flex-grow: 1;
 
   background-size: 620px;
   background-repeat: no-repeat;
