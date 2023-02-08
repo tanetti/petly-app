@@ -17,3 +17,6 @@ export * from './NoResultLayout/NoResultLayout';
 export * from './ErrorLayout/ErrorLayout';
 export * from './AddPetButton/AddPetButton';
 export * from './AvatarDropZone/AvatarDropZone';
+export * from './HomePageSectionStyled';
+export * from './HomePageContainerStyled';
+export * from './HomePageUnionStyled';
