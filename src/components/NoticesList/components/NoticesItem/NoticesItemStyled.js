@@ -43,7 +43,6 @@ export const CategoryBadge = styled('p')`
   height: 28px;
   padding: 6px 20px;
 
-  font-family: 'Inter';
   font-size: 12px;
   line-height: 1.25;
   letter-spacing: 0.04em;

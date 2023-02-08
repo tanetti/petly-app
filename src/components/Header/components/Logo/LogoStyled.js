@@ -6,7 +6,6 @@ export const LogoWrapper = styled('h1')`
 
   font-family: 'Poppins';
   font-size: 28px;
-  font-weight: 700;
   line-height: 1.5;
 
   letter-spacing: 0.07em;
