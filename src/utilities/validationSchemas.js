@@ -3,6 +3,7 @@ import {
   PASSWORD_PATTERN,
   ONLY_LETTERS_PATTERN,
   LETTERS_DIGITS_AND_SYMBOLS_PATTERN,
+  LETTERS_AND_SYMBOLS_PATTERN,
 } from 'constants/patterns';
 
 yup.addMethod(
@@ -166,7 +167,7 @@ export const ModalAddsPetFirstStepFormValidationSchema = yup.object().shape({
   breed: yup
     .string()
     .required('Please enter your pet Breed')
-    .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
+    .matches(LETTERS_AND_SYMBOLS_PATTERN, 'Only letters and symbols symbols')
     .min(2, 'It seems too short...')
     .max(30, 'Must not exceed 30 characters'),
 });
@@ -186,7 +187,7 @@ export const ModalAddNoticeFirstStepFormValidationSchema = yup.object().shape({
   title: yup
     .string()
     .required('Please enter Title')
-    .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
+    .matches(LETTERS_AND_SYMBOLS_PATTERN, 'Must contain only letters')
     .min(2, 'It seems too short...')
     .max(60, 'Must not exceed 60 characters'),
 
@@ -202,7 +203,7 @@ export const ModalAddNoticeFirstStepFormValidationSchema = yup.object().shape({
   breed: yup
     .string()
     .required('Please enter your pet Breed')
-    .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
+    .matches(LETTERS_AND_SYMBOLS_PATTERN, 'Must contain only letters')
     .min(2, 'It seems too short...')
     .max(30, 'Must not exceed 30 characters'),
 });
