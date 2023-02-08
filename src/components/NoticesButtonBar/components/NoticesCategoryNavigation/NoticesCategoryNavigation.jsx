@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { noticesApi } from 'redux/notices/noticesApi';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import { useAuth } from 'hooks';
 import { NavLinkButtonLike } from 'components/Shared';
 import {
@@ -11,7 +11,6 @@ import {
 import { CategoryList } from './NoticesCategoryNavigationStyled';
 
 export const NoticesCategoryNavigation = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { categoryName } = useParams();
   const { isUserLoggedIn } = useAuth();
@@ -24,12 +23,6 @@ export const NoticesCategoryNavigation = () => {
 
     dispatch(noticesApi.util.invalidateTags(['Notices']));
   }, [categoryName, dispatch]);
-
-  useEffect(() => {
-    if (categoryName) return;
-
-    navigate('/notices/sell');
-  }, [categoryName, navigate]);
 
   return (
     <nav>

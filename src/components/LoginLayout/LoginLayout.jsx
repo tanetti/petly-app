@@ -150,6 +150,7 @@ export const LoginLayout = () => {
         Don't have an account?&nbsp;
         <LayoutHintLink to="/register">Register</LayoutHintLink>
       </LayoutHint>
+
       <CommonProgressBarContainer>
         <AnimatePresence>
           {(currentScreen === 'tablet' || currentScreen === 'desktop') &&

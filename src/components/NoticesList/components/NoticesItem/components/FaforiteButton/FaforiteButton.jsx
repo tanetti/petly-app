@@ -88,6 +88,12 @@ export const FavoriteButton = ({ noticeId }) => {
   return (
     <>
       <StyledButton
+        title={
+          isThisNoticeInFavorite ? 'Remove from favorite' : 'Add to favorite'
+        }
+        aria-label={
+          isThisNoticeInFavorite ? 'Remove from favorite' : 'Add to favorite'
+        }
         loading={isActionInProgress}
         onClick={onFavoriteButtonClick}
       >

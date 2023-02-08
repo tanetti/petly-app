@@ -15,7 +15,7 @@ export const CommonProgressBarContainer = styled('div')`
 `;
 
 export const CommonProgressBar = styled(LinearProgress)`
-  height: 6px;
+  height: 4px;
 
   background-color: transparent;
 `;
