@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import { useScreen } from 'hooks';
 import { getStringAge } from './utilities/getStringAge';
+import { capitalizeValue } from 'utilities/capitalizeValue';
 import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { PUBLIC_CATEGORIES } from 'constants/noticesCategory';
 import { CURRENCY_FORMAT } from 'constants/currencyFormat';
+import { NoticeAvatar } from 'components/Shared';
 import { BottomButtons, FavoriteButton } from './components';
 import { NoticeContainer, NoticeStats, NoticeTitle } from './NoticesItemStyled';
-import { NoticeAvatar } from 'components/Shared';
 
 export const NoticesItem = ({ noticeData }) => {
   const screen = useScreen();
@@ -47,16 +48,19 @@ export const NoticesItem = ({ noticeData }) => {
       />
 
       <NoticeTitle isMobile={screen === 'mobile'}>
-        {title.charAt(0).toUpperCase() + title.slice(1)}
+        {capitalizeValue(title)}
       </NoticeTitle>
 
       <NoticeStats>
         <span>Breed:</span>
-        <span>{breed.charAt(0).toUpperCase() + breed.slice(1)}</span>
+        <span>{capitalizeValue(breed)}</span>
+
         <span>Location:</span>
-        <span>{location.charAt(0).toUpperCase() + location.slice(1)}</span>
+        <span>{capitalizeValue(location)}</span>
+
         <span>Age:</span>
-        <span>{stringAge.charAt(0).toUpperCase() + stringAge.slice(1)}</span>
+        <span>{capitalizeValue(stringAge)}</span>
+
         {price ? (
           <>
             <span>Price:</span>

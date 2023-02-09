@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import { DATE_FORMAT } from 'constants/dateFormat';
+import { capitalizeValue } from 'utilities/capitalizeValue';
 import { CURRENCY_FORMAT } from 'constants/currencyFormat';
 import { InfoContainer, InfoLink } from './NoticeStatsStyled';
 
@@ -17,15 +19,20 @@ export const NoticeStats = ({ noticeData }) => {
   return (
     <InfoContainer>
       <span>Name:</span>
-      <span>{name.charAt(0).toUpperCase() + name.slice(1)}</span>
+      <span>{capitalizeValue(name)}</span>
+
       <span>Birthday:</span>
       <span>{DATE_FORMAT.format(Date.parse(birthdate))}</span>
+
       <span>Breed:</span>
-      <span>{breed.charAt(0).toUpperCase() + breed.slice(1)}</span>
+      <span>{capitalizeValue(breed)}</span>
+
       <span>Location:</span>
-      <span>{location.charAt(0).toUpperCase() + location.slice(1)}</span>
+      <span>{capitalizeValue(location)}</span>
+
       <span>The sex:</span>
-      <span>{sex.charAt(0).toUpperCase() + sex.slice(1)}</span>
+      <span>{capitalizeValue(sex)}</span>
+
       <span>Email:</span>
       <span>
         <InfoLink
@@ -34,6 +41,7 @@ export const NoticeStats = ({ noticeData }) => {
           {email}
         </InfoLink>
       </span>
+
       {phone ? (
         <>
           <span>Phone:</span>
@@ -42,6 +50,7 @@ export const NoticeStats = ({ noticeData }) => {
           </span>
         </>
       ) : null}
+
       {price ? (
         <>
           <span>Price:</span>
@@ -50,4 +59,8 @@ export const NoticeStats = ({ noticeData }) => {
       ) : null}
     </InfoContainer>
   );
+};
+
+NoticeStats.propTypes = {
+  noticeData: PropTypes.object.isRequired,
 };

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion';
+import { capitalizeValue } from 'utilities/capitalizeValue';
 import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { CommonModal, NoticeAvatar } from 'components/Shared';
 import { NoticeStats } from './components';
@@ -35,10 +36,7 @@ export const SingleNoticeModal = ({ isOpened, closeModal, noticeData }) => {
               />
 
               <div>
-                <ModalTitle>
-                  {noticeData.title.charAt(0).toUpperCase() +
-                    noticeData.title.slice(1)}
-                </ModalTitle>
+                <ModalTitle>{capitalizeValue(noticeData.title)}</ModalTitle>
 
                 <NoticeStats noticeData={noticeData} />
               </div>

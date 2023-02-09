@@ -1,4 +1,7 @@
 import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+import { capitalizeValue } from 'utilities/capitalizeValue';
+import { makeToast } from 'utilities/makeToast';
 import { CommonModal } from 'components/Shared';
 import {
   ExclamationIcon,
@@ -7,8 +10,6 @@ import {
   ModalOutlinedButton,
   PromptMessage,
 } from './DeletePromptModalStyled';
-import { useEffect, useState } from 'react';
-import { makeToast } from 'utilities/makeToast';
 
 export const DeletePromptModal = ({
   isOpened,
@@ -44,7 +45,7 @@ export const DeletePromptModal = ({
       <PromptMessage>
         Do you really want to delete
         <br />
-        <span>{whoWord.charAt(0).toUpperCase() + whoWord.slice(1)}</span>
+        <span>{capitalizeValue(whoWord)}</span>
         &nbsp;from&nbsp;
         {fromWord}?
       </PromptMessage>
