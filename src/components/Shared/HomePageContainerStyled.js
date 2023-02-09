@@ -20,11 +20,26 @@ import portretDesktopWebp2 from 'images/home-page/desktop/portrait@2x.webp';
 import portretDesktopWebp3 from 'images/home-page/desktop/portrait@3x.webp';
 
 export const HomePageContainer = styled(Container)`
-  padding-top: 60px;
-  padding-bottom: 0;
-  height: calc(100vh - 74px);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 
-  background-size: 320px;
+  padding-top: 44px;
+  padding-bottom: 0;
+
+  ${({ theme }) => theme.breakpoints.up('tablet')} {
+    padding-top: 68px;
+    padding-bottom: 0;
+  }
+
+  ${({ theme }) => theme.breakpoints.up('desktop')} {
+    position: relative;
+
+    padding-top: 72px;
+    padding-bottom: 0;
+  }
+
+  /* background-size: 320px;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom 0 left calc(50%);
@@ -47,15 +62,12 @@ export const HomePageContainer = styled(Container)`
   }
 
   @media screen and (min-width: 528px) {
-    padding-top: 20px;
     background-size: 260px;
     background-position: bottom left calc(50% + 100px);
   }
 
   @media screen and (min-width: 768px) and (min-height: 1193px) {
-    padding-top: 88px;
     background-size: 640px;
-    height: calc(100vh - 92px);
 
     background-position: bottom 0 center;
     background-image: url(${portretTabletPng});
@@ -76,17 +88,8 @@ export const HomePageContainer = styled(Container)`
     }
   }
 
-  @media screen and (min-width: 1193px) and (max-width: 1279px) {
-    padding-top: 10px;
-    background-size: 380px;
-    background-position: bottom -20px right calc(50% - 180px);
-  }
-
   ${({ theme }) => theme.breakpoints.up('desktop')} {
-    padding-top: 92px;
     background-size: 590px;
-    position: relative;
-    height: calc(100vh - 88px);
 
     background-position: bottom 0 right calc(50% - 350px);
     background-image: url(${portretDesktopPng});
@@ -105,5 +108,5 @@ export const HomePageContainer = styled(Container)`
       background-image: url(${portretDesktopPng3});
       background-image: url(${portretDesktopWebp3});
     }
-  }
+  } */
 `;
