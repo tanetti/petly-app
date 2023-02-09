@@ -21,7 +21,7 @@ import wavesDesktopWebp3 from 'images/home-page/desktop/wave-desktop@3x.webp';
 export const PageSection = styled('section')`
   display: flex;
   flex-direction: column;
-  // flex-grow: 1;
+  flex-grow: 1;
 
   background-size: 620px;
   background-repeat: no-repeat;
@@ -45,11 +45,11 @@ export const PageSection = styled('section')`
     background-image: url(${wavesMobileWebp3});
   }
 
-  @media screen and (min-width: 528px) and (max-width: 767px) {
+  @media screen and (min-width: 528px) {
     background-position: bottom -180px left calc(50% - 10px);
   }
 
-  ${({ theme }) => theme.breakpoints.up('tablet')} {
+  @media screen and (min-width: 768px) and (min-height: 1193px) {
     background-size: 1449px;
     background-position: bottom -185px left calc(50% + 155px);
 
@@ -71,7 +71,7 @@ export const PageSection = styled('section')`
     }
   }
 
-  @media screen and (min-width: 1024px) and (max-width: 1279px) {
+  @media screen and (min-width: 1193px) and (max-width: 1279px) {
     background-size: 1249px;
     background-position: bottom -500px left calc(50% - 50px);
   }

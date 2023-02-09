@@ -10,13 +10,13 @@ export const Tittle = styled('h2')`
   line-height: 1.38;
   color: ${({ theme }) => theme.palette.text.black};
 
-  ${({ theme }) => theme.breakpoints.up('tablet')} {
+  @media screen and (min-height: 1193px) {
     font-size: 68px;
     line-height: 1.47;
   }
 
   @media screen and (min-width: 1024px) and (max-width: 1279px) {
-
+    font-size: 60px;
   }
 
   ${({ theme }) => theme.breakpoints.up('desktop')} {

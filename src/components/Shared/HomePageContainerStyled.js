@@ -20,7 +20,7 @@ import portretDesktopWebp2 from 'images/home-page/desktop/portrait@2x.webp';
 import portretDesktopWebp3 from 'images/home-page/desktop/portrait@3x.webp';
 
 export const HomePageContainer = styled(Container)`
-  padding-top: 62px;
+  padding-top: 60px;
   padding-bottom: 0;
   height: calc(100vh - 74px);
 
@@ -46,15 +46,15 @@ export const HomePageContainer = styled(Container)`
     background-image: url(${portretMobileWebp3});
   }
 
-  @media screen and (min-width: 528px) and (max-width: 767px) {
+  @media screen and (min-width: 528px) {
     padding-top: 20px;
-    background-size: 230px;
-    background-position: bottom 0 left calc(50% + 120px);
+    background-size: 260px;
+    background-position: bottom left calc(50% + 100px);
   }
 
-  ${({ theme }) => theme.breakpoints.up('tablet')} {
+  @media screen and (min-width: 768px) and (min-height: 1193px) {
     padding-top: 88px;
-    background-size: 645px;
+    background-size: 640px;
     height: calc(100vh - 92px);
 
     background-position: bottom 0 center;
@@ -76,10 +76,10 @@ export const HomePageContainer = styled(Container)`
     }
   }
 
-  @media screen and (min-width: 1024px) and (max-width: 1279px) {
-    padding-top: 30px;
-    background-size: 420px;
-    background-position: bottom 0 right calc(50% - 180px);
+  @media screen and (min-width: 1193px) and (max-width: 1279px) {
+    padding-top: 10px;
+    background-size: 380px;
+    background-position: bottom -20px right calc(50% - 180px);
   }
 
   ${({ theme }) => theme.breakpoints.up('desktop')} {
