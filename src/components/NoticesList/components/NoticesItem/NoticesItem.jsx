@@ -5,8 +5,8 @@ import { capitalizeValue } from 'utilities/capitalizeValue';
 import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { PUBLIC_CATEGORIES } from 'constants/noticesCategory';
 import { CURRENCY_FORMAT } from 'constants/currencyFormat';
-import { NoticeAvatar } from 'components/Shared';
-import { BottomButtons, FavoriteButton } from './components';
+import { FavoriteButton, NoticeAvatar } from 'components/Shared';
+import { BottomButtons } from './components';
 import { NoticeContainer, NoticeStats, NoticeTitle } from './NoticesItemStyled';
 
 export const NoticesItem = ({ noticeData }) => {

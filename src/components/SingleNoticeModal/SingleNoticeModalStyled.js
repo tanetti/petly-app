@@ -44,14 +44,11 @@ export const ModalTitle = styled('h4')`
 
 export const CommentsContainer = styled('p')`
   padding-top: 28px;
-  padding-bottom: 40px;
 
   font-size: 14px;
   line-height: 1.36;
 
   ${({ theme }) => theme.breakpoints.up('tablet')} {
-    padding-bottom: 32px;
-
     font-size: 16px;
     line-height: 1.38;
     letter-spacing: 0.04em;

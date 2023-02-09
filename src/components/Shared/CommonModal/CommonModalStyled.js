@@ -111,8 +111,8 @@ export const ContentContainer = styled('div')`
   }
 
   &::-webkit-scrollbar-track {
-    margin-top: 66px;
-    margin-bottom: 12px;
+    margin-top: 60px;
+    margin-bottom: 30px;
 
     background-color: ${({ theme }) => theme.palette.semiTransparentBlack.main};
 

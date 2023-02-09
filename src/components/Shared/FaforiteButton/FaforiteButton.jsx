@@ -16,11 +16,13 @@ import {
   DefaultFrontIcon,
   IconSet,
   InFavoriteIcon,
-  StyledButton,
+  ModalButton,
+  RoundButton,
+  TextContainer,
 } from './FaforiteButtonStyled';
 import { RestrictedActionModal } from 'components/RestrictedActionModal/RestrictedActionModal';
 
-export const FavoriteButton = ({ noticeId }) => {
+export const FavoriteButton = ({ noticeId, variant }) => {
   const [isRestrictedActionModalOpened, setIsRestrictedActionModalOpened] =
     useState(false);
   const [isActionInProgress, setIsActionInProgress] = useState(false);
@@ -87,43 +89,82 @@ export const FavoriteButton = ({ noticeId }) => {
 
   return (
     <>
-      <StyledButton
-        title={
-          isThisNoticeInFavorite ? 'Remove from favorite' : 'Add to favorite'
-        }
-        aria-label={
-          isThisNoticeInFavorite ? 'Remove from favorite' : 'Add to favorite'
-        }
-        loading={isActionInProgress}
-        onClick={onFavoriteButtonClick}
-      >
-        <AnimatePresence mode="wait">
-          {!isThisNoticeInFavorite && !isActionInProgress ? (
-            <IconSet
-              key="default"
-              variants={STANDART_ANIMATION_VARIANT}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <DefaultBackgroundIcon />
-              <DefaultFrontIcon />
-            </IconSet>
-          ) : null}
+      {variant === 'modal' ? (
+        <ModalButton
+          title={
+            isThisNoticeInFavorite ? 'Remove from favorite' : 'Add to favorite'
+          }
+          aria-label={
+            isThisNoticeInFavorite ? 'Remove from favorite' : 'Add to favorite'
+          }
+          loading={isActionInProgress}
+          onClick={onFavoriteButtonClick}
+        >
+          <AnimatePresence mode="wait">
+            {isThisNoticeInFavorite ? (
+              <TextContainer
+                key="remove"
+                variants={STANDART_ANIMATION_VARIANT}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                Remove from
+                <DefaultFrontIcon variant={variant} />
+              </TextContainer>
+            ) : (
+              <TextContainer
+                key="add"
+                variants={STANDART_ANIMATION_VARIANT}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                Add to
+                <InFavoriteIcon variant={variant} />
+              </TextContainer>
+            )}
+          </AnimatePresence>
+        </ModalButton>
+      ) : (
+        <RoundButton
+          title={
+            isThisNoticeInFavorite ? 'Remove from favorite' : 'Add to favorite'
+          }
+          aria-label={
+            isThisNoticeInFavorite ? 'Remove from favorite' : 'Add to favorite'
+          }
+          loading={isActionInProgress}
+          onClick={onFavoriteButtonClick}
+        >
+          <AnimatePresence mode="wait">
+            {!isThisNoticeInFavorite && !isActionInProgress ? (
+              <IconSet
+                key="default"
+                variants={STANDART_ANIMATION_VARIANT}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <DefaultBackgroundIcon />
+                <DefaultFrontIcon />
+              </IconSet>
+            ) : null}
 
-          {isThisNoticeInFavorite && !isActionInProgress ? (
-            <IconSet
-              key="favorite"
-              variants={STANDART_ANIMATION_VARIANT}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <InFavoriteIcon />
-            </IconSet>
-          ) : null}
-        </AnimatePresence>
-      </StyledButton>
+            {isThisNoticeInFavorite && !isActionInProgress ? (
+              <IconSet
+                key="favorite"
+                variants={STANDART_ANIMATION_VARIANT}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <InFavoriteIcon />
+              </IconSet>
+            ) : null}
+          </AnimatePresence>
+        </RoundButton>
+      )}
 
       <RestrictedActionModal
         isOpened={isRestrictedActionModalOpened}
@@ -135,4 +176,5 @@ export const FavoriteButton = ({ noticeId }) => {
 
 FavoriteButton.propTypes = {
   noticeId: PropTypes.string.isRequired,
+  variant: PropTypes.string,
 };

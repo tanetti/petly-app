@@ -21,3 +21,4 @@ export * from './HomePageSectionStyled';
 export * from './HomePageContainerStyled';
 export * from './HomePageUnionStyled';
 export * from './NoticeAvatar/NoticeAvatar';
+export * from './FaforiteButton/FaforiteButton';

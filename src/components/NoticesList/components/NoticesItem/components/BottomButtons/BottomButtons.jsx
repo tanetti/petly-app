@@ -61,6 +61,7 @@ export const BottomButtons = ({ noticeId, ownerId, petName }) => {
         >
           Learn more
         </NoticeButton>
+
         {userId === ownerId ? (
           <NoticeButton
             title="Delete notice"
