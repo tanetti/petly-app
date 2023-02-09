@@ -24,6 +24,10 @@ export const TOAST_CASES = {
     message: 'Please provide an Email',
     severity: 'error',
   },
+  'validation-user-data-name-format': {
+    message: 'Must contain only letters',
+    severity: 'error',
+  },
   'validation-user-data-name-min-length-2': {
     message: 'Minimal Name length - 2 symbols',
     severity: 'error',

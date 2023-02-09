@@ -4,7 +4,22 @@ import {
   ONLY_LETTERS_PATTERN,
   LETTERS_DIGITS_AND_SYMBOLS_PATTERN,
   LETTERS_AND_SYMBOLS_PATTERN,
+  EMAIL_PATTERN,
 } from 'constants/patterns';
+
+yup.addMethod(yup.string, 'emailPrefixLengthCheck', function (errorMessage) {
+  return this.test('email-Prefix-Length-Check', errorMessage, function (value) {
+    const { path, createError } = this;
+
+    const [prefix] = value.split('@');
+
+    if (prefix.length < 2) {
+      return createError({ path, message: errorMessage });
+    }
+
+    return true;
+  });
+});
 
 yup.addMethod(
   yup.string,
@@ -105,6 +120,9 @@ export const registerFirstStepValidationSchema = yup.object().shape({
     .string()
     .trim()
     .email('Wrong Email format')
+    .matches(EMAIL_PATTERN, 'Wrong Email format')
+    .max(63, 'Wrong Email format')
+    .emailPrefixLengthCheck('Wrong Email format')
     .startsWithDigitsAndLetters('Wrong Email format')
     .endsWithLetters('Wrong Email format')
     .required('Enter your Email address'),
@@ -125,6 +143,7 @@ export const registerSecondStepValidationSchema = yup.object().shape({
   name: yup
     .string()
     .trim()
+    .matches(ONLY_LETTERS_PATTERN, 'Must contain only letters')
     .stringLengthIfNotEmpty(2, '2 symbols minimum')
     .max(30, '30 symbols maximum'),
 
@@ -137,6 +156,7 @@ export const userDataValidationSchema = yup.object().shape({
   name: yup
     .string()
     .trim()
+    .matches(ONLY_LETTERS_PATTERN, 'validation-user-data-name-format')
     .stringLengthIfNotEmpty(2, 'validation-user-data-name-min-length-2')
     .max(30, 'validation-user-data-name-max-length-30'),
 
@@ -144,6 +164,11 @@ export const userDataValidationSchema = yup.object().shape({
     .string()
     .trim()
     .email('validation-user-data-email-format')
+    .matches(EMAIL_PATTERN, 'validation-user-data-email-format')
+    .emailPrefixLengthCheck('validation-user-data-email-format')
+    .max(63, 'validation-user-data-email-format')
+    .startsWithDigitsAndLetters('validation-user-data-email-format')
+    .endsWithLetters('validation-user-data-email-format')
     .required('validation-user-data-email-required'),
 
   birthday: yup.string().trim(),

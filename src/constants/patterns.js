@@ -1,3 +1,5 @@
+export const EMAIL_PATTERN = /^[A-Za-z0-9@._-\s]+$/;
+
 export const PASSWORD_PATTERN =
   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 

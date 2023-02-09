@@ -118,8 +118,9 @@ export const EditParameterUnit = ({
   useEffect(() => {
     if (!error) return;
 
+    setParameterValue(currentUnitData);
     makeToast(error?.data?.code);
-  }, [error]);
+  }, [currentUnitData, error]);
 
   useEffect(() => {
     if (!currentUnitData) return;
@@ -204,8 +205,14 @@ export const EditParameterUnit = ({
             <AutocompleteWrapper ref={InputProps?.ref}>
               <ParameterInput
                 {...inputProps}
-                onFocus={() => setIsFieldEditing(true)}
-                onBlur={() => setIsFieldEditing(false)}
+                onFocus={event => {
+                  inputProps.onFocus(event);
+                  setIsFieldEditing(true);
+                }}
+                onBlur={event => {
+                  inputProps.onBlur(event);
+                  setIsFieldEditing(false);
+                }}
                 type={unitType}
                 disabled={activeUnit !== unitName}
               />
