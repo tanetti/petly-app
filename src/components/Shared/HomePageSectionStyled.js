@@ -61,20 +61,24 @@ export const PageSection = styled('section')`
     background-image: url(${tabletGirlPng1x}), url(${tabletWave});
     background-image: url(${tabletGirlWebp1x}), url(${tabletWave});
 
-    background-position: center 460px, calc(50% - 16px) 145px;
+    background-position: center 460px, calc(50% + 180px) 110px;
+
+    @media screen and (min-height: 1194px) {
+      background-position: center bottom, calc(50% + 180px) calc(100% + 110px);
+    }
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
-      background-image: url(${mobileGirlPng2x}), url(${mobileWave});
-      background-image: url(${mobileGirlWebp2x}), url(${mobileWave});
+      background-image: url(${tabletGirlPng2x}), url(${tabletWave});
+      background-image: url(${tabletGirlWebp2x}), url(${tabletWave});
     }
 
     @media (min-device-pixel-ratio: 3),
       (min-resolution: 288dpi),
       (min-resolution: 3dppx) {
-      background-image: url(${mobileGirlPng3x}), url(${mobileWave});
-      background-image: url(${mobileGirlWebp3x}), url(${mobileWave});
+      background-image: url(${tabletGirlPng3x}), url(${tabletWave});
+      background-image: url(${tabletGirlWebp3x}), url(${tabletWave});
     }
   }
 `;
