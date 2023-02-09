@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import { useScreen } from 'hooks';
 import { getStringAge } from './utilities/getStringAge';
 import { capitalizeValue } from 'utilities/capitalizeValue';
+import { getPublicCategoryName } from 'utilities/getPublicCategoryName';
 import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
-import { PUBLIC_CATEGORIES } from 'constants/noticesCategory';
 import { CURRENCY_FORMAT } from 'constants/currencyFormat';
 import { FavoriteButton, NoticeAvatar } from 'components/Shared';
 import { BottomButtons } from './components';
@@ -26,9 +26,7 @@ export const NoticesItem = ({ noticeData }) => {
   } = noticeData;
 
   const stringAge = getStringAge(birthdate);
-  const categoryName = PUBLIC_CATEGORIES.find(
-    element => element.category === category
-  ).name;
+  const categoryName = getPublicCategoryName(category);
 
   return (
     <NoticeContainer
