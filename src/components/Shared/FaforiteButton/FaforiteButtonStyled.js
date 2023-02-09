@@ -12,15 +12,12 @@ export const ModalButton = styled(OutlinedButton)`
   font-family: inherit;
   font-size: 16px;
   line-height: 1.38;
+  letter-spacing: 0.04em;
 
   color: ${({ theme }) => theme.palette.accent.main};
 
   ${({ theme }) => theme.breakpoints.up('tablet')} {
     width: 180px;
-
-    &:not(:last-of-type) {
-      margin-bottom: 0;
-    }
   }
 `;
 

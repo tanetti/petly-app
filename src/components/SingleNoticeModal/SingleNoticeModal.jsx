@@ -51,6 +51,7 @@ export const SingleNoticeModal = ({ isOpened, closeModal, noticeData }) => (
           <BottomButtons
             noticeId={noticeData._id}
             owner={noticeData.owner}
+            title={noticeData.title}
             petName={noticeData.name}
           />
         </ModalContainer>
