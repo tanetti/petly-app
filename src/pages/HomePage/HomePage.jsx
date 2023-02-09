@@ -1,13 +1,3 @@
-import { HomeLayout } from 'components/HomeLayout/HomeLayout.jsx';
-import { PageSection, HomePageContainer, Union } from 'components/Shared';
+import { HomePageLayout } from 'components/HomePageLayout/HomePageLayout';
 
-export const HomePage = () => {
-  return (
-    <PageSection>
-      <HomePageContainer>
-        <Union />
-        <HomeLayout />
-      </HomePageContainer>
-    </PageSection>
-  );
-};
+export const HomePage = () => <HomePageLayout />;
