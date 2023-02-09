@@ -11,7 +11,7 @@ import 'dayjs/locale/en';
 import { Autocomplete, createFilterOptions } from '@mui/material';
 import { makeToast } from 'utilities/makeToast';
 import { userDataValidationSchema } from 'utilities/validationSchemas';
-import { standartAnimation } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { CITIES } from 'constants/cities';
 import {
   AutocompleteWrapper,
@@ -154,7 +154,7 @@ export const EditParameterUnit = ({
                   {activeUnit === unitName ? (
                     <motion.div
                       key="datePicker"
-                      variants={standartAnimation}
+                      variants={STANDART_ANIMATION_VARIANT}
                       initial="initial"
                       animate="animate"
                       exit="exit"
@@ -213,7 +213,7 @@ export const EditParameterUnit = ({
                 {activeUnit === unitName ? (
                   <motion.div
                     key="datePicker"
-                    variants={standartAnimation}
+                    variants={STANDART_ANIMATION_VARIANT}
                     initial="initial"
                     animate="animate"
                     exit="exit"
@@ -258,7 +258,7 @@ export const EditParameterUnit = ({
           !isUpdatingInProgress ? (
             <motion.div
               key="editIcon"
-              variants={standartAnimation}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -272,7 +272,7 @@ export const EditParameterUnit = ({
           !isUpdatingInProgress ? (
             <motion.div
               key="saveIcon"
-              variants={standartAnimation}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"

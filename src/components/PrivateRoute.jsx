@@ -14,5 +14,3 @@ export const PrivateRoute = ({
     Component
   );
 };
-
-//   return !isUserLoggedIn &&  !isUserRefreshing ? (

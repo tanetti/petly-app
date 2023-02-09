@@ -18,6 +18,7 @@ import { newsApi } from './news/newsApi';
 import { servicesApi } from './services/servicesApi';
 import { noticesApi } from './notices/noticesApi';
 import { favoriteApi } from './favorite/favoriteApi';
+import { singleNoticeApi } from './singleNotice/singleNoticeApi';
 
 const middleware = [
   ...getDefaultMiddleware({
@@ -31,6 +32,7 @@ const middleware = [
   newsApi.middleware,
   servicesApi.middleware,
   noticesApi.middleware,
+  singleNoticeApi.middleware,
 ];
 
 const authPersistConfig = {
@@ -48,6 +50,7 @@ export const store = configureStore({
     [newsApi.reducerPath]: newsApi.reducer,
     [servicesApi.reducerPath]: servicesApi.reducer,
     [noticesApi.reducerPath]: noticesApi.reducer,
+    [singleNoticeApi.reducerPath]: singleNoticeApi.reducer,
   },
   middleware,
 });

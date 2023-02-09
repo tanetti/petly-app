@@ -1,4 +1,4 @@
-import { standartAnimation } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import PropTypes from 'prop-types';
 import { CommonProgressBar } from '../CommonProgressBarStyled';
 import {
@@ -11,7 +11,7 @@ export const LoaderLayout = ({ requestEntityName }) => {
   return (
     <LoadingContainer
       key="loadingLayout"
-      variants={standartAnimation}
+      variants={STANDART_ANIMATION_VARIANT}
       initial="initial"
       animate="animate"
       exit="exit"

@@ -1,26 +1,52 @@
-// import { useParams, useSearchParams } from 'react-router-dom';
-// import { useGetAllNoticesQuery } from 'redux/notices/noticesApi';
+import { useEffect } from 'react';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useAuth } from 'hooks';
+import { useGetNoticesQuery } from 'redux/notices/noticesApi';
 import { AnimatePresence } from 'framer-motion';
+import {
+  PRIVAT_CATEGORIES,
+  PUBLIC_CATEGORIES,
+} from 'constants/noticesCategory';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { ErrorLayout, LoaderLayout, NoResultLayout } from 'components/Shared';
 import { NoticesItem } from './components';
 import { NoticesListStyled } from './NoticesListStyled';
-import { ErrorLayout, LoaderLayout, NoResultLayout } from 'components/Shared';
-import { standartAnimation } from 'constants/animationVariants';
-import notices from 'TEMP/notices';
 
 export const NoticesList = () => {
-  //   const { categoryName } = useParams();
-  //   const [searchParams] = useSearchParams();
-  //   const searchValue = searchParams.get('search');
+  const navigate = useNavigate();
+  const { categoryName } = useParams();
+  const [searchParams] = useSearchParams();
+  const searchValue = searchParams.get('search');
+  const { isUserLoggedIn } = useAuth();
 
-  const data = notices;
-  const error = null;
-  const isLoading = false;
-  const isPending = false;
+  const validPublicCategories = [
+    ...PUBLIC_CATEGORIES.map(({ category }) => category),
+    'all',
+  ];
+  const validPrivatCategories = PRIVAT_CATEGORIES.map(
+    ({ category }) => category
+  );
+  const isCategoryValid = isUserLoggedIn
+    ? categoryName &&
+      (validPublicCategories.includes(categoryName) ||
+        validPrivatCategories.includes(categoryName))
+    : categoryName && validPublicCategories.includes(categoryName);
 
-  //   const { data, error, isLoading, isPending } = useGetAllNoticesQuery({
-  //     categoryName,
-  //     searchValue,
-  //   });
+  const { data, error, isLoading, isPending } = useGetNoticesQuery(
+    {
+      categoryName,
+      searchValue,
+    },
+    {
+      skip: !isCategoryValid,
+    }
+  );
+
+  useEffect(() => {
+    if (isCategoryValid) return;
+
+    navigate('/notices/sell');
+  }, [isCategoryValid, navigate]);
 
   return (
     <AnimatePresence mode="wait">
@@ -35,7 +61,7 @@ export const NoticesList = () => {
       {!isLoading && !error && data?.length ? (
         <NoticesListStyled
           key="noticesList"
-          variants={standartAnimation}
+          variants={STANDART_ANIMATION_VARIANT}
           initial="initial"
           animate="animate"
           exit="exit"

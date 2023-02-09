@@ -1,18 +1,25 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { CircularProgress } from '@mui/material';
 import noPhotoImage from 'images/no-photo.webp';
-import { AvatarContainer, Avatar, Loader } from './NoticeAvatarStyled';
-import { AnimatePresence } from 'framer-motion';
-import { standartAnimation } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
+import { capitalizeValue } from 'utilities/capitalizeValue';
+import {
+  AvatarContainer,
+  Avatar,
+  Loader,
+  CategoryBadge,
+} from './NoticeAvatarStyled';
 
-export const NoticeAvatar = ({ avatarURL, name }) => {
+export const NoticeAvatar = ({ avatarURL, name, categoryName, variant }) => {
   const [shouldImageShown, setShouldImageShown] = useState(false);
   const [backupImage, setBackupImage] = useState(null);
 
   return (
-    <AvatarContainer>
+    <AvatarContainer variant={variant}>
       <Avatar
+        variant={variant}
         src={backupImage || avatarURL}
         alt={name ? name : 'Pet avatar'}
         loading="lazy"
@@ -24,7 +31,7 @@ export const NoticeAvatar = ({ avatarURL, name }) => {
         {!shouldImageShown ? (
           <Loader
             key="loader"
-            variants={standartAnimation}
+            variants={STANDART_ANIMATION_VARIANT}
             initial="initial"
             animate="animate"
             exit="exit"
@@ -33,6 +40,8 @@ export const NoticeAvatar = ({ avatarURL, name }) => {
           </Loader>
         ) : null}
       </AnimatePresence>
+
+      <CategoryBadge>{capitalizeValue(categoryName)}</CategoryBadge>
     </AvatarContainer>
   );
 };
@@ -40,4 +49,6 @@ export const NoticeAvatar = ({ avatarURL, name }) => {
 NoticeAvatar.propTypes = {
   avatarURL: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  categoryName: PropTypes.string.isRequired,
+  variant: PropTypes.string,
 };

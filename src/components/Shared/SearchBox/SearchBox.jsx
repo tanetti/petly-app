@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { delayedSetSearchParameter } from 'components/Shared/SearchBox/utilities/delayedSetSearchParameter';
-import { standartAnimation } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import {
   ClearButton,
   ClearIcon,
@@ -82,7 +82,7 @@ export const SearchBox = () => {
           {searchValue && !isClearButtonSpinning ? (
             <motion.div
               key="clearIcon"
-              variants={standartAnimation}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -94,7 +94,7 @@ export const SearchBox = () => {
           {!searchValue && !isClearButtonSpinning && !isClearButtonSpinning ? (
             <motion.div
               key="searchIcon"
-              variants={standartAnimation}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"

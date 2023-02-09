@@ -3,12 +3,8 @@ import { PropTypes } from 'prop-types';
 import { useAddOwnPetMutation } from 'redux/ownPets/ownPetsApi';
 import { AnimatePresence, motion } from 'framer-motion';
 import { makeToast } from 'utilities/makeToast';
-import {
-  CommonModal,
-  CommonProgressBar,
-  CommonProgressBarContainer,
-} from 'components/Shared';
-import { standartAnimation } from 'constants/animationVariants';
+import { CommonModal } from 'components/Shared';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { FirstStep, SecondStep } from './components';
 import {
   ModalContainer,
@@ -144,7 +140,7 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
           {step === 1 ? (
             <motion.div
               key="stepOne"
-              variants={standartAnimation}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -155,13 +151,7 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
                 initialBreed={breed}
                 onSubmit={onSubmit}
               />
-              <ButtonContainer
-                key="stepOneButtons"
-                variants={standartAnimation}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
+              <ButtonContainer>
                 <ModalFilledButton
                   type="submit"
                   form="form-one"
@@ -181,7 +171,7 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
           ) : (
             <motion.div
               key="stepTwo"
-              variants={standartAnimation}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -195,13 +185,7 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
                 onSubmit={onSubmit}
                 isPetAdding={isPetAdding}
               />
-              <ButtonContainer
-                key="stepTwoButtons"
-                variants={standartAnimation}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-              >
+              <ButtonContainer>
                 <ModalFilledButton
                   type="submit"
                   form="form-two"
@@ -225,20 +209,6 @@ export const AddOwnPetModal = ({ isOpened, closeModal }) => {
           )}
         </AnimatePresence>
       </ModalContainer>
-      <CommonProgressBarContainer>
-        <AnimatePresence>
-          {isPetAdding ? (
-            <motion.div
-              variants={standartAnimation}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <CommonProgressBar />
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
-      </CommonProgressBarContainer>
     </CommonModal>
   );
 };

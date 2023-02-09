@@ -13,7 +13,7 @@ import {
   ContactNoInfo,
 } from './OurFriendsItemStyled';
 import { WorkTimeLayout } from './components';
-import { standartAnimation } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 
 export const OurFriendsItem = ({ friendData }) => {
   const { title, url, addressUrl, imageUrl, address, phone, email, workDays } =
@@ -22,7 +22,7 @@ export const OurFriendsItem = ({ friendData }) => {
   return (
     <FriendsItem
       key={title}
-      variants={standartAnimation}
+      variants={STANDART_ANIMATION_VARIANT}
       initial="initial"
       animate="animate"
       exit="exit"

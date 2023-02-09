@@ -1,4 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {
+  PRIVAT_CATEGORIES,
+  PUBLIC_CATEGORIES,
+} from 'constants/noticesCategory';
 
 export const noticesApi = createApi({
   reducerPath: 'notices',
@@ -15,15 +19,28 @@ export const noticesApi = createApi({
   tagTypes: ['Notices'],
   refetchOnFocus: true,
   endpoints: builder => ({
-    getAllNotices: builder.query({
+    getNotices: builder.query({
       query: params => {
         const { categoryName, searchValue } = params;
 
-        if (!categoryName) return;
-
-        return searchValue
-          ? `/notices/${categoryName}?search=${searchValue}`
-          : `/notices/${categoryName}`;
+        if (
+          [
+            ...PUBLIC_CATEGORIES.map(({ category }) => category),
+            'all',
+          ].includes(categoryName)
+        ) {
+          return searchValue
+            ? `/notices/category/${categoryName}?search=${searchValue}`
+            : `/notices/category/${categoryName}`;
+        } else if (
+          [...PRIVAT_CATEGORIES.map(({ category }) => category)].includes(
+            categoryName
+          )
+        ) {
+          return searchValue
+            ? `/notices/${categoryName}?search=${searchValue}`
+            : `/notices/${categoryName}`;
+        }
       },
       providesTags: ['Notices'],
     }),
@@ -46,7 +63,7 @@ export const noticesApi = createApi({
 });
 
 export const {
-  useGetAllNoticesQuery,
+  useGetNoticesQuery,
   useAddNoticeMutation,
   useDeleteNoticeMutation,
 } = noticesApi;

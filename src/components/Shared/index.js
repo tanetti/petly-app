@@ -20,3 +20,4 @@ export * from './AvatarDropZone/AvatarDropZone';
 export * from './HomePageSectionStyled';
 export * from './HomePageContainerStyled';
 export * from './HomePageUnionStyled';
+export * from './NoticeAvatar/NoticeAvatar';

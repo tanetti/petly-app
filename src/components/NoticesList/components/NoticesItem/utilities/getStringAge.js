@@ -1,18 +1,29 @@
 import numWords from 'num-words';
 
 export const getStringAge = birthdate => {
-  const today = new Date();
-  const birthDate = new Date(birthdate);
+  if (!birthdate) return;
 
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const month = today.getMonth() - birthDate.getMonth();
+  const msFrom1970andBirthdate = new Date(birthdate);
+  const msFrom1970andNow = Date.now();
+  const ageInMilliseconds = msFrom1970andNow - msFrom1970andBirthdate;
 
-  if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
-    age -= 1;
-  }
+  const msInDay = 86400000;
 
-  const ageWord = numWords(age);
-  const yearsWord = ageWord === 'one' ? 'year' : 'years';
+  const ageInYears = Math.floor(ageInMilliseconds / (msInDay * 365));
+  if (ageInYears > 0)
+    return `${numWords(ageInYears)} ${ageInYears === 1 ? 'year' : 'years'}`;
 
-  return `${ageWord} ${yearsWord}`;
+  const ageInMonths = Math.floor(ageInMilliseconds / (msInDay * 30));
+  if (ageInMonths > 0)
+    return `${numWords(ageInMonths)} ${ageInMonths === 1 ? 'month' : 'months'}`;
+
+  const ageInWeeks = Math.floor(ageInMilliseconds / (msInDay * 7));
+  if (ageInWeeks > 0)
+    return `${numWords(ageInWeeks)} ${ageInWeeks === 1 ? 'week' : 'weeks'}`;
+
+  const ageInDays = Math.floor(ageInMilliseconds / msInDay);
+  if (ageInDays > 0)
+    return `${numWords(ageInDays)} ${ageInDays === 1 ? 'day' : 'days'}`;
+
+  return 'one day';
 };

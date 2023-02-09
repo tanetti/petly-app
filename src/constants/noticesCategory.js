@@ -5,6 +5,6 @@ export const PUBLIC_CATEGORIES = [
 ];
 
 export const PRIVAT_CATEGORIES = [
-  { name: 'favorite ads', route: '/notices/favorite' },
-  { name: 'my ads', route: '/notices/own' },
+  { name: 'favorite ads', category: 'favorite', route: '/notices/favorite' },
+  { name: 'my ads', category: 'own', route: '/notices/own' },
 ];

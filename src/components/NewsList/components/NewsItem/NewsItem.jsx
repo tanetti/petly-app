@@ -10,7 +10,7 @@ import {
   BottomContainer,
   NewsListItem,
 } from './NewsItemStyled';
-import { standartAnimation } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 
 export const NewsItem = ({ newsItemData }) => {
   const { title, description, date, url } = newsItemData;
@@ -20,7 +20,7 @@ export const NewsItem = ({ newsItemData }) => {
   return (
     <NewsListItem
       key={title}
-      variants={standartAnimation}
+      variants={STANDART_ANIMATION_VARIANT}
       initial="initial"
       animate="animate"
       exit="exit"

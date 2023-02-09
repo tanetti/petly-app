@@ -25,7 +25,7 @@ import { PriceFormatInput, SexFieldset } from './components';
 import { createFilterOptions, InputAdornment } from '@mui/material';
 import { CITIES } from 'constants/cities';
 import { useGetCurrentInfoQuery } from 'redux/currentUserInfo/currentUserInfoApi';
-import { standartAnimation } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { AnimatePresence } from 'framer-motion';
 
 const filterOptions = createFilterOptions({
@@ -205,7 +205,7 @@ export const SecondStep = ({
           {!!errors.notice_avatar && (
             <ImageErrorContainer
               key="sexError"
-              variants={standartAnimation}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -235,7 +235,7 @@ export const SecondStep = ({
             {!!errors.comments && (
               <TextareaErrorContainer
                 key="sexError"
-                variants={standartAnimation}
+                variants={STANDART_ANIMATION_VARIANT}
                 initial="initial"
                 animate="animate"
                 exit="exit"

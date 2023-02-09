@@ -1,6 +1,7 @@
 import { styled } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 
-export const NoticeContainer = styled('li')`
+export const NoticeContainer = styled(motion.li)`
   position: relative;
 
   display: flex;
@@ -29,35 +30,6 @@ export const NoticeContainer = styled('li')`
   }
 `;
 
-export const CategoryBadge = styled('p')`
-  position: absolute;
-  top: 20px;
-  left: 0;
-  z-index: 10;
-
-  display: flex;
-  justify-content: center;
-
-  width: 158px;
-  height: 28px;
-  padding: 6px 20px;
-
-  font-family: 'Inter';
-  font-size: 12px;
-  line-height: 1.25;
-  letter-spacing: 0.04em;
-
-  background-color: ${({ theme }) => theme.palette.background.light};
-
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-
-  backdrop-filter: blur(2px);
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-`;
-
 export const InfoContainer = styled('div')`
   flex-grow: 1;
 
@@ -78,6 +50,7 @@ export const NoticeTitle = styled('h3')`
   line-height: 1.36;
   letter-spacing: -0.01em;
 
+  word-wrap: break-word;
   overflow: hidden;
 `;
 

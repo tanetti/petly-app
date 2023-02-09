@@ -3,7 +3,7 @@ import { FriendsList } from './OurFriendsListStyled';
 import { OurFriendsItem } from './components';
 import { AnimatePresence } from 'framer-motion';
 import { ErrorLayout, LoaderLayout, NoResultLayout } from 'components/Shared';
-import { standartAnimation } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 
 export const OurFriendsList = () => {
   const { data, error, isLoading, isPending } = useGetServicesQuery();
@@ -21,7 +21,7 @@ export const OurFriendsList = () => {
       {!isLoading && !error && data?.length ? (
         <FriendsList
           key="friendsList"
-          variants={standartAnimation}
+          variants={STANDART_ANIMATION_VARIANT}
           initial="initial"
           animate="animate"
           exit="exit"

@@ -5,6 +5,7 @@ export const CommonProgressBarContainer = styled('div')`
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: 20;
 
   width: 100%;
 
@@ -14,7 +15,7 @@ export const CommonProgressBarContainer = styled('div')`
 `;
 
 export const CommonProgressBar = styled(LinearProgress)`
-  height: 6px;
+  height: 4px;
 
   background-color: transparent;
 `;

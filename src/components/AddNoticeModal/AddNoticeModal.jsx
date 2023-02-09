@@ -2,13 +2,9 @@ import { PropTypes } from 'prop-types';
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useAddNoticeMutation } from 'redux/notices/noticesApi';
-import { standartAnimation } from 'constants/animationVariants';
+import { STANDART_ANIMATION_VARIANT } from 'constants/animationVariants';
 import { FirstStep, SecondStep } from './components';
-import {
-  CommonModal,
-  CommonProgressBar,
-  CommonProgressBarContainer,
-} from 'components/Shared';
+import { CommonModal } from 'components/Shared';
 import { ModalContainer } from './AddNoticeModalStyled';
 import { makeToast } from 'utilities/makeToast';
 
@@ -58,7 +54,7 @@ export const AddNoticeModal = ({ isOpened, closeModal }) => {
           {isOnTheFirstStep ? (
             <motion.div
               key="stepOne"
-              variants={standartAnimation}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -73,7 +69,7 @@ export const AddNoticeModal = ({ isOpened, closeModal }) => {
           ) : (
             <motion.div
               key="stepTwo"
-              variants={standartAnimation}
+              variants={STANDART_ANIMATION_VARIANT}
               initial="initial"
               animate="animate"
               exit="exit"
@@ -90,21 +86,6 @@ export const AddNoticeModal = ({ isOpened, closeModal }) => {
           )}
         </AnimatePresence>
       </ModalContainer>
-
-      <CommonProgressBarContainer>
-        <AnimatePresence>
-          {isNoticeAdding ? (
-            <motion.div
-              variants={standartAnimation}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-            >
-              <CommonProgressBar />
-            </motion.div>
-          ) : null}
-        </AnimatePresence>
-      </CommonProgressBarContainer>
     </CommonModal>
   );
 };
