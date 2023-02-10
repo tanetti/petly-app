@@ -67,7 +67,7 @@ export const UserData = () => {
   const onSaveImageButtonClick = async () => {
     const formData = new FormData();
 
-    formData.append('avatar', newAvatarFile, newAvatarFile.name);
+    formData.append('user_avatar', newAvatarFile);
 
     uploadAvatar(formData);
   };

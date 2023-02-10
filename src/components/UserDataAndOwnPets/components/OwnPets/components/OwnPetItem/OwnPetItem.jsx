@@ -117,6 +117,5 @@ OwnPetsItem.propTypes = {
     breed: PropTypes.string.isRequired,
     comments: PropTypes.string,
     avatarURL: PropTypes.string.isRequired,
-    created_at: PropTypes.string.isRequired,
   }).isRequired,
 };

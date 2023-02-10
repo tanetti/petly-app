@@ -16,12 +16,12 @@ export const ownPetsApi = createApi({
   refetchOnFocus: true,
   endpoints: builder => ({
     getOwnPets: builder.query({
-      query: () => '/users/own',
+      query: () => '/pets',
       providesTags: ['OwnPets'],
     }),
     addOwnPet: builder.mutation({
       query: body => ({
-        url: '/users/own',
+        url: '/pets',
         method: 'POST',
         body,
       }),
@@ -29,7 +29,7 @@ export const ownPetsApi = createApi({
     }),
     deleteOwnPet: builder.mutation({
       query: ownPetId => ({
-        url: `/users/own/${ownPetId}`,
+        url: `/pets/${ownPetId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['OwnPets'],
